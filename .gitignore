@@ -1,0 +1,4 @@
+*.o
+*.O
+./Keil/Listings/*
+./Keil/Objects/*
