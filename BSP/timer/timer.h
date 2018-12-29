@@ -35,6 +35,7 @@ void Timer4_pwm_on(char channel);
 void Timer3_pwm_Init(u16 arr,u16 psc);
 void Timer3_pwm_off(char channel);
 void Timer3_pwm_on(char channel);
+int Timer3_setPulseWidth(uint8_t channel, float pulsePercent);
 void Timer2_counter_Init(u16 arr,u16 psc);
 void TIM2_delay_us(unsigned short delay_us);
 

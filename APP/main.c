@@ -53,24 +53,24 @@ int main(void){
 /***************   System Initialization part  ******************/
     LED_Init(); 
     Uart1Init(115200); //Timer init must follow usart, can't change order
-    //Timer3_pwm_Init(237,8);  //周期 = 72e6 / 8 /237 = 37.97KHz
-    //Timer3_pwm_off(0);
+//    Uart2Init(9600);
+////    Timer3_pwm_Init(237,8);  //周期 = 72e6 / 8 /237 = 37.97KHz
     //Timer4_capture_Init(MAXCOUNTER,72);//周期 = 6ms  分辨率1us
     //TIM_ITConfig(TIM4,TIM_IT_CC4| TIM_IT_Update,DISABLE);
     //Uart1SendStr("Hello oceancjc\r\n"); Uart发送驱动增加了FreeRTOS功能，不能在task外调用
-    Initial_SPI(1);
-    SX1276Init(&sx1278device);
-	//leveldio0 = DIO0;
-	//GPIO_ResetBits( NSS_IOPORT, NSS_PIN ); 
-    //leveldio0 = DIO0;
-  	//GPIO_SetBits( NSS_IOPORT, NSS_PIN ); 
-    //leveldio0 = DIO0;
-    SX276TxStart(&sx1278device);
-    uint8_t *data = (uint8_t*)"hello cjc";
-    SX1276Send( &sx1278device, data, 9 );
-    int i = 4096;
-    while(i--);
-    leveldio0 = DIO0;
+//    Initial_SPI(1);
+//    SX1276Init(&sx1278device);
+//	//leveldio0 = DIO0;
+//	//GPIO_ResetBits( NSS_IOPORT, NSS_PIN ); 
+//    //leveldio0 = DIO0;
+//  	//GPIO_SetBits( NSS_IOPORT, NSS_PIN ); 
+//    //leveldio0 = DIO0;
+//    SX276TxStart(&sx1278device);
+//    uint8_t *data = (uint8_t*)"hello cjc";
+//    SX1276Send( &sx1278device, data, 9 );
+//    int i = 4096;
+//    while(i--);
+//    leveldio0 = DIO0;
 
 
 /****************   OS Tasks Generation part *******************/    

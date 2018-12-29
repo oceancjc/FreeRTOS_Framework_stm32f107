@@ -37,11 +37,8 @@
 .\objects\trcsnapshotrecorder.o: ..\Tracealyzer\include\trcKernelPort.h
 .\objects\trcsnapshotrecorder.o: ..\FREERTOS\include\FreeRTOS.h
 .\objects\trcsnapshotrecorder.o: ..\FREERTOS\portable\RVDS\ARM_CM3\FreeRTOSConfig.h
-.\objects\trcsnapshotrecorder.o: ..\Tracealyzer\include\trcRecorder.h
 .\objects\trcsnapshotrecorder.o: ..\FREERTOS\include\projdefs.h
 .\objects\trcsnapshotrecorder.o: ..\FREERTOS\include\portable.h
 .\objects\trcsnapshotrecorder.o: ..\FREERTOS\include\deprecated_definitions.h
 .\objects\trcsnapshotrecorder.o: ..\FREERTOS\portable\RVDS\ARM_CM3\portmacro.h
 .\objects\trcsnapshotrecorder.o: ..\FREERTOS\include\mpu_wrappers.h
-.\objects\trcsnapshotrecorder.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-.\objects\trcsnapshotrecorder.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h

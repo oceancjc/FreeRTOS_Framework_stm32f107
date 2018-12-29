@@ -16,6 +16,7 @@
 #include "flash.h"
 
 extern TaskHandle_t IrdaLearnTsk, IrdaSendTsk;
+extern TaskHandle_t SteeringEngCtlTsk;
 extern TaskHandle_t Uart1SendBackTsk, CmdServerTsk;
 
 typedef struct{
@@ -33,6 +34,7 @@ extern void LED_D2_toggle( TimerHandle_t xTimer);
 extern void irda_learning_Task(void *pvParameters);
 extern void cmd_analysis_Task(void *pvParameters); 
 extern void code_sending(unsigned int address);
+extern void steeringCtl_Task(void *pvParameters);
 extern void Uart1_print_back_Task(void *pvParameters);
 
 

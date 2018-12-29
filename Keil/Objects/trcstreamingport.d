@@ -37,7 +37,6 @@
 .\objects\trcstreamingport.o: ..\Tracealyzer\include\trcKernelPort.h
 .\objects\trcstreamingport.o: ..\FREERTOS\include\FreeRTOS.h
 .\objects\trcstreamingport.o: ..\FREERTOS\portable\RVDS\ARM_CM3\FreeRTOSConfig.h
-.\objects\trcstreamingport.o: ..\Tracealyzer\include\trcRecorder.h
 .\objects\trcstreamingport.o: ..\FREERTOS\include\projdefs.h
 .\objects\trcstreamingport.o: ..\FREERTOS\include\portable.h
 .\objects\trcstreamingport.o: ..\FREERTOS\include\deprecated_definitions.h

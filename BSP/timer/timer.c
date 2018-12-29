@@ -125,15 +125,16 @@ void re_count_108ms(void){
 /**********************************************************************
 **********************  TIM3 Related Functions  ***********************
 **********************************************************************/
+static uint32_t Timer3TicksPeriod = 0;
 void Timer3_pwm_Init(u16 arr,u16 psc){
     TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
     GPIO_InitTypeDef GPIO_InitStructure;
     TIM_OCInitTypeDef TIM_OCInitStructure;
-    
+    Timer3TicksPeriod = arr;
     
     RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE); //时钟使能
     
-    TIM_TimeBaseStructure.TIM_Period = arr; //设置在下一个更新事件装入活动的自动重装载寄存器周期的值     计数到5000为500ms
+    TIM_TimeBaseStructure.TIM_Period = arr-1; //设置在下一个更新事件装入活动的自动重装载寄存器周期的值     计数到5000为500ms
     TIM_TimeBaseStructure.TIM_Prescaler =(psc-1); //设置用来作为TIMx时钟频率除数的预分频值  10Khz的计数频率  
     TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1; //设置时钟分割:TDTS = Tck_tim
     TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;  //TIM向上计数模式
@@ -238,6 +239,33 @@ void Timer3_pwm_on(char channel){
         GPIO_Init(GPIOA, &GPIO_InitStructure);
     }    
 
+}
+
+/****************************************************************
+Return 
+     0:  OK
+    -1:  Parameter invalid
+****************************************************************/
+int Timer3_setPulseWidth(uint8_t channel, float pulsePercent){
+    if(pulsePercent > 0.999 || pulsePercent < 0)    return -1;
+    register uint16_t cmpval = (uint16_t)(pulsePercent * Timer3TicksPeriod);
+    switch(channel){
+        case 1:
+            TIM_SetCompare1(TIM3,cmpval);    break;
+        case 2:
+            TIM_SetCompare2(TIM3,cmpval);    break;
+        case 3:
+            TIM_SetCompare3(TIM3,cmpval);    break;
+        case 4:
+            TIM_SetCompare4(TIM3,cmpval);    break;
+        case 0:
+            TIM_SetCompare1(TIM3,cmpval);    TIM_SetCompare2(TIM3,cmpval);
+            TIM_SetCompare3(TIM3,cmpval);    TIM_SetCompare4(TIM3,cmpval);
+            break;
+        default:
+            return -1;
+    }
+    return 0;
 }
 
 

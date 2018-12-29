@@ -42,13 +42,6 @@
 .\objects\sx1276.o: ..\FREERTOS\include\FreeRTOS.h
 .\objects\sx1276.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\sx1276.o: ..\FREERTOS\portable\RVDS\ARM_CM3\FreeRTOSConfig.h
-.\objects\sx1276.o: ..\Tracealyzer\include\trcRecorder.h
-.\objects\sx1276.o: ..\Tracealyzer\config\trcConfig.h
-.\objects\sx1276.o: ..\Tracealyzer\include\trcPortDefines.h
-.\objects\sx1276.o: ..\Tracealyzer\config\trcSnapshotConfig.h
-.\objects\sx1276.o: ..\Tracealyzer\include\trcHardwarePort.h
-.\objects\sx1276.o: ..\Tracealyzer\include\trcKernelPort.h
-.\objects\sx1276.o: ..\FREERTOS\include\FreeRTOS.h
 .\objects\sx1276.o: ..\FREERTOS\include\projdefs.h
 .\objects\sx1276.o: ..\FREERTOS\include\portable.h
 .\objects\sx1276.o: ..\FREERTOS\include\deprecated_definitions.h

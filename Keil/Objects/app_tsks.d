@@ -32,13 +32,6 @@
 .\objects\app_tsks.o: ..\FREERTOS\include\FreeRTOS.h
 .\objects\app_tsks.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\app_tsks.o: ..\FREERTOS\portable\RVDS\ARM_CM3\FreeRTOSConfig.h
-.\objects\app_tsks.o: ..\Tracealyzer\include\trcRecorder.h
-.\objects\app_tsks.o: ..\Tracealyzer\config\trcConfig.h
-.\objects\app_tsks.o: ..\Tracealyzer\include\trcPortDefines.h
-.\objects\app_tsks.o: ..\Tracealyzer\config\trcSnapshotConfig.h
-.\objects\app_tsks.o: ..\Tracealyzer\include\trcHardwarePort.h
-.\objects\app_tsks.o: ..\Tracealyzer\include\trcKernelPort.h
-.\objects\app_tsks.o: ..\FREERTOS\include\FreeRTOS.h
 .\objects\app_tsks.o: ..\FREERTOS\include\projdefs.h
 .\objects\app_tsks.o: ..\FREERTOS\include\portable.h
 .\objects\app_tsks.o: ..\FREERTOS\include\deprecated_definitions.h

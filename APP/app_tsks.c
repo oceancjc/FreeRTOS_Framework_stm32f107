@@ -13,8 +13,10 @@
 
 
 TaskHandle_t tsk_handler[3];
-TaskHandle_t IrdaSendTsk = NULL, IrdaLearnTsk = NULL;
 TaskHandle_t Uart1SendBackTsk = NULL, CmdServerTsk = NULL;
+TaskHandle_t IrdaSendTsk = NULL, IrdaLearnTsk = NULL;
+TaskHandle_t SteeringEngCtlTsk = NULL;
+TSK_PARAMETER_t SteeringCtlPara = { 0 };
 TSK_PARAMETER_t tsk_parameter[3];
 
 
@@ -29,6 +31,9 @@ learn %d        learn the irda key, valid only irda learning task exists
 use   %d        send the irda key, valid only irda sending task exists
 remote_set %d   1: start irda learning task and delete irda sending task if exists
                 0: start irda sending task and delete irda learning task if exists 
+moter_ctl %d    1: start steering engine control task and reset to 90 degree position
+                0: delete steering engine control task 
+moter_set %d    use when moter_ctl is set to 1  %d belong to 0-180, stand for degree, int only
 ****************************************************************/
 void cmd_analysis_Task(void *pvParameters){
     char* cmd = (char*)pvPortMalloc(20*sizeof(char));  int opdata = 0;
@@ -45,7 +50,7 @@ void cmd_analysis_Task(void *pvParameters){
             tsk_parameter[1].tsk2notify = IrdaLearnTsk;
             xTaskNotifyGive(tsk_parameter[1].tsk2notify);
         }
-        else if(strstr((char*)Msgget,"use")){
+        else if(strstr((char*)cmd,"use")){
             if(IrdaSendTsk == NULL){
                 uart1_printf("Please Enter RC Sending mode first\r\n");
                 continue;
@@ -56,7 +61,7 @@ void cmd_analysis_Task(void *pvParameters){
             tsk_parameter[0].tsk2notify = IrdaSendTsk;
             xTaskNotifyGive(tsk_parameter[0].tsk2notify);
         }
-        else if(strstr((char*)Msgget,"remote_set")){
+        else if(strstr((char*)cmd,"remote_set")){
             if(opdata == 1 && IrdaLearnTsk == NULL){
                 if(IrdaSendTsk){    
                     vTaskDelete(IrdaSendTsk);    IrdaSendTsk = NULL;    
@@ -69,6 +74,22 @@ void cmd_analysis_Task(void *pvParameters){
                 }
                 xTaskCreate(irda_sending_Task, "code_sending", configMINIMAL_STACK_SIZE, &tsk_parameter[0], tskIDLE_PRIORITY + 2, &IrdaSendTsk);
             }                   
+        }
+        else if(strstr((char*)cmd,"moter_ctl")){
+            if(opdata == 1 && SteeringEngCtlTsk == NULL )    
+                xTaskCreate(steeringCtl_Task, "Steering Engine", configMINIMAL_STACK_SIZE, 
+                            (void*)&SteeringCtlPara, tskIDLE_PRIORITY + 2, &SteeringEngCtlTsk);
+            else if(opdata != 1 && SteeringEngCtlTsk != NULL){
+                Timer3_pwm_off(0);
+                Uart1SendStr("Exit Steering Enginee Ctl\r\n");
+                vTaskDelete(SteeringEngCtlTsk);    SteeringEngCtlTsk = NULL;
+            }
+        }
+        else if(strstr((char*)cmd,"moter_set")){
+            SteeringCtlPara.opdata[0] = opdata;
+            strcpy(SteeringCtlPara.cmd,cmd);
+            SteeringCtlPara.tsk2notify = SteeringEngCtlTsk;
+            xTaskNotifyGive(SteeringCtlPara.tsk2notify);
         }
         else    Uart1SendStr("Invalid Task\r\n");
         memset(Msgget,0,MAXBUF*sizeof(char));
@@ -265,5 +286,35 @@ void Uart1_print_back_Task(void *pvParameters){
         else if(ulEventsToProcess > 1)    uart1_printf("Send too fast, overflow: %d\n",ulEventsToProcess);        
         xTaskNotifyGive((TaskHandle_t)pvParameters);        
     }
+}
+
+
+
+void steeringCtl_Task(void *pvParameters){
+    Uart1SendStr("You are in task --- Steering Engine Control\r\n");
+    Uart2Init(9600);
+    Timer3_pwm_Init(200,7200);  //ÖÜÆÚ = 72e6 / 200 /7200 = 50Hz
+    Timer3_pwm_off(0);
+    Timer3_setPulseWidth(0, 1.5/20);    //Reset Steering Engine
+    Timer3_pwm_on(0);
+    TSK_PARAMETER_t* para = (TSK_PARAMETER_t*)pvParameters;
+    vTaskDelay(pdMS_TO_TICKS(200));
+    while(1){
+        Timer3_pwm_off(0);
+        ulTaskNotifyTake( pdTRUE, portMAX_DELAY );
+        if(para->opdata[0]> 180){
+            uart1_printf("Invalid angle:%d\r\n",para->opdata[0]);
+            continue;
+        }   
+        Timer3_setPulseWidth(0, (para->opdata[0]/90.+0.5)/20);      //0--0.5   180--2.5
+        Timer3_pwm_on(0);
+        uart1_printf("Angle set:%d\r\n",para->opdata[0]);   
+        vTaskDelay(pdMS_TO_TICKS(200));        
+        
+    };
+
+    
+    
+    
 }
 
