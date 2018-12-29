@@ -80,12 +80,16 @@ void cmd_analysis_Task(void *pvParameters){
                 xTaskCreate(steeringCtl_Task, "Steering Engine", configMINIMAL_STACK_SIZE, 
                             (void*)&SteeringCtlPara, tskIDLE_PRIORITY + 2, &SteeringEngCtlTsk);
             else if(opdata != 1 && SteeringEngCtlTsk != NULL){
-                Timer3_pwm_off(0);
+                Timer3_pwm_Deinit();
                 Uart1SendStr("Exit Steering Enginee Ctl\r\n");
                 vTaskDelete(SteeringEngCtlTsk);    SteeringEngCtlTsk = NULL;
             }
         }
         else if(strstr((char*)cmd,"moter_set")){
+            if(SteeringEngCtlTsk == NULL){
+                Uart1SendStr("Enter moter control mode first\r\n");
+                continue;
+            }    
             SteeringCtlPara.opdata[0] = opdata;
             strcpy(SteeringCtlPara.cmd,cmd);
             SteeringCtlPara.tsk2notify = SteeringEngCtlTsk;
@@ -292,7 +296,6 @@ void Uart1_print_back_Task(void *pvParameters){
 
 void steeringCtl_Task(void *pvParameters){
     Uart1SendStr("You are in task --- Steering Engine Control\r\n");
-    Uart2Init(9600);
     Timer3_pwm_Init(200,7200);  //ÖÜÆÚ = 72e6 / 200 /7200 = 50Hz
     Timer3_pwm_off(0);
     Timer3_setPulseWidth(0, 1.5/20);    //Reset Steering Engine

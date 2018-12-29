@@ -33,6 +33,7 @@ void Timer4_capture_Init(u16 arr,u16 psc);
 void Timer4_pwm_off(char channel);
 void Timer4_pwm_on(char channel);
 void Timer3_pwm_Init(u16 arr,u16 psc);
+void Timer3_pwm_Deinit(void);
 void Timer3_pwm_off(char channel);
 void Timer3_pwm_on(char channel);
 int Timer3_setPulseWidth(uint8_t channel, float pulsePercent);

@@ -133,14 +133,6 @@ void Timer3_pwm_Init(u16 arr,u16 psc){
     Timer3TicksPeriod = arr;
     
     RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE); //时钟使能
-    
-    TIM_TimeBaseStructure.TIM_Period = arr-1; //设置在下一个更新事件装入活动的自动重装载寄存器周期的值     计数到5000为500ms
-    TIM_TimeBaseStructure.TIM_Prescaler =(psc-1); //设置用来作为TIMx时钟频率除数的预分频值  10Khz的计数频率  
-    TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1; //设置时钟分割:TDTS = Tck_tim
-    TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;  //TIM向上计数模式
-    TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure); //根据TIM_TimeBaseInitStruct中指定的参数初始化TIMx的时间基数单位
-    
-    
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOB , ENABLE); //时钟使能
     GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
@@ -149,8 +141,16 @@ void Timer3_pwm_Init(u16 arr,u16 psc){
     GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1;
     GPIO_Init(GPIOB, &GPIO_InitStructure);
     
+    TIM_TimeBaseStructure.TIM_Period = arr-1; //设置在下一个更新事件装入活动的自动重装载寄存器周期的值     计数到5000为500ms
+    TIM_TimeBaseStructure.TIM_Prescaler =(psc-1); //设置用来作为TIMx时钟频率除数的预分频值  10Khz的计数频率  
+    TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1; //设置时钟分割:TDTS = Tck_tim
+    TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;  //TIM向上计数模式
+    TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure); //根据TIM_TimeBaseInitStruct中指定的参数初始化TIMx的时间基数单位
+    
+    
     /* Configures the TIM3 Channel 1-4 in PWM Mode */
     TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
+    TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
     TIM_OCInitStructure.TIM_Pulse = arr/3-1;
     TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
     
@@ -166,14 +166,19 @@ void Timer3_pwm_Init(u16 arr,u16 psc){
     
     TIM_OC4Init(TIM3,&TIM_OCInitStructure);
     TIM_OC4PreloadConfig(TIM3, TIM_OCPreload_Enable);
-    
-    
-    
+     
     TIM_CtrlPWMOutputs(TIM3,ENABLE);   //??TIM2?PWM?????
     TIM_ARRPreloadConfig(TIM3, ENABLE); //??TIMx?ARR???????? 
     TIM_Cmd(TIM3, ENABLE);  //使能TIMx外设
                 
 }
+
+
+void Timer3_pwm_Deinit(void){
+    TIM_Cmd(TIM3, DISABLE); 
+    RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, DISABLE);
+}
+
 
 void Timer3_pwm_off(char channel){
     GPIO_InitTypeDef GPIO_InitStructure;
