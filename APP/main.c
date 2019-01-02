@@ -58,7 +58,7 @@ int main(void){
     //Timer4_capture_Init(MAXCOUNTER,72);//周期 = 6ms  分辨率1us
     //TIM_ITConfig(TIM4,TIM_IT_CC4| TIM_IT_Update,DISABLE);
     //Uart1SendStr("Hello oceancjc\r\n"); Uart发送驱动增加了FreeRTOS功能，不能在task外调用
-//    Initial_SPI(1);
+//    Initial_SPI(1,0);
 //    SX1276Init(&sx1278device);
 //	//leveldio0 = DIO0;
 //	//GPIO_ResetBits( NSS_IOPORT, NSS_PIN ); 

@@ -51,7 +51,7 @@
 
 
 /*******************相关函数声明**************************/
-extern void Initial_SPI(unsigned char channel);
+extern void Initial_SPI(unsigned char channel,unsigned char mode);
 extern void nRF24L01_Initial(void);
 extern void TX_RX_Mode(U8 mode);
 extern U8 SPI_RW_Byte(U8 channel,U8 data);

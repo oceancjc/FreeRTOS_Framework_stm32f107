@@ -1,13 +1,13 @@
 #include "spi.h"
 
-#define CE(x)     x ? GPIO_SetBits(GPIOC,GPIO_Pin_2) : GPIO_ResetBits(GPIOB,GPIO_Pin_2)       //For spi 1  
-#define CSN(x)     x ? GPIO_SetBits(GPIOC,GPIO_Pin_3) : GPIO_ResetBits(GPIOB,GPIO_Pin_3)            //For spi 1
+#define CE(x)        x ? GPIO_SetBits(GPIOC,GPIO_Pin_2) : GPIO_ResetBits(GPIOB,GPIO_Pin_2)       //For spi 1  
+#define CSN(x)       x ? GPIO_SetBits(GPIOC,GPIO_Pin_3) : GPIO_ResetBits(GPIOB,GPIO_Pin_3)            //For spi 1
 #define IRQ GPIO_ReadInputDataBit(GPIOA,GPIO_Pin_3)                                                                                //For spi 1         
 
 uint8_t TX_ADDRESS[TX_ADDR_WIDTH]={0x34,0x43,0x10,0x10,0x01}; 
 uint8_t RX_ADDRESS[RX_ADDR_WIDTH]={0x34,0x43,0x10,0x10,0x01}; 
 
-void Initial_SPI(unsigned char channel){ //SPI1¿ÉÓÃ£¬ÔÚÒÔÌ«ÍøÇé¿öÏÂSPI2ÎÞ·¨Ê¹ÓÃ£¬Ó¦Ñ¡ÔñGPIO¿ÚÄ£Äâ
+void Initial_SPI(unsigned char channel, unsigned char mode){ //SPI1¿ÉÓÃ£¬ÔÚÒÔÌ«ÍøÇé¿öÏÂSPI2ÎÞ·¨Ê¹ÓÃ£¬Ó¦Ñ¡ÔñGPIO¿ÚÄ£Äâ
     GPIO_InitTypeDef GPIO_InitStruct;
     SPI_InitTypeDef SPI_InitStruct;
     if(channel==1){
@@ -34,8 +34,8 @@ void Initial_SPI(unsigned char channel){ //SPI1¿ÉÓÃ£¬ÔÚÒÔÌ«ÍøÇé¿öÏÂSPI2ÎÞ·¨Ê¹ÓÃ£
     SPI_InitStruct.SPI_Direction= SPI_Direction_2Lines_FullDuplex;
     SPI_InitStruct.SPI_Mode = SPI_Mode_Master;
     SPI_InitStruct.SPI_DataSize = SPI_DataSize_8b;
-    SPI_InitStruct.SPI_CPOL = SPI_CPOL_Low;
-    SPI_InitStruct.SPI_CPHA = SPI_CPHA_1Edge;
+    SPI_InitStruct.SPI_CPOL = mode & 0x02;    //SPI_CPOL_Low;
+    SPI_InitStruct.SPI_CPHA = mode & 0x01;
     SPI_InitStruct.SPI_NSS = SPI_NSS_Soft;
     SPI_InitStruct.SPI_FirstBit = SPI_FirstBit_MSB;
     SPI_InitStruct.SPI_CRCPolynomial = 7;
@@ -67,7 +67,7 @@ void nRF24L01_Initial(void){
     CE(0);
     CSN(1);
     
-    Initial_SPI(1);
+    Initial_SPI(1,0);
 //    nRF24L01_Config();
 }
 void nRF24L01_Config(void){
