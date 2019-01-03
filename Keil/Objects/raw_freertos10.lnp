@@ -30,6 +30,7 @@
 ".\objects\timer.o"
 ".\objects\spi.o"
 ".\objects\flash.o"
+".\objects\w5500interface.o"
 ".\objects\sx1276-hal.o"
 ".\objects\sx1276-lora.o"
 ".\objects\sx1276-loramisc.o"
@@ -43,9 +44,6 @@
 ".\objects\socket.o"
 ".\objects\w5500.o"
 ".\objects\dhcp.o"
-".\objects\httpparser.o"
-".\objects\httpserver.o"
-".\objects\httputil.o"
 --library_type=microlib --strict --scatter ".\Objects\raw_freertos10.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

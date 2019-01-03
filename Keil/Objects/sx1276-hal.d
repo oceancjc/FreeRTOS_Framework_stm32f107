@@ -3,8 +3,6 @@
 .\objects\sx1276-hal.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\sx1276-hal.o: ..\BSP\spi\spi.h
 .\objects\sx1276-hal.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\sx1276-hal.o: D:\Keil_v5\ARM\RV31\INC\Net_Config.h
-.\objects\sx1276-hal.o: D:\Keil_v5\ARM\RV31\INC\RTL.h
 .\objects\sx1276-hal.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\sx1276-hal.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\sx1276-hal.o: ..\CORE\stm32f10x.h

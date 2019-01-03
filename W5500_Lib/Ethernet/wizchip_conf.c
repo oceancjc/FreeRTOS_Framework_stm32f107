@@ -53,7 +53,11 @@
 //
 
 #include "wizchip_conf.h"
+#include "spi.h"
 
+#define W5500SPICHANNEL                             (1)
+#define CS_IOPORT                                  GPIOE
+#define CS_PIN                                     GPIO_Pin_14
 /////////////
 //M20150401 : Remove ; in the default callback function such as wizchip_cris_enter(), wizchip_cs_select() and etc.
 /////////////
@@ -64,7 +68,7 @@
  * null function is called.
  */
 //void 	  wizchip_cris_enter(void)           {};
-void 	  wizchip_cris_enter(void)           {}
+void 	  wizchip_cris_enter(void)           {    	__set_PRIMASK(1);    }
 
 /**
  * @brief Default function to disable interrupt.
@@ -72,7 +76,7 @@ void 	  wizchip_cris_enter(void)           {}
  * null function is called.
  */
 //void 	  wizchip_cris_exit(void)          {};
-void 	  wizchip_cris_exit(void)          {}
+void 	  wizchip_cris_exit(void)          {    	__set_PRIMASK(0);    }
 
 /**
  * @brief Default function to select chip.
@@ -80,7 +84,7 @@ void 	  wizchip_cris_exit(void)          {}
  * null function is called.
  */
 //void 	wizchip_cs_select(void)            {};
-void 	wizchip_cs_select(void)            {}
+void 	wizchip_cs_select(void)            {    GPIO_SetBits(CS_IOPORT,CS_PIN);    }
 
 /**
  * @brief Default function to deselect chip.
@@ -88,7 +92,7 @@ void 	wizchip_cs_select(void)            {}
  * null function is called.
  */
 //void 	wizchip_cs_deselect(void)          {};
-void 	wizchip_cs_deselect(void)          {}
+void 	wizchip_cs_deselect(void)          {    GPIO_ResetBits(CS_IOPORT,CS_PIN);    }
 
 /**
  * @brief Default function to read in direct or indirect interface.
@@ -114,7 +118,8 @@ void 	wizchip_bus_writedata(uint32_t AddrSel, iodata_t wb)  { *((volatile iodata
  * null function is called.
  */
 //uint8_t wizchip_spi_readbyte(void)        {return 0;};
-uint8_t wizchip_spi_readbyte(void)        {return 0;}
+uint8_t wizchip_spi_readbyte(void)          {    return SPI_RW_Byte(W5500SPICHANNEL,0);    }
+
 
 /**
  * @brief Default function to write in SPI interface.
@@ -122,7 +127,9 @@ uint8_t wizchip_spi_readbyte(void)        {return 0;}
  * null function is called.
  */
 //void 	wizchip_spi_writebyte(uint8_t wb) {};
-void 	wizchip_spi_writebyte(uint8_t wb) {}
+void 	wizchip_spi_writebyte(uint8_t wb) {    SPI_RW_Byte(W5500SPICHANNEL,wb);    }
+
+
 
 /**
  * @brief Default function to burst read in SPI interface.

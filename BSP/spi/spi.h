@@ -2,7 +2,6 @@
 #define __SPI_H
 
 #include <stdio.h>
-#include <Net_Config.h>
 #include <string.h>
 #include <stdint.h>
 //#include "stm32f10x_spi.h"
@@ -53,12 +52,12 @@
 /*******************相关函数声明**************************/
 extern void Initial_SPI(unsigned char channel,unsigned char mode);
 extern void nRF24L01_Initial(void);
-extern void TX_RX_Mode(U8 mode);
-extern U8 SPI_RW_Byte(U8 channel,U8 data);
-extern U8 NRF_W_Reg(U8 reg, U8 dat);
-extern U8 NRF_R_Reg(U8 reg);
-extern U8 NRF_WriteBuf(U8 reg, U8 *dat, U8 bytes);
-extern U8 SPI_Read_Buf(U8 reg,U8 *dat,U8 bytes);
+extern void TX_RX_Mode(uint8_t mode);
+extern uint8_t SPI_RW_Byte(uint8_t channel,uint8_t data);
+extern uint8_t NRF_W_Reg(uint8_t reg, uint8_t dat);
+extern uint8_t NRF_R_Reg(uint8_t reg);
+extern uint8_t NRF_WriteBuf(uint8_t reg, uint8_t *dat, uint8_t bytes);
+extern uint8_t SPI_Read_Buf(uint8_t reg,uint8_t *dat,uint8_t bytes);
 extern void nRF24L01_TxPacket(unsigned char *tx_buf);
 extern void nRF24L01_RxPacket(unsigned char* rx_buf);
 extern void nRF24L01_Config(void);

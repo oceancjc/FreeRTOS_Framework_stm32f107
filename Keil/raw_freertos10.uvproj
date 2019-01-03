@@ -595,6 +595,11 @@
               <FileType>1</FileType>
               <FilePath>..\BSP\flash\flash.c</FilePath>
             </File>
+            <File>
+              <FileName>w5500interface.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\w5500interface.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -679,21 +684,6 @@
               <FileName>dhcp.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\W5500_Lib\Internet\DHCP\dhcp.c</FilePath>
-            </File>
-            <File>
-              <FileName>httpParser.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\W5500_Lib\Internet\httpServer\httpParser.c</FilePath>
-            </File>
-            <File>
-              <FileName>httpServer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\W5500_Lib\Internet\httpServer\httpServer.c</FilePath>
-            </File>
-            <File>
-              <FileName>httpUtil.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\W5500_Lib\Internet\httpServer\httpUtil.c</FilePath>
             </File>
           </Files>
         </Group>

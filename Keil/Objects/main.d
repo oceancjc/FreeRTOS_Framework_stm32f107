@@ -48,8 +48,6 @@
 .\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\main.o: ..\BSP\timer\timer.h
 .\objects\main.o: ..\BSP\spi\spi.h
-.\objects\main.o: D:\Keil_v5\ARM\RV31\INC\Net_Config.h
-.\objects\main.o: D:\Keil_v5\ARM\RV31\INC\RTL.h
 .\objects\main.o: ..\BSP\flash\flash.h
 .\objects\main.o: ..\APP\app_tsks.h
 .\objects\main.o: ..\SX12xxDrivers-V2.1.0\src\radio\sx1276.h

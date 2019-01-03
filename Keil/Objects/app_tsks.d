@@ -49,6 +49,4 @@
 .\objects\app_tsks.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\app_tsks.o: ..\BSP\timer\timer.h
 .\objects\app_tsks.o: ..\BSP\spi\spi.h
-.\objects\app_tsks.o: D:\Keil_v5\ARM\RV31\INC\Net_Config.h
-.\objects\app_tsks.o: D:\Keil_v5\ARM\RV31\INC\RTL.h
 .\objects\app_tsks.o: ..\BSP\flash\flash.h

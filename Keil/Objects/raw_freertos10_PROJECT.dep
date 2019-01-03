@@ -48,9 +48,7 @@ I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x599ECD2A)
 I (..\BSP\timer\timer.h)(0x5C275B1F)
-I (..\BSP\spi\spi.h)(0x5C2D5728)
-I (D:\Keil_v5\ARM\RV31\INC\Net_Config.h)(0x559CE078)
-I (D:\Keil_v5\ARM\RV31\INC\RTL.h)(0x559CE078)
+I (..\BSP\spi\spi.h)(0x5C2E2AD0)
 I (..\BSP\flash\flash.h)(0x5B250E24)
 F (..\APP\main.c)(0x5C2D5728)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ..\STM32F10x_FWLib\inc -I ..\APP -I ..\CORE -I ..\FREERTOS\include -I ..\FREERTOS\portable\RVDS\ARM_CM3 -I ..\BSP\usart -I ..\BSP\timer -I ..\BSP\spi -I ..\BSP\flash -I ..\SX12xxDrivers-V2.1.0\src\radio -I ..\Tracealyzer\include -I ..\Tracealyzer\config -I ..\Tracealyzer\streamports\Jlink_RTT\include -I ..\W5500_Lib\Ethernet -I ..\W5500_Lib\Ethernet\W5500 -I ..\W5500_Lib\Internet\DHCP -I ..\W5500_Lib\Internet\httpServer-ID:\Keil_v5\ARM\RV31\INC-ID:\Keil_v5\ARM\CMSIS\Include-ID:\Keil_v5\ARM\INC\ST\STM32F10x-D__UVISION_VERSION="525" -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER -DFreeRTOS-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (..\CORE\stm32f10x.h)(0x4D783CB4)
@@ -100,9 +98,7 @@ I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x599ECD2A)
 I (..\BSP\timer\timer.h)(0x5C275B1F)
-I (..\BSP\spi\spi.h)(0x5C2D5728)
-I (D:\Keil_v5\ARM\RV31\INC\Net_Config.h)(0x559CE078)
-I (D:\Keil_v5\ARM\RV31\INC\RTL.h)(0x559CE078)
+I (..\BSP\spi\spi.h)(0x5C2E2AD0)
 I (..\BSP\flash\flash.h)(0x5B250E24)
 I (..\APP\app_tsks.h)(0x5C270BC6)
 I (..\SX12xxDrivers-V2.1.0\src\radio\sx1276.h)(0x5BF793F0)
@@ -741,10 +737,8 @@ I (..\FREERTOS\include\queue.h)(0x5B92F2C8)
 I (..\FREERTOS\include\timers.h)(0x5B92F2C9)
 I (..\FREERTOS\include\semphr.h)(0x5B92F2C8)
 F (..\BSP\spi\spi.c)(0x5C2D5728)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ..\STM32F10x_FWLib\inc -I ..\APP -I ..\CORE -I ..\FREERTOS\include -I ..\FREERTOS\portable\RVDS\ARM_CM3 -I ..\BSP\usart -I ..\BSP\timer -I ..\BSP\spi -I ..\BSP\flash -I ..\SX12xxDrivers-V2.1.0\src\radio -I ..\Tracealyzer\include -I ..\Tracealyzer\config -I ..\Tracealyzer\streamports\Jlink_RTT\include -I ..\W5500_Lib\Ethernet -I ..\W5500_Lib\Ethernet\W5500 -I ..\W5500_Lib\Internet\DHCP -I ..\W5500_Lib\Internet\httpServer-ID:\Keil_v5\ARM\RV31\INC-ID:\Keil_v5\ARM\CMSIS\Include-ID:\Keil_v5\ARM\INC\ST\STM32F10x-D__UVISION_VERSION="525" -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER -DFreeRTOS-o .\objects\spi.o --omf_browse .\objects\spi.crf --depend .\objects\spi.d)
-I (..\BSP\spi\spi.h)(0x5C2D5728)
+I (..\BSP\spi\spi.h)(0x5C2E2AD0)
 I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
-I (D:\Keil_v5\ARM\RV31\INC\Net_Config.h)(0x559CE078)
-I (D:\Keil_v5\ARM\RV31\INC\RTL.h)(0x559CE078)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
 I (..\CORE\stm32f10x.h)(0x4D783CB4)
@@ -803,13 +797,62 @@ I (..\STM32F10x_FWLib\inc\stm32f10x_tim.h)(0x4D783BB4)
 I (..\STM32F10x_FWLib\inc\stm32f10x_usart.h)(0x4D783BB4)
 I (..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h)(0x4D783BB4)
 I (..\STM32F10x_FWLib\inc\misc.h)(0x4D783BB4)
+F (.\w5500interface.c)(0x5C2E2B97)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ..\STM32F10x_FWLib\inc -I ..\APP -I ..\CORE -I ..\FREERTOS\include -I ..\FREERTOS\portable\RVDS\ARM_CM3 -I ..\BSP\usart -I ..\BSP\timer -I ..\BSP\spi -I ..\BSP\flash -I ..\SX12xxDrivers-V2.1.0\src\radio -I ..\Tracealyzer\include -I ..\Tracealyzer\config -I ..\Tracealyzer\streamports\Jlink_RTT\include -I ..\W5500_Lib\Ethernet -I ..\W5500_Lib\Ethernet\W5500 -I ..\W5500_Lib\Internet\DHCP -I ..\W5500_Lib\Internet\httpServer-ID:\Keil_v5\ARM\RV31\INC-ID:\Keil_v5\ARM\CMSIS\Include-ID:\Keil_v5\ARM\INC\ST\STM32F10x-D__UVISION_VERSION="525" -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER -DFreeRTOS-o .\objects\w5500interface.o --omf_browse .\objects\w5500interface.crf --depend .\objects\w5500interface.d)
+I (..\W5500_Lib\Ethernet\socket.h)(0x5C2AE708)
+I (..\W5500_Lib\Ethernet\wizchip_conf.h)(0x5C2D5B15)
+I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
+I (..\W5500_Lib\Ethernet\W5500/w5500.h)(0x5C2AE708)
+I (..\W5500_Lib\Internet\DHCP\dhcp.h)(0x5C2AE708)
+I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
+I (..\BSP\usart\usart.h)(0x5C2383BD)
+I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
+I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
+I (D:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x599ECD2A)
+I (..\CORE\stm32f10x.h)(0x4D783CB4)
+I (..\CORE\core_cm3.h)(0x4D523B58)
+I (..\CORE\system_stm32f10x.h)(0x4D783CAA)
+I (..\CORE\stm32f10x_conf.h)(0x5BFE2B57)
+I (..\STM32F10x_FWLib\inc\stm32f10x_adc.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_bkp.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_can.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_cec.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_crc.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_dac.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_dbgmcu.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_dma.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_exti.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_flash.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_fsmc.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_gpio.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_i2c.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_iwdg.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_pwr.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_rcc.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_rtc.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_sdio.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_spi.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_tim.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_usart.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\misc.h)(0x4D783BB4)
+I (..\FREERTOS\include\FreeRTOS.h)(0x5B92F2C8)
+I (D:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599ECD2C)
+I (..\FREERTOS\portable\RVDS\ARM_CM3\FreeRTOSConfig.h)(0x5C26D7F7)
+I (..\FREERTOS\include\projdefs.h)(0x5B92F2C8)
+I (..\FREERTOS\include\portable.h)(0x5B92F2C8)
+I (..\FREERTOS\include\deprecated_definitions.h)(0x5B92F2C8)
+I (..\FREERTOS\portable\RVDS\ARM_CM3\portmacro.h)(0x5B92F2C9)
+I (..\FREERTOS\include\mpu_wrappers.h)(0x5B92F2C8)
+I (..\FREERTOS\include\task.h)(0x5B92F9BF)
+I (..\FREERTOS\include\list.h)(0x5B92F2C8)
+I (..\FREERTOS\include\queue.h)(0x5B92F2C8)
+I (..\FREERTOS\include\timers.h)(0x5B92F2C9)
+I (..\FREERTOS\include\semphr.h)(0x5B92F2C8)
 F (..\SX12xxDrivers-V2.1.0\src\radio\sx1276-Hal.c)(0x5BFF6B48)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ..\STM32F10x_FWLib\inc -I ..\APP -I ..\CORE -I ..\FREERTOS\include -I ..\FREERTOS\portable\RVDS\ARM_CM3 -I ..\BSP\usart -I ..\BSP\timer -I ..\BSP\spi -I ..\BSP\flash -I ..\SX12xxDrivers-V2.1.0\src\radio -I ..\Tracealyzer\include -I ..\Tracealyzer\config -I ..\Tracealyzer\streamports\Jlink_RTT\include -I ..\W5500_Lib\Ethernet -I ..\W5500_Lib\Ethernet\W5500 -I ..\W5500_Lib\Internet\DHCP -I ..\W5500_Lib\Internet\httpServer-ID:\Keil_v5\ARM\RV31\INC-ID:\Keil_v5\ARM\CMSIS\Include-ID:\Keil_v5\ARM\INC\ST\STM32F10x-D__UVISION_VERSION="525" -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER -DFreeRTOS-o .\objects\sx1276-hal.o --omf_browse .\objects\sx1276-hal.crf --depend .\objects\sx1276-hal.d)
 I (..\SX12xxDrivers-V2.1.0\src\radio\sx1276-Hal.h)(0x5BFF7624)
 I (D:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x599ECD2E)
-I (..\BSP\spi\spi.h)(0x5C2D5728)
+I (..\BSP\spi\spi.h)(0x5C2E2AD0)
 I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
-I (D:\Keil_v5\ARM\RV31\INC\Net_Config.h)(0x559CE078)
-I (D:\Keil_v5\ARM\RV31\INC\RTL.h)(0x559CE078)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
 I (..\CORE\stm32f10x.h)(0x4D783CB4)
@@ -847,9 +890,7 @@ I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
 I (D:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x599ECD2E)
 I (..\SX12xxDrivers-V2.1.0\src\radio\sx1276-Hal.h)(0x5BFF7624)
-I (..\BSP\spi\spi.h)(0x5C2D5728)
-I (D:\Keil_v5\ARM\RV31\INC\Net_Config.h)(0x559CE078)
-I (D:\Keil_v5\ARM\RV31\INC\RTL.h)(0x559CE078)
+I (..\BSP\spi\spi.h)(0x5C2E2AD0)
 I (..\CORE\stm32f10x.h)(0x4D783CB4)
 I (..\CORE\core_cm3.h)(0x4D523B58)
 I (..\CORE\system_stm32f10x.h)(0x4D783CAA)
@@ -895,10 +936,8 @@ F (..\SX12xxDrivers-V2.1.0\src\radio\sx1276-LoRaMisc.c)(0x5BEB956C)(--c99 -c --c
 I (..\SX12xxDrivers-V2.1.0\src\radio\sx1276-LoRaMisc.h)(0x5BFE2B59)
 I (..\SX12xxDrivers-V2.1.0\src\radio\sx1276-Hal.h)(0x5BFF7624)
 I (D:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x599ECD2E)
-I (..\BSP\spi\spi.h)(0x5C2D5728)
+I (..\BSP\spi\spi.h)(0x5C2E2AD0)
 I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
-I (D:\Keil_v5\ARM\RV31\INC\Net_Config.h)(0x559CE078)
-I (D:\Keil_v5\ARM\RV31\INC\RTL.h)(0x559CE078)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
 I (..\CORE\stm32f10x.h)(0x4D783CB4)
@@ -936,9 +975,7 @@ I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
 I (D:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x599ECD2E)
 I (..\SX12xxDrivers-V2.1.0\src\radio\sx1276-Hal.h)(0x5BFF7624)
-I (..\BSP\spi\spi.h)(0x5C2D5728)
-I (D:\Keil_v5\ARM\RV31\INC\Net_Config.h)(0x559CE078)
-I (D:\Keil_v5\ARM\RV31\INC\RTL.h)(0x559CE078)
+I (..\BSP\spi\spi.h)(0x5C2E2AD0)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (..\CORE\stm32f10x.h)(0x4D783CB4)
 I (..\CORE\core_cm3.h)(0x4D523B58)
@@ -1124,11 +1161,41 @@ I (..\FREERTOS\include\portable.h)(0x5B92F2C8)
 I (..\FREERTOS\include\deprecated_definitions.h)(0x5B92F2C8)
 I (..\FREERTOS\portable\RVDS\ARM_CM3\portmacro.h)(0x5B92F2C9)
 I (..\FREERTOS\include\mpu_wrappers.h)(0x5B92F2C8)
-F (..\W5500_Lib\Ethernet\wizchip_conf.c)(0x5C2AE708)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ..\STM32F10x_FWLib\inc -I ..\APP -I ..\CORE -I ..\FREERTOS\include -I ..\FREERTOS\portable\RVDS\ARM_CM3 -I ..\BSP\usart -I ..\BSP\timer -I ..\BSP\spi -I ..\BSP\flash -I ..\SX12xxDrivers-V2.1.0\src\radio -I ..\Tracealyzer\include -I ..\Tracealyzer\config -I ..\Tracealyzer\streamports\Jlink_RTT\include -I ..\W5500_Lib\Ethernet -I ..\W5500_Lib\Ethernet\W5500 -I ..\W5500_Lib\Internet\DHCP -I ..\W5500_Lib\Internet\httpServer-ID:\Keil_v5\ARM\RV31\INC-ID:\Keil_v5\ARM\CMSIS\Include-ID:\Keil_v5\ARM\INC\ST\STM32F10x-D__UVISION_VERSION="525" -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER -DFreeRTOS-o .\objects\wizchip_conf.o --omf_browse .\objects\wizchip_conf.crf --depend .\objects\wizchip_conf.d)
+F (..\W5500_Lib\Ethernet\wizchip_conf.c)(0x5C2E0127)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ..\STM32F10x_FWLib\inc -I ..\APP -I ..\CORE -I ..\FREERTOS\include -I ..\FREERTOS\portable\RVDS\ARM_CM3 -I ..\BSP\usart -I ..\BSP\timer -I ..\BSP\spi -I ..\BSP\flash -I ..\SX12xxDrivers-V2.1.0\src\radio -I ..\Tracealyzer\include -I ..\Tracealyzer\config -I ..\Tracealyzer\streamports\Jlink_RTT\include -I ..\W5500_Lib\Ethernet -I ..\W5500_Lib\Ethernet\W5500 -I ..\W5500_Lib\Internet\DHCP -I ..\W5500_Lib\Internet\httpServer-ID:\Keil_v5\ARM\RV31\INC-ID:\Keil_v5\ARM\CMSIS\Include-ID:\Keil_v5\ARM\INC\ST\STM32F10x-D__UVISION_VERSION="525" -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER -DFreeRTOS-o .\objects\wizchip_conf.o --omf_browse .\objects\wizchip_conf.crf --depend .\objects\wizchip_conf.d)
 I (D:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599ECD2C)
 I (..\W5500_Lib\Ethernet\wizchip_conf.h)(0x5C2D5B15)
 I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
 I (..\W5500_Lib\Ethernet\W5500/w5500.h)(0x5C2AE708)
+I (..\BSP\spi\spi.h)(0x5C2E2AD0)
+I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
+I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
+I (..\CORE\stm32f10x.h)(0x4D783CB4)
+I (..\CORE\core_cm3.h)(0x4D523B58)
+I (..\CORE\system_stm32f10x.h)(0x4D783CAA)
+I (..\CORE\stm32f10x_conf.h)(0x5BFE2B57)
+I (..\STM32F10x_FWLib\inc\stm32f10x_adc.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_bkp.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_can.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_cec.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_crc.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_dac.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_dbgmcu.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_dma.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_exti.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_flash.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_fsmc.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_gpio.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_i2c.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_iwdg.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_pwr.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_rcc.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_rtc.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_sdio.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_spi.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_tim.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_usart.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h)(0x4D783BB4)
+I (..\STM32F10x_FWLib\inc\misc.h)(0x4D783BB4)
 F (..\W5500_Lib\Ethernet\socket.c)(0x5C2AE708)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ..\STM32F10x_FWLib\inc -I ..\APP -I ..\CORE -I ..\FREERTOS\include -I ..\FREERTOS\portable\RVDS\ARM_CM3 -I ..\BSP\usart -I ..\BSP\timer -I ..\BSP\spi -I ..\BSP\flash -I ..\SX12xxDrivers-V2.1.0\src\radio -I ..\Tracealyzer\include -I ..\Tracealyzer\config -I ..\Tracealyzer\streamports\Jlink_RTT\include -I ..\W5500_Lib\Ethernet -I ..\W5500_Lib\Ethernet\W5500 -I ..\W5500_Lib\Internet\DHCP -I ..\W5500_Lib\Internet\httpServer-ID:\Keil_v5\ARM\RV31\INC-ID:\Keil_v5\ARM\CMSIS\Include-ID:\Keil_v5\ARM\INC\ST\STM32F10x-D__UVISION_VERSION="525" -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER -DFreeRTOS-o .\objects\socket.o --omf_browse .\objects\socket.crf --depend .\objects\socket.d)
 I (..\W5500_Lib\Ethernet\socket.h)(0x5C2AE708)
 I (..\W5500_Lib\Ethernet\wizchip_conf.h)(0x5C2D5B15)
@@ -1145,30 +1212,3 @@ I (..\W5500_Lib\Ethernet\wizchip_conf.h)(0x5C2D5B15)
 I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
 I (..\W5500_Lib\Ethernet\W5500/w5500.h)(0x5C2AE708)
 I (..\W5500_Lib\Internet\DHCP\dhcp.h)(0x5C2AE708)
-F (..\W5500_Lib\Internet\httpServer\httpParser.c)(0x5C2AE708)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ..\STM32F10x_FWLib\inc -I ..\APP -I ..\CORE -I ..\FREERTOS\include -I ..\FREERTOS\portable\RVDS\ARM_CM3 -I ..\BSP\usart -I ..\BSP\timer -I ..\BSP\spi -I ..\BSP\flash -I ..\SX12xxDrivers-V2.1.0\src\radio -I ..\Tracealyzer\include -I ..\Tracealyzer\config -I ..\Tracealyzer\streamports\Jlink_RTT\include -I ..\W5500_Lib\Ethernet -I ..\W5500_Lib\Ethernet\W5500 -I ..\W5500_Lib\Internet\DHCP -I ..\W5500_Lib\Internet\httpServer-ID:\Keil_v5\ARM\RV31\INC-ID:\Keil_v5\ARM\CMSIS\Include-ID:\Keil_v5\ARM\INC\ST\STM32F10x-D__UVISION_VERSION="525" -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER -DFreeRTOS-o .\objects\httpparser.o --omf_browse .\objects\httpparser.crf --depend .\objects\httpparser.d)
-I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
-I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
-I (..\W5500_Lib\Ethernet\socket.h)(0x5C2AE708)
-I (..\W5500_Lib\Ethernet\wizchip_conf.h)(0x5C2D5B15)
-I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
-I (..\W5500_Lib\Ethernet\W5500/w5500.h)(0x5C2AE708)
-I (..\W5500_Lib\Internet\httpServer\httpParser.h)(0x5C2AE708)
-F (..\W5500_Lib\Internet\httpServer\httpServer.c)(0x5C2AE708)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ..\STM32F10x_FWLib\inc -I ..\APP -I ..\CORE -I ..\FREERTOS\include -I ..\FREERTOS\portable\RVDS\ARM_CM3 -I ..\BSP\usart -I ..\BSP\timer -I ..\BSP\spi -I ..\BSP\flash -I ..\SX12xxDrivers-V2.1.0\src\radio -I ..\Tracealyzer\include -I ..\Tracealyzer\config -I ..\Tracealyzer\streamports\Jlink_RTT\include -I ..\W5500_Lib\Ethernet -I ..\W5500_Lib\Ethernet\W5500 -I ..\W5500_Lib\Internet\DHCP -I ..\W5500_Lib\Internet\httpServer-ID:\Keil_v5\ARM\RV31\INC-ID:\Keil_v5\ARM\CMSIS\Include-ID:\Keil_v5\ARM\INC\ST\STM32F10x-D__UVISION_VERSION="525" -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER -DFreeRTOS-o .\objects\httpserver.o --omf_browse .\objects\httpserver.crf --depend .\objects\httpserver.d)
-I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
-I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
-I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
-I (..\W5500_Lib\Ethernet\socket.h)(0x5C2AE708)
-I (..\W5500_Lib\Ethernet\wizchip_conf.h)(0x5C2D5B15)
-I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
-I (..\W5500_Lib\Ethernet\W5500/w5500.h)(0x5C2AE708)
-I (..\W5500_Lib\Internet\httpServer\httpServer.h)(0x5C2AE709)
-I (..\W5500_Lib\Internet\httpServer\httpParser.h)(0x5C2AE708)
-I (..\W5500_Lib\Internet\httpServer\httpUtil.h)(0x5C2AE709)
-F (..\W5500_Lib\Internet\httpServer\httpUtil.c)(0x5C2AE709)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ..\STM32F10x_FWLib\inc -I ..\APP -I ..\CORE -I ..\FREERTOS\include -I ..\FREERTOS\portable\RVDS\ARM_CM3 -I ..\BSP\usart -I ..\BSP\timer -I ..\BSP\spi -I ..\BSP\flash -I ..\SX12xxDrivers-V2.1.0\src\radio -I ..\Tracealyzer\include -I ..\Tracealyzer\config -I ..\Tracealyzer\streamports\Jlink_RTT\include -I ..\W5500_Lib\Ethernet -I ..\W5500_Lib\Ethernet\W5500 -I ..\W5500_Lib\Internet\DHCP -I ..\W5500_Lib\Internet\httpServer-ID:\Keil_v5\ARM\RV31\INC-ID:\Keil_v5\ARM\CMSIS\Include-ID:\Keil_v5\ARM\INC\ST\STM32F10x-D__UVISION_VERSION="525" -DSTM32F10X_CL -DUSE_STDPERIPH_DRIVER -DFreeRTOS-o .\objects\httputil.o --omf_browse .\objects\httputil.crf --depend .\objects\httputil.d)
-I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
-I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
-I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
-I (..\W5500_Lib\Internet\httpServer\httpUtil.h)(0x5C2AE709)
-I (..\W5500_Lib\Internet\httpServer\httpServer.h)(0x5C2AE709)
-I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
-I (..\W5500_Lib\Internet\httpServer\httpParser.h)(0x5C2AE708)
