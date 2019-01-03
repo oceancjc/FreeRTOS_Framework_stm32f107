@@ -151,10 +151,6 @@
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
-          <Key>DLGUARM</Key>
-        </SetRegEntry>
-        <SetRegEntry>
-          <Number>0</Number>
           <Key>DLGTARM</Key>
           <Name>(1010=-1,-1,-1,-1,0)(1007=-1,-1,-1,-1,0)(1008=-1,-1,-1,-1,0)(1009=-1,-1,-1,-1,0)</Name>
         </SetRegEntry>
@@ -354,7 +350,7 @@
 
   <Group>
     <GroupName>APP</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -386,7 +382,7 @@
 
   <Group>
     <GroupName>CORE</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -442,7 +438,7 @@
 
   <Group>
     <GroupName>FREERTOS</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -558,7 +554,7 @@
 
   <Group>
     <GroupName>STM32F10x_FWLib</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -710,7 +706,7 @@
 
   <Group>
     <GroupName>BSP/MCU</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -883,6 +879,106 @@
       <bDave2>0</bDave2>
       <PathWithFileName>..\Tracealyzer\streamports\Jlink_RTT\trcStreamingPort.c</PathWithFileName>
       <FilenameWithoutPath>trcStreamingPort.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+  </Group>
+
+  <Group>
+    <GroupName>W5500/ETHERNET</GroupName>
+    <tvExp>1</tvExp>
+    <tvExpOptDlg>0</tvExpOptDlg>
+    <cbSel>0</cbSel>
+    <RteFlg>0</RteFlg>
+    <File>
+      <GroupNumber>8</GroupNumber>
+      <FileNumber>41</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\W5500_Lib\Ethernet\wizchip_conf.c</PathWithFileName>
+      <FilenameWithoutPath>wizchip_conf.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>8</GroupNumber>
+      <FileNumber>42</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>1</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\W5500_Lib\Ethernet\socket.c</PathWithFileName>
+      <FilenameWithoutPath>socket.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>8</GroupNumber>
+      <FileNumber>43</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\W5500_Lib\Ethernet\W5500\w5500.c</PathWithFileName>
+      <FilenameWithoutPath>w5500.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+  </Group>
+
+  <Group>
+    <GroupName>W5500/INTERNET</GroupName>
+    <tvExp>0</tvExp>
+    <tvExpOptDlg>0</tvExpOptDlg>
+    <cbSel>0</cbSel>
+    <RteFlg>0</RteFlg>
+    <File>
+      <GroupNumber>9</GroupNumber>
+      <FileNumber>44</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\W5500_Lib\Internet\DHCP\dhcp.c</PathWithFileName>
+      <FilenameWithoutPath>dhcp.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>9</GroupNumber>
+      <FileNumber>45</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\W5500_Lib\Internet\httpServer\httpParser.c</PathWithFileName>
+      <FilenameWithoutPath>httpParser.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>9</GroupNumber>
+      <FileNumber>46</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\W5500_Lib\Internet\httpServer\httpServer.c</PathWithFileName>
+      <FilenameWithoutPath>httpServer.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>9</GroupNumber>
+      <FileNumber>47</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\W5500_Lib\Internet\httpServer\httpUtil.c</PathWithFileName>
+      <FilenameWithoutPath>httpUtil.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

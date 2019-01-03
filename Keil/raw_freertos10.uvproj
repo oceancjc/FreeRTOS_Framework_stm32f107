@@ -376,7 +376,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_CL,USE_STDPERIPH_DRIVER,FreeRTOS</Define>
               <Undefine></Undefine>
-              <IncludePath>..\STM32F10x_FWLib\inc;..\APP;..\CORE;..\FREERTOS\include;..\FREERTOS\portable\RVDS\ARM_CM3;..\BSP\usart;..\BSP\timer;..\BSP\spi;..\BSP\flash;..\SX12xxDrivers-V2.1.0\src\radio;..\Tracealyzer\include;..\Tracealyzer\config;..\Tracealyzer\streamports\Jlink_RTT\include</IncludePath>
+              <IncludePath>..\STM32F10x_FWLib\inc;..\APP;..\CORE;..\FREERTOS\include;..\FREERTOS\portable\RVDS\ARM_CM3;..\BSP\usart;..\BSP\timer;..\BSP\spi;..\BSP\flash;..\SX12xxDrivers-V2.1.0\src\radio;..\Tracealyzer\include;..\Tracealyzer\config;..\Tracealyzer\streamports\Jlink_RTT\include;..\W5500_Lib\Ethernet;..\W5500_Lib\Ethernet\W5500;..\W5500_Lib\Internet\DHCP;..\W5500_Lib\Internet\httpServer</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -649,6 +649,51 @@
               <FileName>trcStreamingPort.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Tracealyzer\streamports\Jlink_RTT\trcStreamingPort.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>W5500/ETHERNET</GroupName>
+          <Files>
+            <File>
+              <FileName>wizchip_conf.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\W5500_Lib\Ethernet\wizchip_conf.c</FilePath>
+            </File>
+            <File>
+              <FileName>socket.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\W5500_Lib\Ethernet\socket.c</FilePath>
+            </File>
+            <File>
+              <FileName>w5500.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\W5500_Lib\Ethernet\W5500\w5500.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>W5500/INTERNET</GroupName>
+          <Files>
+            <File>
+              <FileName>dhcp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\W5500_Lib\Internet\DHCP\dhcp.c</FilePath>
+            </File>
+            <File>
+              <FileName>httpParser.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\W5500_Lib\Internet\httpServer\httpParser.c</FilePath>
+            </File>
+            <File>
+              <FileName>httpServer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\W5500_Lib\Internet\httpServer\httpServer.c</FilePath>
+            </File>
+            <File>
+              <FileName>httpUtil.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\W5500_Lib\Internet\httpServer\httpUtil.c</FilePath>
             </File>
           </Files>
         </Group>
