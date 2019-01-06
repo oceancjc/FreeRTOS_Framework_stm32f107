@@ -50,6 +50,13 @@
 .\objects\main.o: ..\BSP\spi\spi.h
 .\objects\main.o: ..\BSP\flash\flash.h
 .\objects\main.o: ..\APP\app_tsks.h
+.\objects\main.o: ..\BSP\LAN\w5500interface.h
+.\objects\main.o: ..\W5500_Lib\Ethernet\socket.h
+.\objects\main.o: ..\W5500_Lib\Ethernet\wizchip_conf.h
+.\objects\main.o: ..\W5500_Lib\Ethernet\W5500/w5500.h
+.\objects\main.o: ..\W5500_Lib\Ethernet\wizchip_conf.h
+.\objects\main.o: ..\W5500_Lib\Internet\DHCP\dhcp.h
+.\objects\main.o: ..\W5500_Lib\Internet\DNS\dns.h
 .\objects\main.o: ..\SX12xxDrivers-V2.1.0\src\radio\sx1276.h
 .\objects\main.o: ..\SX12xxDrivers-V2.1.0\src\radio\sx1276-LoRa.h
 .\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h

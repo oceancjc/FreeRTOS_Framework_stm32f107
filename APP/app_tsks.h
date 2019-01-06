@@ -14,10 +14,9 @@
 #include "timer.h"
 #include "spi.h"
 #include "flash.h"
+#include "w5500interface.h"
 
-extern TaskHandle_t IrdaLearnTsk, IrdaSendTsk;
-extern TaskHandle_t SteeringEngCtlTsk;
-extern TaskHandle_t Uart1SendBackTsk, CmdServerTsk;
+
 
 typedef struct{
     char cmd[20];
@@ -25,7 +24,17 @@ typedef struct{
     TaskHandle_t tsk2notify;
 }TSK_PARAMETER_t;
 
+
+/********** Task Handler & Parameters************************/
+extern TaskHandle_t IrdaLearnTsk, IrdaSendTsk;
+extern TaskHandle_t SteeringEngCtlTsk;
+extern TaskHandle_t Uart1SendBackTsk, CmdServerTsk;
+
+extern TaskHandle_t lantcps_loopbackTsk;
+extern TSK_PARAMETER_t lanloopbackPara;
+
 extern TSK_PARAMETER_t tsk_parameter[3];
+
 /***********  Tasks Declarision  *************/
 extern void LED_Init(void);
 extern void LED_D1_Task(void *pvParameters);
@@ -36,6 +45,7 @@ extern void cmd_analysis_Task(void *pvParameters);
 extern void code_sending(unsigned int address);
 extern void steeringCtl_Task(void *pvParameters);
 extern void Uart1_print_back_Task(void *pvParameters);
+extern void lantcpserver_loopback_Task(void *pvParameters);
 
 
 

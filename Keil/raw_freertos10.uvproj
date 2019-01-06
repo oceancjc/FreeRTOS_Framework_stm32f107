@@ -376,7 +376,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_CL,USE_STDPERIPH_DRIVER,FreeRTOS</Define>
               <Undefine></Undefine>
-              <IncludePath>..\STM32F10x_FWLib\inc;..\APP;..\CORE;..\FREERTOS\include;..\FREERTOS\portable\RVDS\ARM_CM3;..\BSP\usart;..\BSP\timer;..\BSP\spi;..\BSP\flash;..\SX12xxDrivers-V2.1.0\src\radio;..\Tracealyzer\include;..\Tracealyzer\config;..\Tracealyzer\streamports\Jlink_RTT\include;..\W5500_Lib\Ethernet;..\W5500_Lib\Ethernet\W5500;..\W5500_Lib\Internet\DHCP;..\W5500_Lib\Internet\httpServer</IncludePath>
+              <IncludePath>..\STM32F10x_FWLib\inc;..\APP;..\CORE;..\FREERTOS\include;..\FREERTOS\portable\RVDS\ARM_CM3;..\BSP\usart;..\BSP\timer;..\BSP\spi;..\BSP\flash;..\BSP\LAN;..\SX12xxDrivers-V2.1.0\src\radio;..\Tracealyzer\include;..\Tracealyzer\config;..\Tracealyzer\streamports\Jlink_RTT\include;..\W5500_Lib\Ethernet;..\W5500_Lib\Ethernet\W5500;..\W5500_Lib\Internet\DHCP;..\W5500_Lib\Internet\httpServer;..\W5500_Lib\Internet\DNS</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -598,7 +598,7 @@
             <File>
               <FileName>w5500interface.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\w5500interface.c</FilePath>
+              <FilePath>..\BSP\LAN\w5500interface.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -684,6 +684,11 @@
               <FileName>dhcp.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\W5500_Lib\Internet\DHCP\dhcp.c</FilePath>
+            </File>
+            <File>
+              <FileName>dns.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\W5500_Lib\Internet\DNS\dns.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -17,6 +17,8 @@ TaskHandle_t Uart1SendBackTsk = NULL, CmdServerTsk = NULL;
 TaskHandle_t IrdaSendTsk = NULL, IrdaLearnTsk = NULL;
 TaskHandle_t SteeringEngCtlTsk = NULL;
 TSK_PARAMETER_t SteeringCtlPara = { 0 };
+TaskHandle_t lantcps_loopbackTsk = NULL;
+TSK_PARAMETER_t lanloopbackPara = { 0 };
 TSK_PARAMETER_t tsk_parameter[3];
 
 
@@ -95,6 +97,20 @@ void cmd_analysis_Task(void *pvParameters){
             SteeringCtlPara.tsk2notify = SteeringEngCtlTsk;
             xTaskNotifyGive(SteeringCtlPara.tsk2notify);
         }
+        else if(strstr((char*)cmd,"lan_enable")){
+            if(lantcps_loopbackTsk == NULL){
+                lanloopbackPara.opdata[0] = opdata;
+                xTaskCreate(lantcpserver_loopback_Task, "Lan TCP Server Loopback", configMINIMAL_STACK_SIZE, 
+                             (void*)&lanloopbackPara, tskIDLE_PRIORITY + 2, &lantcps_loopbackTsk);            
+            }
+            else    Uart1SendStr("Already enabled Lan\r\n");
+
+        }
+        else if(strstr((char*)cmd,"lan_disable")){
+            if(lantcps_loopbackTsk != NULL){
+                vTaskDelete(lantcps_loopbackTsk);    lantcps_loopbackTsk = NULL;
+            }
+        }
         else    Uart1SendStr("Invalid Task\r\n");
         memset(Msgget,0,MAXBUF*sizeof(char));
     }
@@ -163,11 +179,11 @@ void irda_learning_Task(void *pvParameters){
     ulTaskNotifyTake( pdTRUE, 0 );
     TSK_PARAMETER_t* tskparam = (TSK_PARAMETER_t*)pvParameters;
     short* code_set[MAX_KEY_NUM] = {NULL};
-	  for(idle_for_code_state = 0; idle_for_code_state < MAX_KEY_NUM;idle_for_code_state++){
-	      code_set[idle_for_code_state] = (short*)pvPortMalloc(80*sizeof(short));
-	      memcpy(code_set[idle_for_code_state],Flash_ReadHalfWord(RC1+80*idle_for_code_state*2),80*sizeof(short));
+      for(idle_for_code_state = 0; idle_for_code_state < MAX_KEY_NUM;idle_for_code_state++){
+          code_set[idle_for_code_state] = (short*)pvPortMalloc(80*sizeof(short));
+          memcpy(code_set[idle_for_code_state],Flash_ReadHalfWord(RC1+80*idle_for_code_state*2),80*sizeof(short));
     }
-	  idle_for_code_state = 0;
+      idle_for_code_state = 0;
 //    Flash_ErasePage(RC1);
     while(1){
         ulTaskNotifyTake( pdTRUE, portMAX_DELAY );
@@ -314,10 +330,31 @@ void steeringCtl_Task(void *pvParameters){
         uart1_printf("Angle set:%d\r\n",para->opdata[0]);   
         vTaskDelay(pdMS_TO_TICKS(200));        
         
-    };
+    }     
+}
 
-    
-    
+
+
+void lantcpserver_loopback_Task(void *pvParameters){
+    Uart1SendStr("You are in task --- Lan TCP Server Loopback\r\n");
+    w5500Reset();
+    int ret = w5500Init( ((TSK_PARAMETER_t*)pvParameters)->opdata[0]);
+    if(ret){
+        uart1_printf("W5520 Init fail, Err = %d\r\n",ret);
+        
+    }    
+    while(1){
+        /* Loopback Test */
+        // TCP server loopback test
+        if( (ret = loopback_tcps(SOCK_TCPS, gDATABUF, 5000)) < 0) {
+            uart1_printf("SOCKET ERROR : %ld\r\n", ret);
+        }
+        // UDP server loopback test
+//        if( (ret = loopback_udps(SOCK_UDPS, gDATABUF, 3000)) < 0) {
+//            uart1_printf("SOCKET ERROR : %ld\r\n", ret);
+//        }
+
+    }
     
 }
 

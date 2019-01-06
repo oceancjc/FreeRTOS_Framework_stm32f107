@@ -50,3 +50,10 @@
 .\objects\app_tsks.o: ..\BSP\timer\timer.h
 .\objects\app_tsks.o: ..\BSP\spi\spi.h
 .\objects\app_tsks.o: ..\BSP\flash\flash.h
+.\objects\app_tsks.o: ..\BSP\LAN\w5500interface.h
+.\objects\app_tsks.o: ..\W5500_Lib\Ethernet\socket.h
+.\objects\app_tsks.o: ..\W5500_Lib\Ethernet\wizchip_conf.h
+.\objects\app_tsks.o: ..\W5500_Lib\Ethernet\W5500/w5500.h
+.\objects\app_tsks.o: ..\W5500_Lib\Ethernet\wizchip_conf.h
+.\objects\app_tsks.o: ..\W5500_Lib\Internet\DHCP\dhcp.h
+.\objects\app_tsks.o: ..\W5500_Lib\Internet\DNS\dns.h

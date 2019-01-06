@@ -1,10 +1,12 @@
-.\objects\w5500interface.o: w5500interface.c
+.\objects\w5500interface.o: ..\BSP\LAN\w5500interface.c
+.\objects\w5500interface.o: ..\BSP\LAN\w5500interface.h
 .\objects\w5500interface.o: ..\W5500_Lib\Ethernet\socket.h
 .\objects\w5500interface.o: ..\W5500_Lib\Ethernet\wizchip_conf.h
 .\objects\w5500interface.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\w5500interface.o: ..\W5500_Lib\Ethernet\W5500/w5500.h
 .\objects\w5500interface.o: ..\W5500_Lib\Ethernet\wizchip_conf.h
 .\objects\w5500interface.o: ..\W5500_Lib\Internet\DHCP\dhcp.h
+.\objects\w5500interface.o: ..\W5500_Lib\Internet\DNS\dns.h
 .\objects\w5500interface.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\w5500interface.o: ..\BSP\usart\usart.h
 .\objects\w5500interface.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
