@@ -53,3 +53,4 @@
 .\objects\w5500interface.o: ..\FREERTOS\include\queue.h
 .\objects\w5500interface.o: ..\FREERTOS\include\timers.h
 .\objects\w5500interface.o: ..\FREERTOS\include\semphr.h
+.\objects\w5500interface.o: ..\BSP\spi\spi.h

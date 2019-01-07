@@ -83,7 +83,7 @@ void 	  wizchip_cris_exit(void)          {    	__set_PRIMASK(0);    }
  * null function is called.
  */
 //void 	wizchip_cs_select(void)            {};
-void 	wizchip_cs_select(void)            {    GPIO_SetBits(W5500CS_PORT,W5500CS_PIN);    }
+void 	wizchip_cs_select(void)            {    GPIO_ResetBits(W5500CS_PORT,W5500CS_PIN);    }
 
 /**
  * @brief Default function to deselect chip.
@@ -91,7 +91,7 @@ void 	wizchip_cs_select(void)            {    GPIO_SetBits(W5500CS_PORT,W5500CS_
  * null function is called.
  */
 //void 	wizchip_cs_deselect(void)          {};
-void 	wizchip_cs_deselect(void)          {    GPIO_ResetBits(W5500CS_PORT,W5500CS_PIN);    }
+void 	wizchip_cs_deselect(void)          {    GPIO_SetBits(W5500CS_PORT,W5500CS_PIN);    }
 
 /**
  * @brief Default function to read in direct or indirect interface.

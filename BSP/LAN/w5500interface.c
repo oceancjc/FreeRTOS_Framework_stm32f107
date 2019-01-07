@@ -5,9 +5,9 @@
 uint8_t gDATABUF[DATA_BUF_SIZE];
 // Default Network Configuration
 wiz_NetInfo gWIZNETINFO = { .mac = {0x00, 0x08, 0xdc,0x00, 0xab, 0xcd},
-                            .ip = {192, 168, 0, 123},
+                            .ip = {192, 168, 1, 123},
                             .sn = {255,255,255,0},
-                            .gw = {192, 168, 0, 1},
+                            .gw = {192, 168, 1, 1},
                             .dns = {180,76,76,76},
                             .dhcp = NETINFO_STATIC };    //NETINFO_DHCP
 
@@ -82,7 +82,7 @@ void w5500NetworkConfig(void){
 
 
 void w5500Reset(void){
-    GPIO_SetBits(W5500RST_PORT,W5500RST_PIN);
+    GPIO_ResetBits(W5500RST_PORT,W5500RST_PIN);
     w5500delay_ms(1);
     GPIO_SetBits(W5500RST_PORT,W5500RST_PIN);  
     w5500delay_ms(1000);    
