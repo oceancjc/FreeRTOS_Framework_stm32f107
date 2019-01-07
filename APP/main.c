@@ -15,7 +15,7 @@
 #include "sx1276.h"
 
 /***************************************************************************
-GPIOA.3  -- DIO0 for SX1278
+GPIOA.3  -- DIO0 for SX1278   RST for W5500
 GPIOA.4  -- NSS PIN for SX1278
 GPIOA.5  -- SPI1.CLK
 GPIOA.6  -- TIMER3.CH1 SPI1.MISO

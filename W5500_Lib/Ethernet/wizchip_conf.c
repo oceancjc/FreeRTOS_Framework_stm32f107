@@ -53,11 +53,10 @@
 //
 
 #include "wizchip_conf.h"
-#include "spi.h"
+#include "w5500interface.h"
 
-#define W5500SPICHANNEL                             (1)
-#define CS_IOPORT                                  GPIOE
-#define CS_PIN                                     GPIO_Pin_14
+
+
 /////////////
 //M20150401 : Remove ; in the default callback function such as wizchip_cris_enter(), wizchip_cs_select() and etc.
 /////////////
@@ -84,7 +83,7 @@ void 	  wizchip_cris_exit(void)          {    	__set_PRIMASK(0);    }
  * null function is called.
  */
 //void 	wizchip_cs_select(void)            {};
-void 	wizchip_cs_select(void)            {    GPIO_SetBits(CS_IOPORT,CS_PIN);    }
+void 	wizchip_cs_select(void)            {    GPIO_SetBits(W5500CS_PORT,W5500CS_PIN);    }
 
 /**
  * @brief Default function to deselect chip.
@@ -92,7 +91,7 @@ void 	wizchip_cs_select(void)            {    GPIO_SetBits(CS_IOPORT,CS_PIN);   
  * null function is called.
  */
 //void 	wizchip_cs_deselect(void)          {};
-void 	wizchip_cs_deselect(void)          {    GPIO_ResetBits(CS_IOPORT,CS_PIN);    }
+void 	wizchip_cs_deselect(void)          {    GPIO_ResetBits(W5500CS_PORT,W5500CS_PIN);    }
 
 /**
  * @brief Default function to read in direct or indirect interface.

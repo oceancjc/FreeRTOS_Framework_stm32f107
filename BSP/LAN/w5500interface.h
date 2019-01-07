@@ -6,7 +6,7 @@
 #include "dns.h"
 #include "stdio.h"
 #include "usart.h"
-
+#include "spi.h"
 
 #ifdef FreeRTOS
     #include "FreeRTOS.h"
@@ -16,7 +16,11 @@
     #include "semphr.h"
 #endif	
 
-
+#define W5500SPICHANNEL                 (1)
+#define W5500RST_PORT                  GPIOA
+#define W5500CS_PORT                   GPIOA
+#define W5500RST_PIN                 GPIO_Pin_3
+#define W5500CS_PIN                  GPIO_Pin_4
 
 #define DATA_BUF_SIZE   2048
 
@@ -30,7 +34,7 @@
 extern uint8_t gDATABUF[DATA_BUF_SIZE];
 
 
-
+extern void w5500InitIO(void);
 extern void w5500Reset(void);
 extern int w5500Init(uint8_t isDHCPenabled);
 extern int loopback_tcps(uint8_t sn, uint8_t* buf, uint16_t port);

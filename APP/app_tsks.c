@@ -337,12 +337,10 @@ void steeringCtl_Task(void *pvParameters){
 
 void lantcpserver_loopback_Task(void *pvParameters){
     Uart1SendStr("You are in task --- Lan TCP Server Loopback\r\n");
+    w5500InitIO();
     w5500Reset();
     int ret = w5500Init( ((TSK_PARAMETER_t*)pvParameters)->opdata[0]);
-    if(ret){
-        uart1_printf("W5520 Init fail, Err = %d\r\n",ret);
-        
-    }    
+    if(ret)    uart1_printf("W5500 Init fail, Err = %d\r\n",ret);        
     while(1){
         /* Loopback Test */
         // TCP server loopback test

@@ -20,7 +20,27 @@ void w5500delay_ms(uint16_t ms){
 
     #endif    
 }
-                            
+            
+
+
+void w5500InitIO(void){
+    /* Init SPI Configuration */
+    Initial_SPI(W5500SPICHANNEL,0);
+    GPIO_InitTypeDef GPIO_InitStruct = { 0 };
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
+    /* Init RST PIN and set init val = 1 */    
+    GPIO_InitStruct.GPIO_Pin = W5500RST_PIN;
+    GPIO_InitStruct.GPIO_Mode = GPIO_Mode_Out_PP;
+    GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_Init(W5500RST_PORT, &GPIO_InitStruct);
+    GPIO_SetBits(W5500RST_PORT,W5500RST_PIN);
+    /*Init CS PIN and set init val = 1*/
+    GPIO_InitStruct.GPIO_Pin = W5500CS_PIN;
+    GPIO_Init(W5500CS_PORT, &GPIO_InitStruct);
+    GPIO_SetBits(W5500CS_PORT,W5500CS_PIN); 
+}
+
+
 int w5500ParametersConfiguration(void){
     uint8_t tmp = 0;
     uint8_t memsize[2][8] = {{2,2,2,2,2,2,2,2},{2,2,2,2,2,2,2,2}};
@@ -62,6 +82,10 @@ void w5500NetworkConfig(void){
 
 
 void w5500Reset(void){
+
+    w5500delay_ms(5);
+    GPIO_SetBits(W5500RST_PORT,W5500RST_PIN);  
+    w5500delay_ms(500);    
     wizchip_sw_reset();
     w5500delay_ms(500);
 }
@@ -163,19 +187,6 @@ int w5500Init(uint8_t isDHCPenabled){
     else    w5500NetworkConfig();           
     
     return 0;
-    /* Main loop */
-//    while(1)
-//    {
-//        /* Loopback Test */
-//        // TCP server loopback test
-//        if( (ret = loopback_tcps(SOCK_TCPS, gDATABUF, 5000)) < 0) {
-//            //uart1_printf("SOCKET ERROR : %ld\r\n", ret);
-//        }
-//    // UDP server loopback test
-//        if( (ret = loopback_udps(SOCK_UDPS, gDATABUF, 3000)) < 0) {
-//            //uart1_printf("SOCKET ERROR : %ld\r\n", ret);
-//        }
-//    } // end of Main loop
 }
 
 
@@ -221,6 +232,7 @@ int loopback_tcps(uint8_t sn, uint8_t* buf, uint16_t port){
             uart1_printf("%d:LBTStart\r\n",sn);
             if((ret=socket(sn,Sn_MR_TCP,port,0x00)) != sn)    return ret;
             uart1_printf("%d:Opened\r\n",sn);
+            /* Set Keep Alive Frame Function, interval = 6s */
             setSn_KPALVTR(sn,6); 
             break;
         default:
