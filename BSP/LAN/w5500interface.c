@@ -82,12 +82,12 @@ void w5500NetworkConfig(void){
 
 
 void w5500Reset(void){
-
-    w5500delay_ms(5);
+    GPIO_SetBits(W5500RST_PORT,W5500RST_PIN);
+    w5500delay_ms(1);
     GPIO_SetBits(W5500RST_PORT,W5500RST_PIN);  
-    w5500delay_ms(500);    
+    w5500delay_ms(1000);    
     wizchip_sw_reset();
-    w5500delay_ms(500);
+    w5500delay_ms(50);
 }
 
 
