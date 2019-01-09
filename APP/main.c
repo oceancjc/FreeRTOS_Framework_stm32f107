@@ -52,7 +52,7 @@ int main(void){
     #endif
 /***************   System Initialization part  ******************/
     LED_Init(); 
-    Uart1Init(115200); //Timer init must follow usart, can't change order
+    Uart1Init(384000); //Timer init must follow usart, can't change order
 //    Uart2Init(9600);
 ////    Timer3_pwm_Init(237,8);  //周期 = 72e6 / 8 /237 = 37.97KHz
     //Timer4_capture_Init(MAXCOUNTER,72);//周期 = 6ms  分辨率1us

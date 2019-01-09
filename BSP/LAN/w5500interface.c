@@ -59,22 +59,27 @@ int w5500ParametersConfiguration(void){
                           
 
 
-void w5500NetworkConfig(void){
+int w5500NetworkConfig(void){
     uint8_t tmpstr[6] = { 0 };
     wiz_NetInfo NETINFO_retrieve = { 0 };
     ctlnetwork(CN_SET_NETINFO, (void*)&gWIZNETINFO);
     ctlnetwork(CN_GET_NETINFO, (void*)&NETINFO_retrieve);
-
-    // Display Network Information
-    ctlwizchip(CW_GET_ID,(void*)tmpstr);
-    uart1_printf("\r\n=== %s NET CONF ===\r\n",(char*)tmpstr);
-    uart1_printf("MAC: %02X:%02X:%02X:%02X:%02X:%02X\r\n",NETINFO_retrieve.mac[0],NETINFO_retrieve.mac[1],NETINFO_retrieve.mac[2],
-          NETINFO_retrieve.mac[3],NETINFO_retrieve.mac[4],NETINFO_retrieve.mac[5]);
-    uart1_printf("SIP: %d.%d.%d.%d\r\n", NETINFO_retrieve.ip[0], NETINFO_retrieve.ip[1], NETINFO_retrieve.ip[2], NETINFO_retrieve.ip[3]);
-    uart1_printf("GAR: %d.%d.%d.%d\r\n", NETINFO_retrieve.gw[0], NETINFO_retrieve.gw[1], NETINFO_retrieve.gw[2], NETINFO_retrieve.gw[3]);
-    uart1_printf("SUB: %d.%d.%d.%d\r\n", NETINFO_retrieve.sn[0], NETINFO_retrieve.sn[1], NETINFO_retrieve.sn[2], NETINFO_retrieve.sn[3]);
-    uart1_printf("DNS: %d.%d.%d.%d\r\n", NETINFO_retrieve.dns[0],NETINFO_retrieve.dns[1],NETINFO_retrieve.dns[2],NETINFO_retrieve.dns[3]);
-    uart1_printf("======================\r\n");
+    if(NETINFO_retrieve.ip[3]==gWIZNETINFO.ip[3] && NETINFO_retrieve.ip[1]==gWIZNETINFO.ip[1]){
+        // Display Network Information
+        ctlwizchip(CW_GET_ID,(void*)tmpstr);
+        uart1_printf("\r\n=== %s NET CONF ===\r\n",(char*)tmpstr);
+        uart1_printf("MAC: %02X:%02X:%02X:%02X:%02X:%02X\r\n",NETINFO_retrieve.mac[0],NETINFO_retrieve.mac[1],NETINFO_retrieve.mac[2],
+              NETINFO_retrieve.mac[3],NETINFO_retrieve.mac[4],NETINFO_retrieve.mac[5]);
+        uart1_printf("SIP: %d.%d.%d.%d\r\n", NETINFO_retrieve.ip[0], NETINFO_retrieve.ip[1], NETINFO_retrieve.ip[2], NETINFO_retrieve.ip[3]);
+        uart1_printf("GAR: %d.%d.%d.%d\r\n", NETINFO_retrieve.gw[0], NETINFO_retrieve.gw[1], NETINFO_retrieve.gw[2], NETINFO_retrieve.gw[3]);
+        uart1_printf("SUB: %d.%d.%d.%d\r\n", NETINFO_retrieve.sn[0], NETINFO_retrieve.sn[1], NETINFO_retrieve.sn[2], NETINFO_retrieve.sn[3]);
+        uart1_printf("DNS: %d.%d.%d.%d\r\n", NETINFO_retrieve.dns[0],NETINFO_retrieve.dns[1],NETINFO_retrieve.dns[2],NETINFO_retrieve.dns[3]);
+        uart1_printf("======================\r\n");    
+        return 0;
+    }
+    uart1_printf("Static ip configuration fail\r\n");  
+    return -1;
+   
 }
 
 
@@ -85,7 +90,7 @@ void w5500Reset(void){
     GPIO_ResetBits(W5500RST_PORT,W5500RST_PIN);
     w5500delay_ms(1);
     GPIO_SetBits(W5500RST_PORT,W5500RST_PIN);  
-    w5500delay_ms(1000);    
+    w5500delay_ms(800);    
     wizchip_sw_reset();
     w5500delay_ms(50);
 }
@@ -99,8 +104,9 @@ void my_ip_assign(void){
     getSNfromDHCP(gWIZNETINFO.sn);
     getDNSfromDHCP(gWIZNETINFO.dns);
     gWIZNETINFO.dhcp = NETINFO_DHCP;
-    ctlnetwork(CN_SET_NETINFO, (void*)&gWIZNETINFO);     
-    uart1_printf("DHCP LEASED TIME : %d Sec.\r\n", getDHCPLeasetime());
+//    ctlnetwork(CN_SET_NETINFO, (void*)&gWIZNETINFO);   
+    int ret = w5500NetworkConfig();    
+    if(!ret)    uart1_printf("DHCP LEASED TIME : %d Sec.\r\n", getDHCPLeasetime());
 }
 
 void my_ip_conflict(void){
@@ -110,21 +116,23 @@ void my_ip_conflict(void){
 
 
 
-void DHCPConfig(uint8_t retry_times){
+int DHCPConfig(uint8_t retry_times){
     setSHAR(gWIZNETINFO.mac);    // must be set the default mac before DHCP started, ??MAC
     DHCP_init(SOCKET_DHCP,gDATABUF);
     reg_dhcp_cbfunc(my_ip_assign, my_ip_assign, my_ip_conflict);
     uint8_t dhcp_ret = DHCP_run();//???DHCP_run(),?????????IP???
     while(dhcp_ret != DHCP_IP_LEASED && retry_times--){//??DHCP_IP_LEASED??????IP????,?????,????
-        w5500delay_ms(1000);
+        w5500delay_ms(500);
+        uart1_printf("DHCP retry time: %d\r\n",retry_times);
         dhcp_ret = DHCP_run();
     }
     /*DHCP fail, still use static configuration instead*/
-
-    if(dhcp_ret != DHCP_IP_LEASED && retry_times == 0){
+    if( dhcp_ret != DHCP_IP_LEASED ){
+        uart1_printf("DHCP Fail, use static ip instead\r\n");
         gWIZNETINFO.dhcp = NETINFO_STATIC;  
-        w5500NetworkConfig();
+        return w5500NetworkConfig();
     }
+    else    return 0;
 }
 
 
@@ -180,13 +188,17 @@ int w5500Init(uint8_t isDHCPenabled){
     if(ret)    return ret;
     /* Dynamic Network initialization */
     if(isDHCPenabled){
+        ret = w5500NetworkConfig();
+        if(ret){
+            uart1_printf("W5500 Init fail on DHCP step 1\r\n");
+            return ret;
+        }    
         gWIZNETINFO.dhcp = NETINFO_DHCP;
-        DHCPConfig(5);
+        return DHCPConfig(50);
     }    
     /* Static Network initialization */
-    else    w5500NetworkConfig();           
-    
-    return 0;
+    else    return w5500NetworkConfig();           
+
 }
 
 

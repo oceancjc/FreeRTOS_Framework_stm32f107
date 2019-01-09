@@ -30,7 +30,7 @@ void Initial_SPI(unsigned char channel, unsigned char mode){ //SPI1ø…”√£¨‘⁄“‘Ã´Õ
         GPIO_Init(GPIOB, &GPIO_InitStruct);
     }
     
-    SPI_InitStruct.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_8;
+    SPI_InitStruct.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_4;
     SPI_InitStruct.SPI_Direction= SPI_Direction_2Lines_FullDuplex;
     SPI_InitStruct.SPI_Mode = SPI_Mode_Master;
     SPI_InitStruct.SPI_DataSize = SPI_DataSize_8b;
