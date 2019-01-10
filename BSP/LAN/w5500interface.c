@@ -121,18 +121,18 @@ int DHCPConfig(uint8_t retry_times){
     DHCP_init(SOCKET_DHCP,gDATABUF);
     reg_dhcp_cbfunc(my_ip_assign, my_ip_assign, my_ip_conflict);
     uint8_t dhcp_ret = DHCP_run();//???DHCP_run(),?????????IP???
-    while(dhcp_ret != DHCP_IP_LEASED && retry_times--){//??DHCP_IP_LEASED??????IP????,?????,????
-        w5500delay_ms(500);
+    while(retry_times--){//??DHCP_IP_LEASED??????IP????,?????,????
+        if(dhcp_ret == DHCP_IP_LEASED)   break;
         uart1_printf("DHCP retry time: %d\r\n",retry_times);
+        w5500delay_ms(500);
         dhcp_ret = DHCP_run();
     }
     /*DHCP fail, still use static configuration instead*/
     if( dhcp_ret != DHCP_IP_LEASED ){
-        uart1_printf("DHCP Fail, use static ip instead\r\n");
-        gWIZNETINFO.dhcp = NETINFO_STATIC;  
+        uart1_printf("DHCP Fail, use static ip instead\r\n");  
         return w5500NetworkConfig();
     }
-    else    return 0;
+    return 0;
 }
 
 
@@ -140,23 +140,24 @@ int DHCPConfig(uint8_t retry_times){
 int DNSRun(uint8_t *name, uint8_t* ip){
     int ret = 0;
     /* DNS client initialization */
+    uart1_printf("> DNS 1st : %d.%d.%d.%d\r\n", gWIZNETINFO.dns[0], gWIZNETINFO.dns[1], gWIZNETINFO.dns[2], gWIZNETINFO.dns[3]);
     DNS_init(SOCKET_DNS, gDATABUF);
     /* DNS procssing */
     if ((ret = DNS_run(gWIZNETINFO.dns, name, ip)) > 0) 
     {
-        printf("> 1st DNS Reponsed\r\n");
+        uart1_printf("> 1st DNS Reponsed\r\n");
     }
     else if(ret == -1)
     {
-        printf("> MAX_DOMAIN_NAME is too small. Should be redefined it.\r\n");
+        uart1_printf("> MAX_DOMAIN_NAME is too small. Should be redefined it.\r\n");
     }
     else
     {
-        printf("> DNS Failed\r\n");
+        uart1_printf("> DNS Failed\r\n");
     }
     if(ret > 0)
     {
-     printf("> Translated %s to %d.%d.%d.%d\r\n",name,ip[0],ip[1],ip[2],ip[3]);
+     uart1_printf("> Translated %s to %d.%d.%d.%d\r\n",name,ip[0],ip[1],ip[2],ip[3]);
     }
     return ret;
     

@@ -97,7 +97,7 @@ void cmd_analysis_Task(void *pvParameters){
             SteeringCtlPara.tsk2notify = SteeringEngCtlTsk;
             xTaskNotifyGive(SteeringCtlPara.tsk2notify);
         }
-        else if(strstr((char*)cmd,"lan_enable")){
+        else if(strstr((char*)cmd,"lan_enable")){    //lan_enable 1    lan_enable 0     lan_disable 0
             if(lantcps_loopbackTsk == NULL){
                 lanloopbackPara.opdata[0] = opdata;
                 xTaskCreate(lantcpserver_loopback_Task, "Lan TCP Server Loopback", configMINIMAL_STACK_SIZE<<1, 
@@ -340,7 +340,9 @@ void lantcpserver_loopback_Task(void *pvParameters){
     w5500InitIO();
 //    w5500Reset();
     int ret = w5500Init( ((TSK_PARAMETER_t*)pvParameters)->opdata[0]);
-    if(ret)    uart1_printf("W5500 Init fail, Err = %d\r\n",ret);        
+    if(ret)    uart1_printf("W5500 Init fail, Err = %d\r\n",ret);  
+    uint8_t ip[4] = { 0 }; 
+    DNSRun((uint8_t *)"www.baidu.com", ip);    
     while(1){
         /* Loopback Test */
         // TCP server loopback test
