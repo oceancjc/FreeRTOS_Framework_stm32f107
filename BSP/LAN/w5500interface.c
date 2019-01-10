@@ -56,7 +56,17 @@ int w5500ParametersConfiguration(void){
     }while( tmp == PHY_LINK_OFF );
     return 0;
 }
-                          
+            
+
+
+int w5500CheckLinkState(void){
+    uint8_t tmp = 0;
+    if(ctlwizchip(CW_GET_PHYLINK, (void*)&tmp) == -1){
+        uart1_printf("Unknown PHY Link stauts.\r\n");
+        return -2;
+    }
+    return tmp;
+}
 
 
 int w5500NetworkConfig(void){
@@ -88,11 +98,11 @@ int w5500NetworkConfig(void){
 
 void w5500Reset(void){
     GPIO_ResetBits(W5500RST_PORT,W5500RST_PIN);
-    w5500delay_ms(1);
+    w5500delay_ms(10);
     GPIO_SetBits(W5500RST_PORT,W5500RST_PIN);  
-    w5500delay_ms(800);    
-    wizchip_sw_reset();
-    w5500delay_ms(50);
+    w5500delay_ms(1800);    
+//    wizchip_sw_reset();
+//    w5500delay_ms(50);
 }
 
 
@@ -116,21 +126,21 @@ void my_ip_conflict(void){
 
 
 
-int DHCPConfig(uint8_t retry_times){
+int DHCPConfig(void){
     setSHAR(gWIZNETINFO.mac);    // must be set the default mac before DHCP started, ??MAC
     DHCP_init(SOCKET_DHCP,gDATABUF);
     reg_dhcp_cbfunc(my_ip_assign, my_ip_assign, my_ip_conflict);
     uint8_t dhcp_ret = DHCP_run();//???DHCP_run(),?????????IP???
+    uint8_t retry_times = MAX_DHCP_RETRY;
     while(retry_times--){//??DHCP_IP_LEASED??????IP????,?????,????
-        if(dhcp_ret == DHCP_IP_LEASED)   break;
-        uart1_printf("DHCP retry time: %d\r\n",retry_times);
-        w5500delay_ms(500);
+        if(dhcp_ret == DHCP_IP_LEASED)   return 0;
+        uart1_printf("DHCP retry time %d: %d\r\n",dhcp_ret,retry_times);
+        w5500delay_ms(500u);
         dhcp_ret = DHCP_run();
     }
-    /*DHCP fail, still use static configuration instead*/
     if( dhcp_ret != DHCP_IP_LEASED ){
-        uart1_printf("DHCP Fail, use static ip instead\r\n");  
-        return w5500NetworkConfig();
+        uart1_printf("DHCP Fail\r\n");  
+        return -1;
     }
     return 0;
 }
@@ -163,9 +173,9 @@ int DNSRun(uint8_t *name, uint8_t* ip){
     
 }
 
-
-int w5500Init(uint8_t isDHCPenabled){
-    int ret = 0;
+void w5500Init(void){
+    w5500InitIO();
+    w5500Reset();
     // First of all, Should register SPI callback functions implemented by user for accessing WIZCHIP 
     /* Critical section callback */
     reg_wizchip_cris_cbfunc(NULL, NULL);    //Use default ones
@@ -183,23 +193,24 @@ int w5500Init(uint8_t isDHCPenabled){
 #endif
     /* SPI Read & Write callback function */
     reg_wizchip_spi_cbfunc(NULL, NULL);       //Use default ones
+}
 
-    /* WIZCHIP SOCKET Buffer initialize */
-    ret = w5500ParametersConfiguration();
-    if(ret)    return ret;
-    /* Dynamic Network initialization */
-    if(isDHCPenabled){
-        ret = w5500NetworkConfig();
-        if(ret){
-            uart1_printf("W5500 Init fail on DHCP step 1\r\n");
-            return ret;
+
+
+int w5500SetIp(uint8_t isDHCPenabled){
+    int ret = 0,retry = 3;
+    while(retry--){
+        ret = w5500ParametersConfiguration();
+        if(ret)    return ret;
+        /* Dynamic Network initialization */
+        if(isDHCPenabled){  
+            gWIZNETINFO.dhcp = NETINFO_DHCP;
+            if( 0 == DHCPConfig() )    break;
         }    
-        gWIZNETINFO.dhcp = NETINFO_DHCP;
-        return DHCPConfig(50);
-    }    
-    /* Static Network initialization */
-    else    return w5500NetworkConfig();           
-
+        /* Static Network initialization */
+        else    return w5500NetworkConfig();           
+    }
+    return 0;
 }
 
 

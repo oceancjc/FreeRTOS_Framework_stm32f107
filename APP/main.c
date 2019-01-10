@@ -13,6 +13,7 @@
 #include "flash.h"
 #include "app_tsks.h"
 #include "sx1276.h"
+#include "w5500interface.h"
 
 /***************************************************************************
 GPIOA.3  -- DIO0 for SX1278   RST for W5500

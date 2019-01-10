@@ -142,7 +142,6 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
-          <Name>?@w堨m?@w堨m</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -175,24 +174,7 @@
           <Name>-T0</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
-      <Breakpoint>
-        <Bp>
-          <Number>0</Number>
-          <Type>0</Type>
-          <LineNumber>144</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134222912</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>D:\鐢靛瓙璁捐宸ョ▼\FreeRTOS\stm32f103c8_withtrace\BSP\LAN\w5500interface.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\raw_freertos10\../BSP/LAN/w5500interface.c\144</Expression>
-        </Bp>
-      </Breakpoint>
+      <Breakpoint/>
       <WatchWindow1>
         <Ww>
           <count>0</count>

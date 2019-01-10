@@ -108,6 +108,7 @@ void cmd_analysis_Task(void *pvParameters){
         }
         else if(strstr((char*)cmd,"lan_disable")){
             if(lantcps_loopbackTsk != NULL){
+                Uart1SendStr("Lan disabled\r\n");
                 vTaskDelete(lantcps_loopbackTsk);    lantcps_loopbackTsk = NULL;
             }
         }
@@ -337,9 +338,8 @@ void steeringCtl_Task(void *pvParameters){
 
 void lantcpserver_loopback_Task(void *pvParameters){
     Uart1SendStr("You are in task --- Lan TCP Server Loopback\r\n");
-    w5500InitIO();
-//    w5500Reset();
-    int ret = w5500Init( ((TSK_PARAMETER_t*)pvParameters)->opdata[0]);
+    w5500Init();
+    int ret = w5500SetIp( ((TSK_PARAMETER_t*)pvParameters)->opdata[0]);
     if(ret)    uart1_printf("W5500 Init fail, Err = %d\r\n",ret);  
     uint8_t ip[4] = { 0 }; 
     DNSRun((uint8_t *)"www.baidu.com", ip);    
@@ -358,3 +358,13 @@ void lantcpserver_loopback_Task(void *pvParameters){
     
 }
 
+
+
+void checkLanState_Task(void *pvParameters){
+    while(1){
+        int stat = w5500CheckLinkState();
+        if(PHY_LINK_OFF == stat )        Uart1SendStr("Link Off,check cable\r\n");
+        else if( PHY_LINK_ON != stat )   Uart1SendStr("Discover unkown link state\r\n");
+    }
+    
+}

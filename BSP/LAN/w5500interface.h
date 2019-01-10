@@ -36,7 +36,9 @@ extern uint8_t gDATABUF[DATA_BUF_SIZE];
 
 extern void w5500InitIO(void);
 extern void w5500Reset(void);
-extern int w5500Init(uint8_t isDHCPenabled);
+extern void w5500Init(void);
+extern int w5500SetIp(uint8_t isDHCPenabled);
+extern int w5500CheckLinkState(void);
 extern int DNSRun(uint8_t *name, uint8_t* ip);
 extern int loopback_tcps(uint8_t sn, uint8_t* buf, uint16_t port);
 extern int loopback_tcpc(uint8_t* ip, uint16_t port);

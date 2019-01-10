@@ -58,8 +58,8 @@ extern "C" {
 
 
 /* Retry to processing DHCP */
-#define	MAX_DHCP_RETRY          2        ///< Maximum retry count
-#define	DHCP_WAIT_TIME          10       ///< Wait Time 10s
+#define	MAX_DHCP_RETRY          8        ///< Maximum retry count
+#define	DHCP_WAIT_TIME          1       ///< Wait Time 10s
 
 
 /* UDP port numbers for DHCP */
@@ -69,7 +69,7 @@ extern "C" {
 
 #define MAGIC_COOKIE             0x63825363  ///< You should not modify it number.
 
-#define DCHP_HOST_NAME           "WIZnet\0"
+#define DCHP_HOST_NAME           "CJCHOME\0"
 
 /* 
  * @brief return value of @ref DHCP_run()
