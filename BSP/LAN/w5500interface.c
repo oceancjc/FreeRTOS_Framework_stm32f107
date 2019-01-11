@@ -148,26 +148,32 @@ int DHCPConfig(void){
 
 
 int DNSRun(uint8_t *name, uint8_t* ip){
-    int ret = 0;
+    int ret = 0,i=0;
+    uint8_t dnsserver[2][4] = { {223,6,6,6}, {114,114,114,114} };
     /* DNS client initialization */
     uart1_printf("> DNS 1st : %d.%d.%d.%d\r\n", gWIZNETINFO.dns[0], gWIZNETINFO.dns[1], gWIZNETINFO.dns[2], gWIZNETINFO.dns[3]);
     DNS_init(SOCKET_DNS, gDATABUF);
     /* DNS procssing */
-    if ((ret = DNS_run(gWIZNETINFO.dns, name, ip)) > 0) 
-    {
-        uart1_printf("> 1st DNS Reponsed\r\n");
-    }
-    else if(ret == -1)
-    {
+    if ((ret = DNS_run(gWIZNETINFO.dns, name, ip)) > 0)    uart1_printf("> DNS 1 Reponsed\r\n");
+    else if(ret == -1){    
         uart1_printf("> MAX_DOMAIN_NAME is too small. Should be redefined it.\r\n");
+        return ret;
     }
-    else
-    {
-        uart1_printf("> DNS Failed\r\n");
-    }
-    if(ret > 0)
-    {
-     uart1_printf("> Translated %s to %d.%d.%d.%d\r\n",name,ip[0],ip[1],ip[2],ip[3]);
+    else                  uart1_printf("> DNS 1 Failed\r\n");
+
+    if(ret > 0)     uart1_printf("> Translated %s to %d.%d.%d.%d\r\n",name,ip[0],ip[1],ip[2],ip[3]);
+    else{
+        for(i=0;i<2;i++){
+            if ((ret = DNS_run(dnsserver[i], name, ip)) > 0){
+                uart1_printf("> DNS %d Reponsed\r\n",i+2);
+                uart1_printf("> Translated %s to %d.%d.%d.%d\r\n",name,ip[0],ip[1],ip[2],ip[3]);
+                return ret;
+            }
+            else{
+                uart1_printf("> DNS %d Failed\r\n",i+2);
+            }
+        } 
+        uart1_printf("> All DNS Failed\r\n");        
     }
     return ret;
     
