@@ -519,8 +519,8 @@ int8_t DNS_run(uint8_t * dns_ip, uint8_t * name, uint8_t * ip_from_dns)
    
 	len = dns_makequery(0, (char *)name, pDNSMSG, MAX_DNS_BUF_SIZE);
 	sendto(DNS_SOCKET, pDNSMSG, len, dns_ip, IPPORT_DOMAIN);
-
-	while (1)
+    int cnt = 1024;
+	while (cnt--)
 	{
 		if ((len = getSn_RX_RSR(DNS_SOCKET)) > 0)
 		{

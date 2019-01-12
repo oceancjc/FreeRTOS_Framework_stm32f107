@@ -3,11 +3,11 @@
 <title>Static Call Graph - [.\Objects\raw_freertos10.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\raw_freertos10.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Thu Jan 10 21:24:03 2019
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Fri Jan 11 20:31:39 2019
 <BR><P>
-<H3>Maximum Stack Usage =        232 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        240 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
-cmd_analysis_Task &rArr; __0sscanf &rArr; __vfscanf_char &rArr; __vfscanf &rArr; _scanf_string
+lantcpserver_loopback_Task &rArr; DNSRun &rArr; DNS_run &rArr; recvfrom &rArr; wiz_recv_data &rArr; WIZCHIP_READ_BUF
 <P>
 <H3>
 Mutually Recursive functions
@@ -359,7 +359,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart1Init
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cmd_analysis_Task
-<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;parseDNSMSG
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;parseDNSMSG
 </UL>
 
 <P><STRONG><a name="[e5]"></a>__aeabi_memclr4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text))
@@ -726,8 +726,8 @@ Global Symbols
 <LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_IRQHandler
 </UL>
 
-<P><STRONG><a name="[9a]"></a>DNSRun</STRONG> (Thumb, 96 bytes, Stack size 24 bytes, w5500interface.o(i.DNSRun))
-<BR><BR>[Stack]<UL><LI>Max Depth = 216<LI>Call Chain = DNSRun &rArr; DNS_run &rArr; recvfrom &rArr; wiz_recv_data &rArr; WIZCHIP_READ_BUF
+<P><STRONG><a name="[9a]"></a>DNSRun</STRONG> (Thumb, 162 bytes, Stack size 40 bytes, w5500interface.o(i.DNSRun))
+<BR><BR>[Stack]<UL><LI>Max Depth = 232<LI>Call Chain = DNSRun &rArr; DNS_run &rArr; recvfrom &rArr; wiz_recv_data &rArr; WIZCHIP_READ_BUF
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart1_printf
 <LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DNS_run
@@ -740,15 +740,15 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DNSRun
 </UL>
 
-<P><STRONG><a name="[9c]"></a>DNS_run</STRONG> (Thumb, 148 bytes, Stack size 64 bytes, dns.o(i.DNS_run))
+<P><STRONG><a name="[9c]"></a>DNS_run</STRONG> (Thumb, 166 bytes, Stack size 64 bytes, dns.o(i.DNS_run))
 <BR><BR>[Stack]<UL><LI>Max Depth = 192<LI>Call Chain = DNS_run &rArr; recvfrom &rArr; wiz_recv_data &rArr; WIZCHIP_READ_BUF
 </UL>
 <BR>[Calls]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;socket
-<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getSn_RX_RSR
-<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;close
-<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendto
-<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;recvfrom
-<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;parseDNSMSG
+<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getSn_RX_RSR
+<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;close
+<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendto
+<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;recvfrom
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;parseDNSMSG
 <LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dns_makequery
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;check_DNS_timeout
 </UL>
@@ -1417,17 +1417,17 @@ Global Symbols
 <LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send
 <LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;recv
 <LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;listen
-<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getSn_RX_RSR
+<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getSn_RX_RSR
 <LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;disconnect
 <LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ctlwizchip
-<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;close
+<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;close
 <LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DHCP_run
 <LI><a href="#[164]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wiz_send_data
 <LI><a href="#[163]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wiz_recv_ignore
 <LI><a href="#[162]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wiz_recv_data
 <LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getSn_TX_FSR
-<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendto
-<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;recvfrom
+<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendto
+<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;recvfrom
 <LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wizphy_setphypmode
 <LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wizphy_reset
 <LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wizphy_getphypmode
@@ -1465,12 +1465,12 @@ Global Symbols
 <LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;listen
 <LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;disconnect
 <LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ctlwizchip
-<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;close
+<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;close
 <LI><a href="#[164]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wiz_send_data
 <LI><a href="#[163]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wiz_recv_ignore
 <LI><a href="#[162]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wiz_recv_data
-<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendto
-<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;recvfrom
+<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendto
+<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;recvfrom
 <LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wizphy_setphypmode
 <LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wizphy_setphyconf
 <LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wizphy_reset
@@ -1491,7 +1491,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DHCP_init
 <LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DHCPConfig
 <LI><a href="#[164]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wiz_send_data
-<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendto
+<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendto
 <LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wizchip_sw_reset
 <LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wizchip_setnetinfo
 <LI><a href="#[7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;default_ip_update
@@ -1543,7 +1543,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WIZCHIP_WRITE
 <LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WIZCHIP_READ
-<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendto
+<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendto
 <LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_DHCP_DECLINE
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DHCP_run
@@ -1563,7 +1563,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DNS_run
 </UL>
 
-<P><STRONG><a name="[a1]"></a>close</STRONG> (Thumb, 108 bytes, Stack size 16 bytes, socket.o(i.close))
+<P><STRONG><a name="[a3]"></a>close</STRONG> (Thumb, 108 bytes, Stack size 16 bytes, socket.o(i.close))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = close &rArr; WIZCHIP_WRITE
 </UL>
 <BR>[Calls]<UL><LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WIZCHIP_WRITE
@@ -1576,7 +1576,7 @@ Global Symbols
 <LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;listen
 <LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;disconnect
 <LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DNS_run
-<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;recvfrom
+<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;recvfrom
 </UL>
 
 <P><STRONG><a name="[60]"></a>cmd_analysis_Task</STRONG> (Thumb, 440 bytes, Stack size 16 bytes, app_tsks.o(i.cmd_analysis_Task))
@@ -1679,7 +1679,7 @@ Global Symbols
 <P><STRONG><a name="[126]"></a>disconnect</STRONG> (Thumb, 134 bytes, Stack size 16 bytes, socket.o(i.disconnect))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = disconnect &rArr; close &rArr; WIZCHIP_WRITE
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;close
+<BR>[Calls]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;close
 <LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WIZCHIP_WRITE
 <LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WIZCHIP_READ
 </UL>
@@ -1692,7 +1692,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;parse_name
 <LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get16
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;parseDNSMSG
+<BR>[Called By]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;parseDNSMSG
 </UL>
 
 <P><STRONG><a name="[9d]"></a>dns_makequery</STRONG> (Thumb, 176 bytes, Stack size 56 bytes, dns.o(i.dns_makequery))
@@ -1712,11 +1712,11 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;parse_name
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;parseDNSMSG
+<BR>[Called By]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;parseDNSMSG
 </UL>
 
 <P><STRONG><a name="[129]"></a>get16</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, dns.o(i.get16))
-<BR><BR>[Called By]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;parseDNSMSG
+<BR><BR>[Called By]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;parseDNSMSG
 <LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dns_answer
 </UL>
 
@@ -1740,7 +1740,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;my_ip_assign
 </UL>
 
-<P><STRONG><a name="[9e]"></a>getSn_RX_RSR</STRONG> (Thumb, 76 bytes, Stack size 24 bytes, w5500.o(i.getSn_RX_RSR))
+<P><STRONG><a name="[9f]"></a>getSn_RX_RSR</STRONG> (Thumb, 76 bytes, Stack size 24 bytes, w5500.o(i.getSn_RX_RSR))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = getSn_RX_RSR &rArr; WIZCHIP_READ
 </UL>
 <BR>[Calls]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WIZCHIP_READ
@@ -1748,7 +1748,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;loopback_tcps
 <LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;recv
 <LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DNS_run
-<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;recvfrom
+<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;recvfrom
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;parseDHCPMSG
 </UL>
 
@@ -1759,7 +1759,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send
 <LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;recv
-<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendto
+<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendto
 </UL>
 
 <P><STRONG><a name="[5b]"></a>irda_learning_Task</STRONG> (Thumb, 272 bytes, Stack size 48 bytes, app_tsks.o(i.irda_learning_Task))
@@ -1789,7 +1789,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> app_tsks.o(i.cmd_analysis_Task)
 </UL>
 <P><STRONG><a name="[5e]"></a>lantcpserver_loopback_Task</STRONG> (Thumb, 68 bytes, Stack size 8 bytes, app_tsks.o(i.lantcpserver_loopback_Task))
-<BR><BR>[Stack]<UL><LI>Max Depth = 232<LI>Call Chain = lantcpserver_loopback_Task &rArr; w5500SetIp &rArr; DHCPConfig &rArr; DHCP_run &rArr; parseDHCPMSG &rArr; recvfrom &rArr; wiz_recv_data &rArr; WIZCHIP_READ_BUF
+<BR><BR>[Stack]<UL><LI>Max Depth = 240<LI>Call Chain = lantcpserver_loopback_Task &rArr; DNSRun &rArr; DNS_run &rArr; recvfrom &rArr; wiz_recv_data &rArr; WIZCHIP_READ_BUF
 </UL>
 <BR>[Calls]<UL><LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;w5500SetIp
 <LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;w5500Init
@@ -1803,7 +1803,7 @@ Global Symbols
 <P><STRONG><a name="[133]"></a>listen</STRONG> (Thumb, 112 bytes, Stack size 16 bytes, socket.o(i.listen))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = listen &rArr; close &rArr; WIZCHIP_WRITE
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;close
+<BR>[Calls]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;close
 <LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WIZCHIP_WRITE
 <LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WIZCHIP_READ
 </UL>
@@ -1818,9 +1818,9 @@ Global Symbols
 <LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send
 <LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;recv
 <LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;listen
-<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getSn_RX_RSR
+<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getSn_RX_RSR
 <LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;disconnect
-<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;close
+<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;close
 <LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WIZCHIP_WRITE
 <LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WIZCHIP_READ
 </UL>
@@ -1875,13 +1875,13 @@ Global Symbols
 <P><STRONG><a name="[92]"></a>parseDHCPMSG</STRONG> (Thumb, 278 bytes, Stack size 32 bytes, dhcp.o(i.parseDHCPMSG))
 <BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = parseDHCPMSG &rArr; recvfrom &rArr; wiz_recv_data &rArr; WIZCHIP_READ_BUF
 </UL>
-<BR>[Calls]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getSn_RX_RSR
-<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;recvfrom
+<BR>[Calls]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getSn_RX_RSR
+<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;recvfrom
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DHCP_run
 </UL>
 
-<P><STRONG><a name="[a0]"></a>parseDNSMSG</STRONG> (Thumb, 214 bytes, Stack size 24 bytes, dns.o(i.parseDNSMSG))
+<P><STRONG><a name="[a1]"></a>parseDNSMSG</STRONG> (Thumb, 214 bytes, Stack size 24 bytes, dns.o(i.parseDNSMSG))
 <BR><BR>[Stack]<UL><LI>Max Depth = 84<LI>Call Chain = parseDNSMSG &rArr; dns_answer &rArr; parse_name
 </UL>
 <BR>[Calls]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
@@ -1932,8 +1932,8 @@ Global Symbols
 <P><STRONG><a name="[134]"></a>recv</STRONG> (Thumb, 224 bytes, Stack size 48 bytes, socket.o(i.recv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = recv &rArr; wiz_recv_data &rArr; WIZCHIP_READ_BUF
 </UL>
-<BR>[Calls]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getSn_RX_RSR
-<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;close
+<BR>[Calls]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getSn_RX_RSR
+<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;close
 <LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WIZCHIP_WRITE
 <LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WIZCHIP_READ
 <LI><a href="#[162]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wiz_recv_data
@@ -1942,11 +1942,11 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;loopback_tcps
 </UL>
 
-<P><STRONG><a name="[9f]"></a>recvfrom</STRONG> (Thumb, 524 bytes, Stack size 64 bytes, socket.o(i.recvfrom))
+<P><STRONG><a name="[a0]"></a>recvfrom</STRONG> (Thumb, 524 bytes, Stack size 64 bytes, socket.o(i.recvfrom))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = recvfrom &rArr; wiz_recv_data &rArr; WIZCHIP_READ_BUF
 </UL>
-<BR>[Calls]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getSn_RX_RSR
-<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;close
+<BR>[Calls]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getSn_RX_RSR
+<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;close
 <LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WIZCHIP_WRITE
 <LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WIZCHIP_READ
 <LI><a href="#[163]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wiz_recv_ignore
@@ -1985,7 +1985,7 @@ Global Symbols
 <P><STRONG><a name="[135]"></a>send</STRONG> (Thumb, 278 bytes, Stack size 40 bytes, socket.o(i.send))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = send &rArr; wiz_send_data &rArr; WIZCHIP_WRITE_BUF
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;close
+<BR>[Calls]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;close
 <LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WIZCHIP_WRITE
 <LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WIZCHIP_READ
 <LI><a href="#[164]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wiz_send_data
@@ -1997,7 +1997,7 @@ Global Symbols
 <P><STRONG><a name="[10c]"></a>send_DHCP_DECLINE</STRONG> (Thumb, 250 bytes, Stack size 16 bytes, dhcp.o(i.send_DHCP_DECLINE))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = send_DHCP_DECLINE &rArr; sendto &rArr; wiz_send_data &rArr; WIZCHIP_WRITE_BUF
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendto
+<BR>[Calls]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendto
 <LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;makeDHCPMSG
 </UL>
 <BR>[Called By]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;check_DHCP_leasedIP
@@ -2006,7 +2006,7 @@ Global Symbols
 <P><STRONG><a name="[93]"></a>send_DHCP_DISCOVER</STRONG> (Thumb, 362 bytes, Stack size 40 bytes, dhcp.o(i.send_DHCP_DISCOVER))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = send_DHCP_DISCOVER &rArr; sendto &rArr; wiz_send_data &rArr; WIZCHIP_WRITE_BUF
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendto
+<BR>[Calls]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendto
 <LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;makeDHCPMSG
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DHCP_run
@@ -2016,7 +2016,7 @@ Global Symbols
 <P><STRONG><a name="[94]"></a>send_DHCP_REQUEST</STRONG> (Thumb, 650 bytes, Stack size 48 bytes, dhcp.o(i.send_DHCP_REQUEST))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = send_DHCP_REQUEST &rArr; sendto &rArr; wiz_send_data &rArr; WIZCHIP_WRITE_BUF
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendto
+<BR>[Calls]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendto
 <LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;makeDHCPMSG
 <LI><a href="#[165]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NibbleToHex
 </UL>
@@ -2024,7 +2024,7 @@ Global Symbols
 <LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;check_DHCP_timeout
 </UL>
 
-<P><STRONG><a name="[a3]"></a>sendto</STRONG> (Thumb, 378 bytes, Stack size 32 bytes, socket.o(i.sendto))
+<P><STRONG><a name="[9e]"></a>sendto</STRONG> (Thumb, 378 bytes, Stack size 32 bytes, socket.o(i.sendto))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = sendto &rArr; wiz_send_data &rArr; WIZCHIP_WRITE_BUF
 </UL>
 <BR>[Calls]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WIZCHIP_WRITE_BUF
@@ -2043,7 +2043,7 @@ Global Symbols
 <P><STRONG><a name="[91]"></a>socket</STRONG> (Thumb, 276 bytes, Stack size 32 bytes, socket.o(i.socket))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = socket &rArr; close &rArr; WIZCHIP_WRITE
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;close
+<BR>[Calls]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;close
 <LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WIZCHIP_WRITE
 <LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WIZCHIP_READ
 <LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WIZCHIP_READ_BUF
@@ -2378,7 +2378,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;w5500SetIp
 </UL>
 
-<P><STRONG><a name="[170]"></a>w5500Reset</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, w5500interface.o(i.w5500Reset))
+<P><STRONG><a name="[170]"></a>w5500Reset</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, w5500interface.o(i.w5500Reset))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = w5500Reset &rArr; w5500delay_ms &rArr; vTaskDelay &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
@@ -2415,7 +2415,7 @@ Global Symbols
 <LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WIZCHIP_READ_BUF
 </UL>
 <BR>[Called By]<UL><LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;recv
-<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;recvfrom
+<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;recvfrom
 </UL>
 
 <P><STRONG><a name="[163]"></a>wiz_recv_ignore</STRONG> (Thumb, 66 bytes, Stack size 24 bytes, w5500.o(i.wiz_recv_ignore))
@@ -2424,7 +2424,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WIZCHIP_WRITE
 <LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WIZCHIP_READ
 </UL>
-<BR>[Called By]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;recvfrom
+<BR>[Called By]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;recvfrom
 </UL>
 
 <P><STRONG><a name="[164]"></a>wiz_send_data</STRONG> (Thumb, 96 bytes, Stack size 32 bytes, w5500.o(i.wiz_send_data))
@@ -2435,7 +2435,7 @@ Global Symbols
 <LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WIZCHIP_READ
 </UL>
 <BR>[Called By]<UL><LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send
-<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendto
+<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendto
 </UL>
 
 <P><STRONG><a name="[4]"></a>wizchip_bus_readdata</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, wizchip_conf.o(i.wizchip_bus_readdata))

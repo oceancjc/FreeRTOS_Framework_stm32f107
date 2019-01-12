@@ -211,12 +211,13 @@ int w5500SetIp(uint8_t isDHCPenabled){
         /* Dynamic Network initialization */
         if(isDHCPenabled){  
             gWIZNETINFO.dhcp = NETINFO_DHCP;
-            if( 0 == DHCPConfig() )    break;
+            if( 0 == DHCPConfig() )    return 0;
         }    
         /* Static Network initialization */
-        else    return w5500NetworkConfig();           
+        else  return w5500NetworkConfig();            
     }
-    return 0;
+    return w5500NetworkConfig(); 
+
 }
 
 
