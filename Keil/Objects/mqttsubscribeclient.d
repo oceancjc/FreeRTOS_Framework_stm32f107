@@ -1,0 +1,11 @@
+.\objects\mqttsubscribeclient.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTSubscribeClient.c
+.\objects\mqttsubscribeclient.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTPacket.h
+.\objects\mqttsubscribeclient.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTConnect.h
+.\objects\mqttsubscribeclient.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTPublish.h
+.\objects\mqttsubscribeclient.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTSubscribe.h
+.\objects\mqttsubscribeclient.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTUnsubscribe.h
+.\objects\mqttsubscribeclient.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTFormat.h
+.\objects\mqttsubscribeclient.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\StackTrace.h
+.\objects\mqttsubscribeclient.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\mqttsubscribeclient.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTPacket.h
+.\objects\mqttsubscribeclient.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

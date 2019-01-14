@@ -25,11 +25,11 @@
 #define DATA_BUF_SIZE   2048
 
 #define SOCKET_DHCP      0
-#define SOCKET_DNS       1
+#define SOCKET_DNS       0
 
-#define SOCK_TCPS        2
-#define SOCK_UDPS        3
-
+#define SOCK_TCPS        1
+#define SOCK_UDPS        2
+#define SOCK_MQTT        3
 
 extern uint8_t gDATABUF[DATA_BUF_SIZE];
 

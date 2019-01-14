@@ -376,7 +376,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_CL,USE_STDPERIPH_DRIVER,FreeRTOS</Define>
               <Undefine></Undefine>
-              <IncludePath>..\STM32F10x_FWLib\inc;..\APP;..\CORE;..\FREERTOS\include;..\FREERTOS\portable\RVDS\ARM_CM3;..\BSP\usart;..\BSP\timer;..\BSP\spi;..\BSP\flash;..\BSP\LAN;..\SX12xxDrivers-V2.1.0\src\radio;..\Tracealyzer\include;..\Tracealyzer\config;..\Tracealyzer\streamports\Jlink_RTT\include;..\W5500_Lib\Ethernet;..\W5500_Lib\Ethernet\W5500;..\W5500_Lib\Internet\DHCP;..\W5500_Lib\Internet\httpServer;..\W5500_Lib\Internet\DNS</IncludePath>
+              <IncludePath>..\STM32F10x_FWLib\inc;..\APP;..\CORE;..\FREERTOS\include;..\FREERTOS\portable\RVDS\ARM_CM3;..\BSP\usart;..\BSP\timer;..\BSP\spi;..\BSP\flash;..\BSP\LAN;..\SX12xxDrivers-V2.1.0\src\radio;..\Tracealyzer\include;..\Tracealyzer\config;..\Tracealyzer\streamports\Jlink_RTT\include;..\W5500_Lib\Ethernet;..\W5500_Lib\Ethernet\W5500;..\W5500_Lib\Internet\DHCP;..\W5500_Lib\Internet\httpServer;..\W5500_Lib\Internet\DNS;..\W5500_Lib\Internet\MQTT\MQTTPacket\src;..\W5500_Lib\Internet\MQTT</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -689,6 +689,66 @@
               <FileName>dns.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\W5500_Lib\Internet\DNS\dns.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>MQTT</GroupName>
+          <Files>
+            <File>
+              <FileName>MQTTConnectClient.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTConnectClient.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTConnectServer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTConnectServer.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTDeserializePublish.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTDeserializePublish.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTFormat.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTFormat.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTPacket.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTPacket.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTSerializePublish.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTSerializePublish.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTSubscribeClient.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTSubscribeClient.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTSubscribeServer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTSubscribeServer.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTUnsubscribeClient.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTUnsubscribeClient.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTUnsubscribeServer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTUnsubscribeServer.c</FilePath>
+            </File>
+            <File>
+              <FileName>transport.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\W5500_Lib\Internet\MQTT\transport.c</FilePath>
             </File>
           </Files>
         </Group>

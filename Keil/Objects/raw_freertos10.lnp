@@ -45,6 +45,17 @@
 ".\objects\w5500.o"
 ".\objects\dhcp.o"
 ".\objects\dns.o"
+".\objects\mqttconnectclient.o"
+".\objects\mqttconnectserver.o"
+".\objects\mqttdeserializepublish.o"
+".\objects\mqttformat.o"
+".\objects\mqttpacket.o"
+".\objects\mqttserializepublish.o"
+".\objects\mqttsubscribeclient.o"
+".\objects\mqttsubscribeserver.o"
+".\objects\mqttunsubscribeclient.o"
+".\objects\mqttunsubscribeserver.o"
+".\objects\transport.o"
 --library_type=microlib --strict --scatter ".\Objects\raw_freertos10.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
