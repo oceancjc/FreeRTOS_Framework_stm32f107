@@ -1,7 +1,7 @@
 .\objects\trcstreamingport.o: ..\Tracealyzer\streamports\Jlink_RTT\trcStreamingPort.c
 .\objects\trcstreamingport.o: ..\Tracealyzer\include\trcRecorder.h
-.\objects\trcstreamingport.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
-.\objects\trcstreamingport.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\trcstreamingport.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\trcstreamingport.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\trcstreamingport.o: ..\Tracealyzer\config\trcConfig.h
 .\objects\trcstreamingport.o: ..\Tracealyzer\include\trcPortDefines.h
 .\objects\trcstreamingport.o: ..\CORE\stm32f10x.h

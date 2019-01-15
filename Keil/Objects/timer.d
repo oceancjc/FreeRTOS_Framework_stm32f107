@@ -1,7 +1,7 @@
 .\objects\timer.o: ..\BSP\timer\timer.c
 .\objects\timer.o: ..\CORE\stm32f10x.h
 .\objects\timer.o: ..\CORE\core_cm3.h
-.\objects\timer.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\timer.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\timer.o: ..\CORE\system_stm32f10x.h
 .\objects\timer.o: ..\CORE\stm32f10x_conf.h
 .\objects\timer.o: ..\STM32F10x_FWLib\inc\stm32f10x_adc.h
@@ -30,12 +30,12 @@
 .\objects\timer.o: ..\STM32F10x_FWLib\inc\misc.h
 .\objects\timer.o: ..\BSP\timer\timer.h
 .\objects\timer.o: ..\BSP\usart\usart.h
-.\objects\timer.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\timer.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-.\objects\timer.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\timer.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\timer.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\timer.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\timer.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\timer.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\timer.o: ..\FREERTOS\include\FreeRTOS.h
-.\objects\timer.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\timer.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\timer.o: ..\FREERTOS\portable\RVDS\ARM_CM3\FreeRTOSConfig.h
 .\objects\timer.o: ..\FREERTOS\include\projdefs.h
 .\objects\timer.o: ..\FREERTOS\include\portable.h

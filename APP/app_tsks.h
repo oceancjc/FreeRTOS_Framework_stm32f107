@@ -15,6 +15,7 @@
 #include "spi.h"
 #include "flash.h"
 #include "w5500interface.h"
+#include "dht11_driver.h"
 
 
 
@@ -46,7 +47,7 @@ extern void code_sending(unsigned int address);
 extern void steeringCtl_Task(void *pvParameters);
 extern void Uart1_print_back_Task(void *pvParameters);
 extern void lantcpserver_loopback_Task(void *pvParameters);
-
+extern void DHT11_Fetch_Task(void *pvParameters);
 
 
 

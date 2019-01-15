@@ -31,6 +31,7 @@
 ".\objects\spi.o"
 ".\objects\flash.o"
 ".\objects\w5500interface.o"
+".\objects\dht11_driver.o"
 ".\objects\sx1276-hal.o"
 ".\objects\sx1276-lora.o"
 ".\objects\sx1276-loramisc.o"

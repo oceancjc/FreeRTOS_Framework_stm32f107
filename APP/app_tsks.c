@@ -15,10 +15,16 @@
 TaskHandle_t tsk_handler[3];
 TaskHandle_t Uart1SendBackTsk = NULL, CmdServerTsk = NULL;
 TaskHandle_t IrdaSendTsk = NULL, IrdaLearnTsk = NULL;
+
 TaskHandle_t SteeringEngCtlTsk = NULL;
 TSK_PARAMETER_t SteeringCtlPara = { 0 };
+
 TaskHandle_t lantcps_loopbackTsk = NULL;
 TSK_PARAMETER_t lanloopbackPara = { 0 };
+
+TaskHandle_t DHT11Tsk = NULL;
+TSK_PARAMETER_t DHTTskPara = { 0 };
+
 TSK_PARAMETER_t tsk_parameter[3];
 
 
@@ -145,11 +151,11 @@ Use delay to toggle LED state
 void LED_D1_Task(void *pvParameters){
     Uart1SendStr("You are in task --- LED \r\n");
     while (1){
-        LED_D3_ON();
-        vTaskDelay(pdMS_TO_TICKS(100));
+        LED_D3_ON();       
+        vTaskDelay(pdMS_TO_TICKS(200));
 //        TIM2_delay_us(560);
         LED_D3_OFF();
-        vTaskDelay(pdMS_TO_TICKS(100)); 
+        vTaskDelay(pdMS_TO_TICKS(200)); 
 //        TIM2_delay_us(5600);        
     }
     vTaskDelete(NULL);
@@ -307,6 +313,7 @@ void Uart1_print_back_Task(void *pvParameters){
         else if(ulEventsToProcess > 1)    uart1_printf("Send too fast, overflow: %d\n",ulEventsToProcess);        
         xTaskNotifyGive((TaskHandle_t)pvParameters);        
     }
+    vTaskDelete(NULL);
 }
 
 
@@ -330,8 +337,8 @@ void steeringCtl_Task(void *pvParameters){
         Timer3_pwm_on(0);
         uart1_printf("Angle set:%d\r\n",para->opdata[0]);   
         vTaskDelay(pdMS_TO_TICKS(200));        
-        
-    }     
+    }
+    vTaskDelete(NULL);    
 }
 
 
@@ -355,7 +362,7 @@ void lantcpserver_loopback_Task(void *pvParameters){
 //        }
 
     }
-    
+    vTaskDelete(NULL);    
 }
 
 
@@ -366,5 +373,23 @@ void checkLanState_Task(void *pvParameters){
         if(PHY_LINK_OFF == stat )        Uart1SendStr("Link Off,check cable\r\n");
         else if( PHY_LINK_ON != stat )   Uart1SendStr("Discover unkown link state\r\n");
     }
-    
+    vTaskDelete(NULL);    
 }
+
+
+
+void DHT11_Fetch_Task(void *pvParameters){
+    Uart1SendStr("You are in task --- T&H \r\n");
+    uint8_t ret = 0, dhtbuf[5] = { 0 };  //tempI, tempF, wetI, wetF, checksum
+    while (1){
+        ret = dht11_read_data(dhtbuf); 
+        if(!ret)    uart1_printf("Temp: %d.%dC\tHumidity: %d.%d%%\r\n",dhtbuf[0],dhtbuf[1],dhtbuf[2],dhtbuf[3]);  
+        else        uart1_printf("ERR%d: Fetch DHT11 data fail...\r\n",ret);        
+        vTaskDelay(pdMS_TO_TICKS(500));
+    }
+    vTaskDelete(NULL);
+}
+
+
+
+

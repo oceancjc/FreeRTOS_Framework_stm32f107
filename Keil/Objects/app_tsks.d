@@ -2,7 +2,7 @@
 .\objects\app_tsks.o: ..\APP\app_tsks.h
 .\objects\app_tsks.o: ..\CORE\stm32f10x.h
 .\objects\app_tsks.o: ..\CORE\core_cm3.h
-.\objects\app_tsks.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\app_tsks.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\app_tsks.o: ..\CORE\system_stm32f10x.h
 .\objects\app_tsks.o: ..\CORE\stm32f10x_conf.h
 .\objects\app_tsks.o: ..\STM32F10x_FWLib\inc\stm32f10x_adc.h
@@ -30,7 +30,7 @@
 .\objects\app_tsks.o: ..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h
 .\objects\app_tsks.o: ..\STM32F10x_FWLib\inc\misc.h
 .\objects\app_tsks.o: ..\FREERTOS\include\FreeRTOS.h
-.\objects\app_tsks.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\app_tsks.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\app_tsks.o: ..\FREERTOS\portable\RVDS\ARM_CM3\FreeRTOSConfig.h
 .\objects\app_tsks.o: ..\FREERTOS\include\projdefs.h
 .\objects\app_tsks.o: ..\FREERTOS\include\portable.h
@@ -43,10 +43,10 @@
 .\objects\app_tsks.o: ..\FREERTOS\include\timers.h
 .\objects\app_tsks.o: ..\FREERTOS\include\semphr.h
 .\objects\app_tsks.o: ..\BSP\usart\usart.h
-.\objects\app_tsks.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\app_tsks.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-.\objects\app_tsks.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\app_tsks.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\app_tsks.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\app_tsks.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\app_tsks.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\app_tsks.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\app_tsks.o: ..\BSP\timer\timer.h
 .\objects\app_tsks.o: ..\BSP\spi\spi.h
 .\objects\app_tsks.o: ..\BSP\flash\flash.h
@@ -57,3 +57,4 @@
 .\objects\app_tsks.o: ..\W5500_Lib\Ethernet\wizchip_conf.h
 .\objects\app_tsks.o: ..\W5500_Lib\Internet\DHCP\dhcp.h
 .\objects\app_tsks.o: ..\W5500_Lib\Internet\DNS\dns.h
+.\objects\app_tsks.o: ..\BSP\DHT11\dht11_driver.h

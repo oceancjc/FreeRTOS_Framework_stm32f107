@@ -21,6 +21,7 @@ GPIOA.4  -- NSS3 PIN for SX1278
 GPIOA.5  -- SPI1.CLK
 GPIOA.6  -- TIMER3.CH1 SPI1.MISO
 GPIOA.7  -- TIMER3.CH2 SPI1.MOSI
+GPIOA.10 -- DHT11.DATA
 GPIOB.0  -- TIMER3.CH3
 GPIOB.1  -- TIMER3.CH4
 GPIOB.5  -- LED2
@@ -53,7 +54,7 @@ int main(void){
     #endif
 /***************   System Initialization part  ******************/
     LED_Init(); 
-    Uart1Init(384000); //Timer init must follow usart, can't change order
+    Uart1Init(115200); //Timer init must follow usart, can't change order
 //    Uart2Init(9600);
 ////    Timer3_pwm_Init(237,8);  //周期 = 72e6 / 8 /237 = 37.97KHz
     //Timer4_capture_Init(MAXCOUNTER,72);//周期 = 6ms  分辨率1us
@@ -84,7 +85,9 @@ int main(void){
 
     TimerHandle_t ptimer = xTimerCreate( "LED_D2_timer", pdMS_TO_TICKS(2000), pdTRUE, 0, LED_D2_toggle );
     if(ptimer!=NULL)    xTimerStart(ptimer,0);
-  
+
+    xTaskCreate(DHT11_Fetch_Task, "DHT11", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 2, NULL);
+
 
     vTaskStartScheduler(); 
     while(1);
