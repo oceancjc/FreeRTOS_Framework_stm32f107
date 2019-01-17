@@ -381,15 +381,18 @@ void checkLanState_Task(void *pvParameters){
 void DHT11_Fetch_Task(void *pvParameters){
     Uart1SendStr("You are in task --- T&H \r\n");
     uint8_t ret = 0, dhtbuf[5] = { 0 };  //tempI, tempF, wetI, wetF, checksum
+    if(dht11_init()==1){
+        uart1_printf("DH11 Init fail, task ends\r\n");
+        vTaskDelete(NULL);
+    }
+    vTaskDelay(pdMS_TO_TICKS(1000));
     while (1){
         ret = dht11_read_data(dhtbuf); 
-        if(!ret)    uart1_printf("Temp: %d.%dC\tHumidity: %d.%d%%\r\n",dhtbuf[0],dhtbuf[1],dhtbuf[2],dhtbuf[3]);  
-        else        uart1_printf("ERR%d: Fetch DHT11 data fail...\r\n",ret);        
-        vTaskDelay(pdMS_TO_TICKS(500));
+        if(ret)    uart1_printf("ERR%d: Fetch DHT11 data fail...\r\n",ret);        
+        uart1_printf("Temp: %d.%dC\tHumidity: %d.%d%%\r\n",dhtbuf[2],dhtbuf[3],dhtbuf[0],dhtbuf[1]); 
+        vTaskDelay(pdMS_TO_TICKS(800));
     }
     vTaskDelete(NULL);
 }
-
-
 
 
