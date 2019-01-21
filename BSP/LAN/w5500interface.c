@@ -53,7 +53,9 @@ int w5500ParametersConfiguration(void){
             uart1_printf("Unknown PHY Link stauts.\r\n");
             return -2;
         }
-    }while( tmp == PHY_LINK_OFF );
+        if(tmp == PHY_LINK_OFF)    w5500delay_ms(10);
+        else                       break;
+    }while( 1 );
     return 0;
 }
             
@@ -130,9 +132,10 @@ int DHCPConfig(void){
     setSHAR(gWIZNETINFO.mac);    // must be set the default mac before DHCP started, ??MAC
     DHCP_init(SOCKET_DHCP,gDATABUF);
     reg_dhcp_cbfunc(my_ip_assign, my_ip_assign, my_ip_conflict);
-    uint8_t dhcp_ret = DHCP_run();//???DHCP_run(),?????????IP???
+    uint8_t dhcp_ret = DHCP_run();  //Try to run DHCP process
     uint8_t retry_times = MAX_DHCP_RETRY;
-    while(retry_times--){//??DHCP_IP_LEASED??????IP????,?????,????
+    /*Try run DHCP process until DHCP_IP_LEASED or time out*/
+    while(retry_times--){
         if(dhcp_ret == DHCP_IP_LEASED)   return 0;
         uart1_printf("DHCP retry time %d: %d\r\n",dhcp_ret,retry_times);
         w5500delay_ms(500u);
