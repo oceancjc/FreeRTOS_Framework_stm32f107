@@ -26,6 +26,14 @@ to know the caller or other indicator (the socket id): int (*getfn)(unsigned cha
 */
 static int mysock = SOCK_MQTT;
 
+#define DEVICENAME        "516074860"        //ONENET Device  ID
+#define USERNAME          "208409"           //ONENET Product ID
+#define PASSWD            "lightswitch001"   //ONENET JianQuan Info
+
+
+
+
+
 
 int transport_sendPacketBuffer(int sock, unsigned char* buf, int buflen)
 {
@@ -71,3 +79,54 @@ int transport_close(int sock)
     close(SOCK_MQTT);
     return 0;
 }
+
+
+
+
+int mqtt_msgFramer(char* clientID, uint16_t keepalive, uint8_t cleansession, char*username, char* password, unsigned char*buf, int buflen){
+    MQTTPacket_connectData data = MQTTPacket_connectData_initializer;
+    data.clientID.cstring = clientID;
+    data.username.cstring = username;
+    data.password.cstring = password;
+    data.keepAliveInterval = keepalive;
+    data.cleansession = cleansession;
+    return MQTTSerialize_connect(buf, buflen, &data);
+}
+
+
+
+int mqtt_publish(char *pTopic,char *pMessage){
+    int len = 0,rc = 0;
+    unsigned char buf[256] = { 0 };
+    MQTTString topicString = MQTTString_initializer;
+    int msglen = strlen(pMessage);
+    int buflen = sizeof(buf);
+    /* 1. Connect Remote Server */
+    len = mqtt_msgFramer(DEVICENAME,100,1,USERNAME,PASSWD,buf,buflen);
+    rc = transport_sendPacketBuffer(SOCK_MQTT, buf, buflen);
+    /* wait for connack */
+    if (MQTTPacket_read(buf, buflen, transport_getdata) == CONNACK){
+        unsigned char sessionPresent, connack_rc;
+        if (MQTTDeserialize_connack(&sessionPresent, &connack_rc, buf, buflen) != 1 || connack_rc != 0){
+            uart1_printf("Unable to connect, return code %d\n", connack_rc);
+            return connack_rc;
+        }
+    }
+    else    return -1;    
+    
+    topicString.cstring = pTopic;
+    /* 2 */
+    len += MQTTSerialize_publish(buf + len, buflen - len, 0, 0, 0, 0, topicString, (unsigned char*)pMessage, msglen); 
+    /* 3 */
+    len += MQTTSerialize_disconnect(buf + len, buflen - len); 
+    rc = transport_sendPacketBuffer(SOCK_MQTT,buf,len);
+    uart1_printf("%s\r\n",buf);
+    if (rc == len){
+        uart1_printf("Successfully published\n\r");
+        return len;
+    }                
+    else         uart1_printf("Publish failed\n\r");
+    return 0;
+}
+
+

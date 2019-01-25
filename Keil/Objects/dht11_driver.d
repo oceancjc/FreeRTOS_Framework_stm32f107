@@ -29,6 +29,11 @@
 .\objects\dht11_driver.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
 .\objects\dht11_driver.o: ..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h
 .\objects\dht11_driver.o: ..\STM32F10x_FWLib\inc\misc.h
+.\objects\dht11_driver.o: ..\BSP\usart\usart.h
+.\objects\dht11_driver.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\dht11_driver.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\dht11_driver.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\dht11_driver.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\dht11_driver.o: ..\FREERTOS\include\FreeRTOS.h
 .\objects\dht11_driver.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\dht11_driver.o: ..\FREERTOS\portable\RVDS\ARM_CM3\FreeRTOSConfig.h

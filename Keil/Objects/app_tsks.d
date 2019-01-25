@@ -57,4 +57,14 @@
 .\objects\app_tsks.o: ..\W5500_Lib\Ethernet\wizchip_conf.h
 .\objects\app_tsks.o: ..\W5500_Lib\Internet\DHCP\dhcp.h
 .\objects\app_tsks.o: ..\W5500_Lib\Internet\DNS\dns.h
+.\objects\app_tsks.o: ..\W5500_Lib\Internet\MQTT\transport.h
+.\objects\app_tsks.o: ..\BSP\LAN\w5500interface.h
+.\objects\app_tsks.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTPacket.h
+.\objects\app_tsks.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTConnect.h
+.\objects\app_tsks.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTPublish.h
+.\objects\app_tsks.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTSubscribe.h
+.\objects\app_tsks.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTUnsubscribe.h
+.\objects\app_tsks.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTFormat.h
+.\objects\app_tsks.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\StackTrace.h
+.\objects\app_tsks.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTPacket.h
 .\objects\app_tsks.o: ..\BSP\DHT11\dht11_driver.h

@@ -54,3 +54,13 @@
 .\objects\w5500interface.o: ..\FREERTOS\include\timers.h
 .\objects\w5500interface.o: ..\FREERTOS\include\semphr.h
 .\objects\w5500interface.o: ..\BSP\spi\spi.h
+.\objects\w5500interface.o: ..\W5500_Lib\Internet\MQTT\transport.h
+.\objects\w5500interface.o: ..\BSP\LAN\w5500interface.h
+.\objects\w5500interface.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTPacket.h
+.\objects\w5500interface.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTConnect.h
+.\objects\w5500interface.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTPublish.h
+.\objects\w5500interface.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTSubscribe.h
+.\objects\w5500interface.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTUnsubscribe.h
+.\objects\w5500interface.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTFormat.h
+.\objects\w5500interface.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\StackTrace.h
+.\objects\w5500interface.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTPacket.h

@@ -54,3 +54,13 @@
 .\objects\wizchip_conf.o: ..\FREERTOS\include\timers.h
 .\objects\wizchip_conf.o: ..\FREERTOS\include\semphr.h
 .\objects\wizchip_conf.o: ..\BSP\spi\spi.h
+.\objects\wizchip_conf.o: ..\W5500_Lib\Internet\MQTT\transport.h
+.\objects\wizchip_conf.o: ..\BSP\LAN\w5500interface.h
+.\objects\wizchip_conf.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTPacket.h
+.\objects\wizchip_conf.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTConnect.h
+.\objects\wizchip_conf.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTPublish.h
+.\objects\wizchip_conf.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTSubscribe.h
+.\objects\wizchip_conf.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTUnsubscribe.h
+.\objects\wizchip_conf.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTFormat.h
+.\objects\wizchip_conf.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\StackTrace.h
+.\objects\wizchip_conf.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTPacket.h

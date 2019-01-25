@@ -57,6 +57,16 @@
 .\objects\main.o: ..\W5500_Lib\Ethernet\wizchip_conf.h
 .\objects\main.o: ..\W5500_Lib\Internet\DHCP\dhcp.h
 .\objects\main.o: ..\W5500_Lib\Internet\DNS\dns.h
+.\objects\main.o: ..\W5500_Lib\Internet\MQTT\transport.h
+.\objects\main.o: ..\BSP\LAN\w5500interface.h
+.\objects\main.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTPacket.h
+.\objects\main.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTConnect.h
+.\objects\main.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTPublish.h
+.\objects\main.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTSubscribe.h
+.\objects\main.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTUnsubscribe.h
+.\objects\main.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTFormat.h
+.\objects\main.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\StackTrace.h
+.\objects\main.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTPacket.h
 .\objects\main.o: ..\BSP\DHT11\dht11_driver.h
 .\objects\main.o: ..\SX12xxDrivers-V2.1.0\src\radio\sx1276.h
 .\objects\main.o: ..\SX12xxDrivers-V2.1.0\src\radio\sx1276-LoRa.h

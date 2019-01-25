@@ -55,3 +55,13 @@
 .\objects\transport.o: ..\W5500_Lib\Internet\DHCP\dhcp.h
 .\objects\transport.o: ..\W5500_Lib\Internet\DNS\dns.h
 .\objects\transport.o: ..\BSP\spi\spi.h
+.\objects\transport.o: ..\W5500_Lib\Internet\MQTT\transport.h
+.\objects\transport.o: ..\BSP\LAN\w5500interface.h
+.\objects\transport.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTPacket.h
+.\objects\transport.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTConnect.h
+.\objects\transport.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTPublish.h
+.\objects\transport.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTSubscribe.h
+.\objects\transport.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTUnsubscribe.h
+.\objects\transport.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTFormat.h
+.\objects\transport.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\StackTrace.h
+.\objects\transport.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTPacket.h

@@ -377,7 +377,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_CL,USE_STDPERIPH_DRIVER,FreeRTOS</Define>
               <Undefine></Undefine>
-              <IncludePath>..\STM32F10x_FWLib\inc;..\APP;..\CORE;..\FREERTOS\include;..\FREERTOS\portable\RVDS\ARM_CM3;..\BSP\usart;..\BSP\timer;..\BSP\spi;..\BSP\flash;..\BSP\LAN;..\SX12xxDrivers-V2.1.0\src\radio;..\Tracealyzer\include;..\Tracealyzer\config;..\Tracealyzer\streamports\Jlink_RTT\include;..\W5500_Lib\Ethernet;..\W5500_Lib\Ethernet\W5500;..\W5500_Lib\Internet\DHCP;..\W5500_Lib\Internet\httpServer;..\W5500_Lib\Internet\DNS;..\W5500_Lib\Internet\MQTT\MQTTPacket\src;..\W5500_Lib\Internet\MQTT;..\BSP\DHT11</IncludePath>
+              <IncludePath>..\STM32F10x_FWLib\inc;..\APP;..\CORE;..\FREERTOS\include;..\FREERTOS\portable\RVDS\ARM_CM3;..\BSP\usart;..\BSP\timer;..\BSP\spi;..\BSP\flash;..\BSP\LAN;..\SX12xxDrivers-V2.1.0\src\radio;..\Tracealyzer\include;..\Tracealyzer\config;..\Tracealyzer\streamports\Jlink_RTT\include;..\W5500_Lib\Ethernet;..\W5500_Lib\Ethernet\W5500;..\W5500_Lib\Internet\DHCP;..\W5500_Lib\Internet\httpServer;..\W5500_Lib\Internet\DNS;..\W5500_Lib\Internet\MQTT\MQTTPacket\src;..\W5500_Lib\Internet\MQTT;..\BSP\DHT11;..\modbus\include;..\modbus\tcp;..\modbus\ascii;..\modbus\rtu;..\modbus\port</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -606,6 +606,11 @@
               <FileType>1</FileType>
               <FilePath>..\BSP\DHT11\dht11_driver.c</FilePath>
             </File>
+            <File>
+              <FileName>freemodbus_interface.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\BSP\modbus\freemodbus_interface.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -757,6 +762,89 @@
               <FilePath>..\W5500_Lib\Internet\MQTT\transport.c</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>MODBUS_SLAVE</GroupName>
+          <Files>
+            <File>
+              <FileName>mb.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\modbus\mb.c</FilePath>
+            </File>
+            <File>
+              <FileName>mbtcp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\modbus\tcp\mbtcp.c</FilePath>
+            </File>
+            <File>
+              <FileName>mbfunccoils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\modbus\functions\mbfunccoils.c</FilePath>
+            </File>
+            <File>
+              <FileName>mbfuncdiag.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\modbus\functions\mbfuncdiag.c</FilePath>
+            </File>
+            <File>
+              <FileName>mbfuncdisc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\modbus\functions\mbfuncdisc.c</FilePath>
+            </File>
+            <File>
+              <FileName>mbfuncholding.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\modbus\functions\mbfuncholding.c</FilePath>
+            </File>
+            <File>
+              <FileName>mbfuncinput.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\modbus\functions\mbfuncinput.c</FilePath>
+            </File>
+            <File>
+              <FileName>mbfuncother.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\modbus\functions\mbfuncother.c</FilePath>
+            </File>
+            <File>
+              <FileName>mbutils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\modbus\functions\mbutils.c</FilePath>
+            </File>
+            <File>
+              <FileName>mbascii.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\modbus\ascii\mbascii.c</FilePath>
+            </File>
+            <File>
+              <FileName>mbcrc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\modbus\rtu\mbcrc.c</FilePath>
+            </File>
+            <File>
+              <FileName>mbrtu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\modbus\rtu\mbrtu.c</FilePath>
+            </File>
+            <File>
+              <FileName>portevent.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\modbus\port\portevent.c</FilePath>
+            </File>
+            <File>
+              <FileName>porttimer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\modbus\port\porttimer.c</FilePath>
+            </File>
+            <File>
+              <FileName>portserial.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\modbus\port\portserial.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>MODBUS_MASTER</GroupName>
         </Group>
       </Groups>
     </Target>

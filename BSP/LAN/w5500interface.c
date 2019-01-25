@@ -307,3 +307,25 @@ int loopback_tcpc(uint8_t* ip, uint16_t port){
 
 
 
+int onenetMqttPublish(uint8_t* buf){
+    uint32_t len = 0;    int ret = 0;
+    switch(getSn_SR(SOCK_MQTT)){
+        case SOCK_INIT:                                                     
+            connect(SOCK_MQTT,(uint8_t*)"183.230.40.39",6002);
+            break;
+        case SOCK_ESTABLISHED:                                         
+            if(getSn_IR(SOCK_MQTT) & Sn_IR_CON)     setSn_IR(SOCK_MQTT, Sn_IR_CON);
+            mqtt_publish("firsttry","hello oceancjc");                                                                  
+            break;
+        case SOCK_CLOSE_WAIT:                                     
+            disconnect(SOCK_MQTT);    
+            break;
+        case SOCK_CLOSED:                 
+            if((ret=socket(SOCK_MQTT,Sn_MR_TCP,5001,0)) != SOCK_MQTT)    return ret;  //???Why is 5000 rather than port? 
+            uart1_printf("%d:Opened\r\n",SOCK_MQTT);        
+            break;
+        default:        break;
+    }
+    return 0;
+}
+

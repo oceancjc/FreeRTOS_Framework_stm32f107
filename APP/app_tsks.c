@@ -343,7 +343,7 @@ void steeringCtl_Task(void *pvParameters){
 
 
 
-void lantcpserver_loopback_Task(void *pvParameters){
+void lantcpserver_loopback_Task2(void *pvParameters){
     Uart1SendStr("You are in task --- Lan TCP Server Loopback\r\n");
     w5500Init();
     int ret = w5500SetIp( ((TSK_PARAMETER_t*)pvParameters)->opdata[0]);
@@ -396,3 +396,26 @@ void DHT11_Fetch_Task(void *pvParameters){
 }
 
 
+
+void lantcpserver_loopback_Task(void *pvParameters){
+    Uart1SendStr("You are in task --- Lan TCP Server Loopback\r\n");
+    w5500Init();
+    int ret = w5500SetIp( ((TSK_PARAMETER_t*)pvParameters)->opdata[0]);
+    if(ret)    uart1_printf("W5500 Init fail, Err = %d\r\n",ret);  
+    uint8_t ip[4] = { 0 }; 
+    DNSRun((uint8_t *)"mqtt.heclouds.com", ip); 
+    uint8_t *buf = (uint8_t*)"hello";    
+    while(1){
+        /* Loopback Test */
+        // TCP server loopback test
+        if( (ret = onenetMqttPublish(buf)) < 0) {
+            uart1_printf("SOCKET ERROR : %ld\r\n", ret);
+        }
+        // UDP server loopback test
+//        if( (ret = loopback_udps(SOCK_UDPS, gDATABUF, 3000)) < 0) {
+//            uart1_printf("SOCKET ERROR : %ld\r\n", ret);
+//        }
+
+    }
+    vTaskDelete(NULL);    
+}

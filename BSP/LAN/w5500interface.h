@@ -7,6 +7,7 @@
 #include "stdio.h"
 #include "usart.h"
 #include "spi.h"
+#include "transport.h"
 
 #ifdef FreeRTOS
     #include "FreeRTOS.h"
@@ -42,8 +43,7 @@ extern int w5500CheckLinkState(void);
 extern int DNSRun(uint8_t *name, uint8_t* ip);
 extern int loopback_tcps(uint8_t sn, uint8_t* buf, uint16_t port);
 extern int loopback_tcpc(uint8_t* ip, uint16_t port);
-
-
+extern int onenetMqttPublish(uint8_t* buf);
 
 
 
