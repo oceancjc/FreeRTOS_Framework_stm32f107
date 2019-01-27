@@ -343,17 +343,22 @@ void steeringCtl_Task(void *pvParameters){
 
 
 
-void lantcpserver_loopback_Task2(void *pvParameters){
+void lantcpserver_loopback_Task(void *pvParameters){    //lan_enable 1
     Uart1SendStr("You are in task --- Lan TCP Server Loopback\r\n");
     w5500Init();
     int ret = w5500SetIp( ((TSK_PARAMETER_t*)pvParameters)->opdata[0]);
     if(ret)    uart1_printf("W5500 Init fail, Err = %d\r\n",ret);  
     uint8_t ip[4] = { 0 }; 
-    DNSRun((uint8_t *)"www.baidu.com", ip);    
+    DNSRun((uint8_t *)"www.baidu.com", ip);  
+    uint8_t PCIP[4] = {192,168,2,177};  uint16_t PCPORT = 5678;    
     while(1){
         /* Loopback Test */
         // TCP server loopback test
-        if( (ret = loopback_tcps(SOCK_TCPS, gDATABUF, 5000)) < 0) {
+//        if( (ret = loopback_tcps(SOCK_TCPS, gDATABUF, 5000)) < 0) {
+//            uart1_printf("SOCKET ERROR : %ld\r\n", ret);
+//        }
+        // TCP client loopback test
+        if( (ret = loopback_tcpc(SOCK_TCPS, PCIP, PCPORT)) < 0) {
             uart1_printf("SOCKET ERROR : %ld\r\n", ret);
         }
         // UDP server loopback test
@@ -390,15 +395,15 @@ void DHT11_Fetch_Task(void *pvParameters){
         ret = dht11_read_data(dhtbuf); 
         if(ret)    uart1_printf("ERR%d: Fetch DHT11 data fail...\r\n",ret);        
         uart1_printf("Temp: %d.%dC\tHumidity: %d.%d%%\r\n",dhtbuf[2],dhtbuf[3],dhtbuf[0],dhtbuf[1]); 
-        vTaskDelay(pdMS_TO_TICKS(800));
+        vTaskDelay(pdMS_TO_TICKS(8000));
     }
     vTaskDelete(NULL);
 }
 
 
 
-void lantcpserver_loopback_Task(void *pvParameters){
-    Uart1SendStr("You are in task --- Lan TCP Server Loopback\r\n");
+void lantcpserver_loopback_Task2(void *pvParameters){
+    Uart1SendStr("You are in task --- Lan MQTT Loopback\r\n");
     w5500Init();
     int ret = w5500SetIp( ((TSK_PARAMETER_t*)pvParameters)->opdata[0]);
     if(ret)    uart1_printf("W5500 Init fail, Err = %d\r\n",ret);  
@@ -406,15 +411,10 @@ void lantcpserver_loopback_Task(void *pvParameters){
     DNSRun((uint8_t *)"mqtt.heclouds.com", ip); 
     uint8_t *buf = (uint8_t*)"hello";    
     while(1){
-        /* Loopback Test */
-        // TCP server loopback test
+        /* MQTT Test */
         if( (ret = onenetMqttPublish(buf)) < 0) {
             uart1_printf("SOCKET ERROR : %ld\r\n", ret);
         }
-        // UDP server loopback test
-//        if( (ret = loopback_udps(SOCK_UDPS, gDATABUF, 3000)) < 0) {
-//            uart1_printf("SOCKET ERROR : %ld\r\n", ret);
-//        }
 
     }
     vTaskDelete(NULL);    

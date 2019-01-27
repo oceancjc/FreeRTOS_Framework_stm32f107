@@ -1,10 +1,10 @@
 .\objects\mbfuncother.o: ..\modbus\functions\mbfuncother.c
-.\objects\mbfuncother.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\mbfuncother.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\mbfuncother.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\mbfuncother.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\mbfuncother.o: ..\modbus\port\port.h
 .\objects\mbfuncother.o: ..\CORE\stm32f10x.h
 .\objects\mbfuncother.o: ..\CORE\core_cm3.h
-.\objects\mbfuncother.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\mbfuncother.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\mbfuncother.o: ..\CORE\system_stm32f10x.h
 .\objects\mbfuncother.o: ..\CORE\stm32f10x_conf.h
 .\objects\mbfuncother.o: ..\STM32F10x_FWLib\inc\stm32f10x_adc.h
@@ -31,8 +31,8 @@
 .\objects\mbfuncother.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
 .\objects\mbfuncother.o: ..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h
 .\objects\mbfuncother.o: ..\STM32F10x_FWLib\inc\misc.h
-.\objects\mbfuncother.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h
-.\objects\mbfuncother.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+.\objects\mbfuncother.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h
+.\objects\mbfuncother.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
 .\objects\mbfuncother.o: ..\modbus\include\mb.h
 .\objects\mbfuncother.o: ..\modbus\include\mbport.h
 .\objects\mbfuncother.o: ..\modbus\include\mbproto.h

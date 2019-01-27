@@ -168,6 +168,7 @@ int DNSRun(uint8_t *name, uint8_t* ip){
     else{
         for(i=0;i<2;i++){
             if ((ret = DNS_run(dnsserver[i], name, ip)) > 0){
+                if(ip[0] == 0 && ip[1] == 0)      continue;
                 uart1_printf("> DNS %d Reponsed\r\n",i+2);
                 uart1_printf("> Translated %s to %d.%d.%d.%d\r\n",name,ip[0],ip[1],ip[2],ip[3]);
                 return ret;
@@ -277,27 +278,32 @@ int loopback_tcps(uint8_t sn, uint8_t* buf, uint16_t port){
 
 
 
-int loopback_tcpc(uint8_t* ip, uint16_t port){
+int loopback_tcpc(uint8_t sn, uint8_t* ip, uint16_t port){
     uint32_t len = 0;    int ret = 0;
-    switch(getSn_SR(SOCK_TCPS)){
+    switch(getSn_SR(sn)){
         case SOCK_INIT:                                                     
-            connect(SOCK_TCPS,ip,port);
+            if((ret = connect(sn,ip,port)) != SOCK_OK){
+                disconnect(sn);
+                uart1_printf("Connect TCP server fail,ret = %d\r\n",ret);
+            }
             break;
         case SOCK_ESTABLISHED:                                         
-            if(getSn_IR(SOCK_TCPS) & Sn_IR_CON)     setSn_IR(SOCK_TCPS, Sn_IR_CON);                  
-            len=getSn_RX_RSR(SOCK_TCPS);                                
+            if(getSn_IR(sn) & Sn_IR_CON)     setSn_IR(sn, Sn_IR_CON);                  
+            len=getSn_RX_RSR(sn);                                
             if(len > DATA_BUF_SIZE)    len = DATA_BUF_SIZE;
-            ret = recv(SOCK_TCPS,gDATABUF,len);   
-            if(ret<0)    return ret;            
-            uart1_printf("%s\r\n",gDATABUF);
-            send(SOCK_TCPS,gDATABUF,len);                                                                   
+            if(len){
+                ret = recv(sn,gDATABUF,len);   
+                if(ret<0)    return ret;            
+                uart1_printf("%s\r\n",gDATABUF);
+                send(sn,gDATABUF,len); 
+            }                                                    
             break;
         case SOCK_CLOSE_WAIT:                                     
-            disconnect(SOCK_TCPS);    
+            disconnect(sn);    
             break;
         case SOCK_CLOSED:                 
-            if((ret=socket(SOCK_TCPS,Sn_MR_TCP,5000,0x00)) != SOCK_TCPS)    return ret;  //???Why is 5000 rather than port? 
-            uart1_printf("%d:Opened\r\n",SOCK_TCPS);        
+            if((ret=socket(sn,Sn_MR_TCP,5000,0)) != SOCK_TCPS)    return ret;  //???Why is 5000 rather than port? 
+            uart1_printf("%d:Opened\r\n",sn);        
             break;
         default:
             break;
@@ -308,14 +314,18 @@ int loopback_tcpc(uint8_t* ip, uint16_t port){
 
 
 int onenetMqttPublish(uint8_t* buf){
-    uint32_t len = 0;    int ret = 0;
+    int ret = 0;
+    uint8_t CLOUDIP[4] = {183,230,40,39}; 
+    uint16_t CLOUDPORT = 6002;
     switch(getSn_SR(SOCK_MQTT)){
-        case SOCK_INIT:                                                     
-            connect(SOCK_MQTT,(uint8_t*)"183.230.40.39",6002);
+        case SOCK_INIT:
+            connect(SOCK_MQTT,CLOUDIP,CLOUDPORT);
             break;
-        case SOCK_ESTABLISHED:                                         
+        case SOCK_ESTABLISHED: 
+            uart1_printf("%d:Established\r\n",SOCK_MQTT); 
             if(getSn_IR(SOCK_MQTT) & Sn_IR_CON)     setSn_IR(SOCK_MQTT, Sn_IR_CON);
-            mqtt_publish("firsttry","hello oceancjc");                                                                  
+            if(0!= mqtt_publish("firsttry","hello oceancjc"))    uart1_printf("Sth wrong with MQTT\r\n");  
+            else     w5500delay_ms(2000);
             break;
         case SOCK_CLOSE_WAIT:                                     
             disconnect(SOCK_MQTT);    

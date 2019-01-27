@@ -102,7 +102,7 @@ int mqtt_publish(char *pTopic,char *pMessage){
     int msglen = strlen(pMessage);
     int buflen = sizeof(buf);
     /* 1. Connect Remote Server */
-    len = mqtt_msgFramer(DEVICENAME,100,1,USERNAME,PASSWD,buf,buflen);
+    len = mqtt_msgFramer(DEVICENAME,120,1,USERNAME,PASSWD,buf,buflen);
     rc = transport_sendPacketBuffer(SOCK_MQTT, buf, buflen);
     /* wait for connack */
     if (MQTTPacket_read(buf, buflen, transport_getdata) == CONNACK){
@@ -117,6 +117,7 @@ int mqtt_publish(char *pTopic,char *pMessage){
     topicString.cstring = pTopic;
     /* 2 */
     len += MQTTSerialize_publish(buf + len, buflen - len, 0, 0, 0, 0, topicString, (unsigned char*)pMessage, msglen); 
+    uart1_printf("buf=%s\r\n",buf);
     /* 3 */
     len += MQTTSerialize_disconnect(buf + len, buflen - len); 
     rc = transport_sendPacketBuffer(SOCK_MQTT,buf,len);

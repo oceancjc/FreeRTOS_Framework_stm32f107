@@ -125,7 +125,7 @@
         <bEvRecOn>1</bEvRecOn>
         <bSchkAxf>0</bSchkAxf>
         <bTchkAxf>0</bTchkAxf>
-        <nTsel>0</nTsel>
+        <nTsel>4</nTsel>
         <sDll></sDll>
         <sDllPa></sDllPa>
         <sDlgDll></sDlgDll>
@@ -136,13 +136,13 @@
         <tDlgDll></tDlgDll>
         <tDlgPa></tDlgPa>
         <tIfile></tIfile>
-        <pMon>BIN\UL2CM3.DLL</pMon>
+        <pMon>Segger\JL2CM3.dll</pMon>
       </DebugOpt>
       <TargetDriverDllRegistry>
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
-          <Name>(105=-1,-1,-1,-1,0)</Name>
+          <Name>?bw???bw??</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -181,48 +181,32 @@
           <Type>0</Type>
           <LineNumber>169</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134222978</Address>
+          <Address>134223012</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\BSP\LAN\w5500interface.c</Filename>
+          <Filename>D:\鐢靛瓙璁捐宸ョ▼\FreeRTOS\stm32f103c8_withtrace\BSP\LAN\w5500interface.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\raw_freertos10\../BSP/LAN/w5500interface.c\169</Expression>
         </Bp>
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>159</LineNumber>
+          <LineNumber>324</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134223000</Address>
+          <Address>134237086</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\BSP\LAN\w5500interface.c</Filename>
+          <Filename>D:\鐢靛瓙璁捐宸ョ▼\FreeRTOS\stm32f103c8_withtrace\BSP\LAN\w5500interface.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\raw_freertos10\../BSP/LAN/w5500interface.c\159</Expression>
-        </Bp>
-        <Bp>
-          <Number>2</Number>
-          <Type>0</Type>
-          <LineNumber>79</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134233500</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\BSP\DHT11\dht11_driver.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\raw_freertos10\../BSP/DHT11/dht11_driver.c\79</Expression>
+          <Expression>\\raw_freertos10\../BSP/LAN/w5500interface.c\324</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -363,7 +347,7 @@
       <DebugFlag>
         <trace>0</trace>
         <periodic>1</periodic>
-        <aLwin>1</aLwin>
+        <aLwin>0</aLwin>
         <aCover>0</aCover>
         <aSer1>0</aSer1>
         <aSer2>0</aSer2>

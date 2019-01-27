@@ -86,7 +86,7 @@ int main(void){
     TimerHandle_t ptimer = xTimerCreate( "LED_D2_timer", pdMS_TO_TICKS(2000), pdTRUE, 0, LED_D2_toggle );
     if(ptimer!=NULL)    xTimerStart(ptimer,0);
 
-    xTaskCreate(DHT11_Fetch_Task, "DHT11", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 2, NULL);
+//    xTaskCreate(DHT11_Fetch_Task, "DHT11", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 2, NULL);
 
 
     vTaskStartScheduler(); 
