@@ -343,7 +343,7 @@ void steeringCtl_Task(void *pvParameters){
 
 
 
-void lantcpserver_loopback_Task(void *pvParameters){    //lan_enable 1
+void lantcpserver_loopback_Task2(void *pvParameters){    //lan_enable 1
     Uart1SendStr("You are in task --- Lan TCP Server Loopback\r\n");
     w5500Init();
     int ret = w5500SetIp( ((TSK_PARAMETER_t*)pvParameters)->opdata[0]);
@@ -402,7 +402,7 @@ void DHT11_Fetch_Task(void *pvParameters){
 
 
 
-void lantcpserver_loopback_Task2(void *pvParameters){
+void lantcpserver_loopback_Task(void *pvParameters){
     Uart1SendStr("You are in task --- Lan MQTT Loopback\r\n");
     w5500Init();
     int ret = w5500SetIp( ((TSK_PARAMETER_t*)pvParameters)->opdata[0]);
@@ -412,7 +412,7 @@ void lantcpserver_loopback_Task2(void *pvParameters){
     uint8_t *buf = (uint8_t*)"hello";    
     while(1){
         /* MQTT Test */
-        if( (ret = onenetMqttPublish(buf)) < 0) {
+        if( (ret = baiduMqttPublishtest(buf)) < 0) {
             uart1_printf("SOCKET ERROR : %ld\r\n", ret);
         }
 

@@ -1,10 +1,10 @@
 .\objects\mbutils.o: ..\modbus\functions\mbutils.c
-.\objects\mbutils.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\mbutils.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\mbutils.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\mbutils.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\mbutils.o: ..\modbus\port\port.h
 .\objects\mbutils.o: ..\CORE\stm32f10x.h
 .\objects\mbutils.o: ..\CORE\core_cm3.h
-.\objects\mbutils.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\mbutils.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\mbutils.o: ..\CORE\system_stm32f10x.h
 .\objects\mbutils.o: ..\CORE\stm32f10x_conf.h
 .\objects\mbutils.o: ..\STM32F10x_FWLib\inc\stm32f10x_adc.h
@@ -31,8 +31,8 @@
 .\objects\mbutils.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
 .\objects\mbutils.o: ..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h
 .\objects\mbutils.o: ..\STM32F10x_FWLib\inc\misc.h
-.\objects\mbutils.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h
-.\objects\mbutils.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+.\objects\mbutils.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h
+.\objects\mbutils.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
 .\objects\mbutils.o: ..\modbus\include\mb.h
 .\objects\mbutils.o: ..\modbus\include\mbport.h
 .\objects\mbutils.o: ..\modbus\include\mbproto.h

@@ -6,6 +6,6 @@
 .\objects\mqttserializepublish.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTUnsubscribe.h
 .\objects\mqttserializepublish.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTFormat.h
 .\objects\mqttserializepublish.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\StackTrace.h
-.\objects\mqttserializepublish.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\mqttserializepublish.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\mqttserializepublish.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTPacket.h
-.\objects\mqttserializepublish.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\mqttserializepublish.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

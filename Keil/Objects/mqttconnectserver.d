@@ -1,6 +1,6 @@
 .\objects\mqttconnectserver.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTConnectServer.c
 .\objects\mqttconnectserver.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\StackTrace.h
-.\objects\mqttconnectserver.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\mqttconnectserver.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\mqttconnectserver.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTPacket.h
 .\objects\mqttconnectserver.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTConnect.h
 .\objects\mqttconnectserver.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTPublish.h
@@ -8,4 +8,4 @@
 .\objects\mqttconnectserver.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTUnsubscribe.h
 .\objects\mqttconnectserver.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTFormat.h
 .\objects\mqttconnectserver.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTPacket.h
-.\objects\mqttconnectserver.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\mqttconnectserver.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

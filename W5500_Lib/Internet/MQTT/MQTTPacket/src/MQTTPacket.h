@@ -124,7 +124,7 @@ typedef struct {
 }MQTTTransport;
 
 int MQTTPacket_readnb(unsigned char* buf, int buflen, MQTTTransport *trp);
-
+int MQTTSerialize_zero(unsigned char* buf, int buflen, unsigned char packettype);
 #ifdef __cplusplus /* If this is a C++ compiler, use C linkage */
 }
 #endif

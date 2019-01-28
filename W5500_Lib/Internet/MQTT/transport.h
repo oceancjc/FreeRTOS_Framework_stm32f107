@@ -22,9 +22,9 @@
 
 
 
-#define DEVICENAME        "516074860"        //ONENET Device  ID
-#define USERNAME          "208409"           //ONENET Product ID
-#define PASSWD            "lightswitch001"   //ONENET JianQuan Info
+#define DEVICENAME        "_baidu_sample_pump_instance"                   //ONENET Device  ID
+#define USERNAME          "h56qpk7/_baidu_sample_pump_instance"           //ONENET Product ID
+#define PASSWD            "IkmAEgOmvUCAT2oX"                              //ONENET JianQuan Info
 
 
 
@@ -36,3 +36,4 @@ int transport_open(char* host, int port);
 int transport_close(int sock);
 int mqtt_remoteConnect(char* clientID, uint16_t keepalive, uint8_t cleansession, char*username, char* password);
 int mqtt_publish(char *pTopic,char *pMessage);
+int mqtt_ping(uint8_t* buf);

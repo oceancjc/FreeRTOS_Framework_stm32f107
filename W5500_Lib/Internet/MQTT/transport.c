@@ -112,10 +112,10 @@ int mqtt_publish(char *pTopic,char *pMessage){
     
     topicString.cstring = pTopic;
     /* 2 */
-    len += MQTTSerialize_publish(buf + len, buflen - len, 0, 0, 0, 0, topicString, (unsigned char*)pMessage, msglen); 
-    uart1_printf("buf=%s\r\n",buf);
+    len = MQTTSerialize_publish(buf, buflen, 0, 0, 0, 0, topicString, (unsigned char*)pMessage, msglen); 
     /* 3 */
-    len += MQTTSerialize_disconnect(buf + len, buflen - len); 
+    memset(buf,0,buflen);
+//    len += MQTTSerialize_disconnect(buf, buflen); 
     rc = transport_sendPacketBuffer(SOCK_MQTT,buf,len);
     uart1_printf("%s\r\n",buf);
     if (rc == len){
@@ -139,3 +139,9 @@ int mqtt_ping(uint8_t* buf){   //return 0 ok   -1 receive error   -2 receive wro
     else                    return -2;
     
 }
+
+
+
+
+
+

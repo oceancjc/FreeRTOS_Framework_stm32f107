@@ -313,13 +313,16 @@ int loopback_tcpc(uint8_t sn, uint8_t* ip, uint16_t port){
 
 
 
-int onenetMqttPublish(uint8_t* buf){
+int baiduMqttPublishtest(uint8_t* buf){
     int ret = 0,retry = 10;
-    uint8_t CLOUDIP[4] = {183,230,40,39}; 
-    uint16_t CLOUDPORT = 6002;
+    uint8_t CLOUDIP[4] = {183,240,93,18}; 
+    uint16_t CLOUDPORT = 1883;
     switch(getSn_SR(SOCK_MQTT)){
         case SOCK_INIT:
-            connect(SOCK_MQTT,CLOUDIP,CLOUDPORT);
+            if((ret = connect(SOCK_MQTT,CLOUDIP,CLOUDPORT)) != SOCK_OK){
+                disconnect(SOCK_MQTT);
+                uart1_printf("Connect TCP server fail,ret = %d\r\n",ret);
+            }
             break;
         case SOCK_ESTABLISHED: 
             uart1_printf("%d:Established\r\n",SOCK_MQTT); 
@@ -336,7 +339,9 @@ int onenetMqttPublish(uint8_t* buf){
                 disconnect(SOCK_MQTT);
                 break;
             }    
-            if(0!= mqtt_publish("firsttry","hello oceancjc"))    uart1_printf("Sth wrong with MQTT\r\n");  
+            if(0!= mqtt_publish("$baidu/iot/shadow/_baidu_sample_pump_instance/update",
+                "{\"desired\": {},\"reported\": {\"FrequencyIn\": 110,\"Current\": 111,\
+                \"Speed\": 112,\"Torque\": 113}}"))    uart1_printf("Sth wrong with MQTT\r\n");  
             else     w5500delay_ms(2000);
             break;
         case SOCK_CLOSE_WAIT:                                     
@@ -347,6 +352,53 @@ int onenetMqttPublish(uint8_t* buf){
             uart1_printf("%d:Opened\r\n",SOCK_MQTT);        
             break;
         default:        break;
+    }
+    return 0;
+}
+
+
+
+enum{
+    MQTT_CONNECT = 0,
+    MQTT_SUBSCRIBE,
+    MQTT_PUBLISH,
+    MQTT_PINGREQ,
+    ERR_MQTT_CONNECT_FAIL = -1,
+};
+
+
+
+
+int mqttStateMachine(){
+    static uint8_t state = MQTT_CONNECT;
+    int ret = 0, retry = 3;
+    switch(state){
+        case MQTT_CONNECT:
+            while(retry--){
+                ret = mqtt_remoteConnect(DEVICENAME,120,1,USERNAME,PASSWD);
+                if(ret){
+                    uart1_printf("Connect Server Fail with ret = %d\r\n",ret);
+                    w5500delay_ms(100);
+                }
+                else    break;
+            }
+            if(ret)     return ERR_MQTT_CONNECT_FAIL;
+            state = MQTT_PINGREQ;
+            break;
+        case MQTT_PINGREQ:
+            mqtt_ping((uint8_t*)"hello");
+            break;
+        case MQTT_PUBLISH:
+            if(0!= mqtt_publish("$baidu/iot/shadow/_baidu_sample_pump_instance/update",
+                "{\"desired\": {},\"reported\": {\"FrequencyIn\": 110,\"Current\": 111,\
+                \"Speed\": 112,\"Torque\": 113}}"))    uart1_printf("Sth wrong with MQTT\r\n");  
+            state = MQTT_PINGREQ;
+            break;
+        case MQTT_SUBSCRIBE:
+            state = MQTT_PINGREQ;
+            break;
+        default:
+            break;             
     }
     return 0;
 }
