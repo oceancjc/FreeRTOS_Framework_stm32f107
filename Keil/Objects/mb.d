@@ -1,10 +1,10 @@
 .\objects\mb.o: ..\modbus\mb.c
-.\objects\mb.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\mb.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\mb.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\mb.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\mb.o: ..\modbus\port\port.h
 .\objects\mb.o: ..\CORE\stm32f10x.h
 .\objects\mb.o: ..\CORE\core_cm3.h
-.\objects\mb.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\mb.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\mb.o: ..\CORE\system_stm32f10x.h
 .\objects\mb.o: ..\CORE\stm32f10x_conf.h
 .\objects\mb.o: ..\STM32F10x_FWLib\inc\stm32f10x_adc.h
@@ -31,8 +31,8 @@
 .\objects\mb.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
 .\objects\mb.o: ..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h
 .\objects\mb.o: ..\STM32F10x_FWLib\inc\misc.h
-.\objects\mb.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h
-.\objects\mb.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+.\objects\mb.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h
+.\objects\mb.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
 .\objects\mb.o: ..\modbus\include\mb.h
 .\objects\mb.o: ..\modbus\include\mbport.h
 .\objects\mb.o: ..\modbus\include\mbproto.h

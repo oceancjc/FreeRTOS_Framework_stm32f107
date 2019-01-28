@@ -314,7 +314,7 @@ int loopback_tcpc(uint8_t sn, uint8_t* ip, uint16_t port){
 
 
 int onenetMqttPublish(uint8_t* buf){
-    int ret = 0;
+    int ret = 0,retry = 10;
     uint8_t CLOUDIP[4] = {183,230,40,39}; 
     uint16_t CLOUDPORT = 6002;
     switch(getSn_SR(SOCK_MQTT)){
@@ -324,6 +324,18 @@ int onenetMqttPublish(uint8_t* buf){
         case SOCK_ESTABLISHED: 
             uart1_printf("%d:Established\r\n",SOCK_MQTT); 
             if(getSn_IR(SOCK_MQTT) & Sn_IR_CON)     setSn_IR(SOCK_MQTT, Sn_IR_CON);
+            while(retry--){
+                ret = mqtt_remoteConnect(DEVICENAME,120,1,USERNAME,PASSWD);
+                if(ret){
+                    uart1_printf("Connect Server Fail with ret = %d\r\n",ret);
+                    w5500delay_ms(100);
+                }
+                else    break;
+            }
+            if(ret){
+                disconnect(SOCK_MQTT);
+                break;
+            }    
             if(0!= mqtt_publish("firsttry","hello oceancjc"))    uart1_printf("Sth wrong with MQTT\r\n");  
             else     w5500delay_ms(2000);
             break;

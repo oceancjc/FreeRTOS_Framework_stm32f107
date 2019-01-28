@@ -21,9 +21,18 @@
 #include "StackTrace.h"
 
 
+
+#define DEVICENAME        "516074860"        //ONENET Device  ID
+#define USERNAME          "208409"           //ONENET Product ID
+#define PASSWD            "lightswitch001"   //ONENET JianQuan Info
+
+
+
+
 int transport_sendPacketBuffer(int sock, unsigned char* buf, int buflen);
 int transport_getdata(unsigned char* buf, int count);
 int transport_getdatanb(void *sck, unsigned char* buf, int count);
 int transport_open(char* host, int port);
 int transport_close(int sock);
+int mqtt_remoteConnect(char* clientID, uint16_t keepalive, uint8_t cleansession, char*username, char* password);
 int mqtt_publish(char *pTopic,char *pMessage);

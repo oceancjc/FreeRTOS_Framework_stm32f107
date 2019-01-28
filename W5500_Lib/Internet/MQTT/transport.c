@@ -26,12 +26,6 @@ to know the caller or other indicator (the socket id): int (*getfn)(unsigned cha
 */
 static int mysock = SOCK_MQTT;
 
-#define DEVICENAME        "516074860"        //ONENET Device  ID
-#define USERNAME          "208409"           //ONENET Product ID
-#define PASSWD            "lightswitch001"   //ONENET JianQuan Info
-
-
-
 
 
 
@@ -82,15 +76,29 @@ int transport_close(int sock)
 
 
 
-
-int mqtt_msgFramer(char* clientID, uint16_t keepalive, uint8_t cleansession, char*username, char* password, unsigned char*buf, int buflen){
+#define BUFLEN     200
+int mqtt_remoteConnect(char* clientID, uint16_t keepalive, uint8_t cleansession, char*username, char* password){
+    int len = 0;
+    uint8_t buf[BUFLEN] = { 0 };
     MQTTPacket_connectData data = MQTTPacket_connectData_initializer;
-    data.clientID.cstring = clientID;
-    data.username.cstring = username;
-    data.password.cstring = password;
+    data.clientID.cstring  = clientID;
+    data.username.cstring  = username;
+    data.password.cstring  = password;
     data.keepAliveInterval = keepalive;
-    data.cleansession = cleansession;
-    return MQTTSerialize_connect(buf, buflen, &data);
+    data.cleansession      = cleansession;
+    len = MQTTSerialize_connect(buf, BUFLEN, &data);
+    /* 1. Connect Remote Server */
+    transport_sendPacketBuffer(SOCK_MQTT, buf, len);
+    /* wait for connack */
+    if (MQTTPacket_read(buf, sizeof(buf), transport_getdata) == CONNACK){
+        unsigned char sessionPresent, connack_rc;
+        if (MQTTDeserialize_connack(&sessionPresent, &connack_rc, buf, BUFLEN) != 1 || connack_rc != 0){
+            uart1_printf("Unable to connect, return code %d\n", connack_rc);
+            return connack_rc;
+        }
+        return 0;
+    }
+    else    return -1; 
 }
 
 
@@ -101,18 +109,6 @@ int mqtt_publish(char *pTopic,char *pMessage){
     MQTTString topicString = MQTTString_initializer;
     int msglen = strlen(pMessage);
     int buflen = sizeof(buf);
-    /* 1. Connect Remote Server */
-    len = mqtt_msgFramer(DEVICENAME,120,1,USERNAME,PASSWD,buf,buflen);
-    rc = transport_sendPacketBuffer(SOCK_MQTT, buf, buflen);
-    /* wait for connack */
-    if (MQTTPacket_read(buf, buflen, transport_getdata) == CONNACK){
-        unsigned char sessionPresent, connack_rc;
-        if (MQTTDeserialize_connack(&sessionPresent, &connack_rc, buf, buflen) != 1 || connack_rc != 0){
-            uart1_printf("Unable to connect, return code %d\n", connack_rc);
-            return connack_rc;
-        }
-    }
-    else    return -1;    
     
     topicString.cstring = pTopic;
     /* 2 */
@@ -131,3 +127,15 @@ int mqtt_publish(char *pTopic,char *pMessage){
 }
 
 
+int mqtt_ping(uint8_t* buf){   //return 0 ok   -1 receive error   -2 receive wrong msg
+    int len = MQTTSerialize_zero(buf, 20, PINGREQ);
+    transport_sendPacketBuffer(SOCK_MQTT,buf,len);
+    int retry = 10;
+    while((len=getSn_RX_RSR(SOCK_MQTT)) <= 0 && retry--);
+    if(retry <=0)    return -1;
+    uint8_t buf_r[100] = { 0 };
+    recv(SOCK_MQTT,buf_r,len);
+    if(buf_r[0] == 0xD0)    return 0;
+    else                    return -2;
+    
+}

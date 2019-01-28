@@ -2,7 +2,7 @@
 .\objects\dht11_driver.o: ..\BSP\DHT11\dht11_driver.h
 .\objects\dht11_driver.o: ..\CORE\stm32f10x.h
 .\objects\dht11_driver.o: ..\CORE\core_cm3.h
-.\objects\dht11_driver.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\dht11_driver.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\dht11_driver.o: ..\CORE\system_stm32f10x.h
 .\objects\dht11_driver.o: ..\CORE\stm32f10x_conf.h
 .\objects\dht11_driver.o: ..\STM32F10x_FWLib\inc\stm32f10x_adc.h
@@ -30,12 +30,12 @@
 .\objects\dht11_driver.o: ..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h
 .\objects\dht11_driver.o: ..\STM32F10x_FWLib\inc\misc.h
 .\objects\dht11_driver.o: ..\BSP\usart\usart.h
-.\objects\dht11_driver.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\dht11_driver.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-.\objects\dht11_driver.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\dht11_driver.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\dht11_driver.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\dht11_driver.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\dht11_driver.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\dht11_driver.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\dht11_driver.o: ..\FREERTOS\include\FreeRTOS.h
-.\objects\dht11_driver.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\dht11_driver.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\dht11_driver.o: ..\FREERTOS\portable\RVDS\ARM_CM3\FreeRTOSConfig.h
 .\objects\dht11_driver.o: ..\FREERTOS\include\projdefs.h
 .\objects\dht11_driver.o: ..\FREERTOS\include\portable.h
