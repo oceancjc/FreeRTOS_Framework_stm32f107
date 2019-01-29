@@ -412,7 +412,8 @@ void lantcpserver_loopback_Task(void *pvParameters){
     uint8_t *buf = (uint8_t*)"hello";    
     while(1){
         /* MQTT Test */
-        if( (ret = baiduMqttPublishtest(buf)) < 0) {
+        setMqttState(((TSK_PARAMETER_t*)pvParameters)->opdata[0]);
+        if( (ret = mqttStateMachine()) < 0) {
             uart1_printf("SOCKET ERROR : %ld\r\n", ret);
         }
 

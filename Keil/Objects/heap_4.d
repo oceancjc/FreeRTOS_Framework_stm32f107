@@ -1,8 +1,8 @@
 .\objects\heap_4.o: ..\FREERTOS\portable\MemMang\heap_4.c
-.\objects\heap_4.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\heap_4.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\heap_4.o: ..\FREERTOS\include\FreeRTOS.h
-.\objects\heap_4.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
-.\objects\heap_4.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\heap_4.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\heap_4.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\heap_4.o: ..\FREERTOS\portable\RVDS\ARM_CM3\FreeRTOSConfig.h
 .\objects\heap_4.o: ..\FREERTOS\include\projdefs.h
 .\objects\heap_4.o: ..\FREERTOS\include\portable.h

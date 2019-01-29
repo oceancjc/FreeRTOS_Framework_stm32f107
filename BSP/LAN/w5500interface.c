@@ -359,20 +359,38 @@ int baiduMqttPublishtest(uint8_t* buf){
 
 
 enum{
-    MQTT_CONNECT = 0,
+    MQTT_IDLE = 0,
+    MQTT_CONNECT,
     MQTT_SUBSCRIBE,
     MQTT_PUBLISH,
     MQTT_PINGREQ,
     ERR_MQTT_CONNECT_FAIL = -1,
 };
 
-
-
+static volatile uint8_t mqtt_outside = MQTT_IDLE;
+void setMqttState(uint8_t state){
+    mqtt_outside = state;
+}
 
 int mqttStateMachine(){
     static uint8_t state = MQTT_CONNECT;
+    static uint32_t update_counter = 0;
     int ret = 0, retry = 3;
     switch(state){
+        case MQTT_IDLE:
+            if(mqtt_outside == MQTT_IDLE){
+                /* If Idle for a long time, send heart beat */
+                if(update_counter > 0x7FFFFFFF){
+                    state = MQTT_PINGREQ;    update_counter = 0;
+                }    
+                else      update_counter++;
+            }    
+            else{
+                state = mqtt_outside;
+                mqtt_outside = MQTT_IDLE;
+                update_counter = 0;
+            }          
+            break;
         case MQTT_CONNECT:
             while(retry--){
                 ret = mqtt_remoteConnect(DEVICENAME,120,1,USERNAME,PASSWD);
@@ -383,19 +401,21 @@ int mqttStateMachine(){
                 else    break;
             }
             if(ret)     return ERR_MQTT_CONNECT_FAIL;
-            state = MQTT_PINGREQ;
+            uart1_printf("Connect Server Success\r\n");
+            state = MQTT_IDLE;
             break;
         case MQTT_PINGREQ:
             mqtt_ping((uint8_t*)"hello");
+            state = MQTT_IDLE;
             break;
         case MQTT_PUBLISH:
             if(0!= mqtt_publish("$baidu/iot/shadow/_baidu_sample_pump_instance/update",
                 "{\"desired\": {},\"reported\": {\"FrequencyIn\": 110,\"Current\": 111,\
                 \"Speed\": 112,\"Torque\": 113}}"))    uart1_printf("Sth wrong with MQTT\r\n");  
-            state = MQTT_PINGREQ;
+            state = MQTT_IDLE;
             break;
         case MQTT_SUBSCRIBE:
-            state = MQTT_PINGREQ;
+            state = MQTT_IDLE;
             break;
         default:
             break;             

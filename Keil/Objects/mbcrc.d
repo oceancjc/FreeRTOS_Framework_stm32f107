@@ -2,7 +2,7 @@
 .\objects\mbcrc.o: ..\modbus\port\port.h
 .\objects\mbcrc.o: ..\CORE\stm32f10x.h
 .\objects\mbcrc.o: ..\CORE\core_cm3.h
-.\objects\mbcrc.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\mbcrc.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\mbcrc.o: ..\CORE\system_stm32f10x.h
 .\objects\mbcrc.o: ..\CORE\stm32f10x_conf.h
 .\objects\mbcrc.o: ..\STM32F10x_FWLib\inc\stm32f10x_adc.h
@@ -29,5 +29,5 @@
 .\objects\mbcrc.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
 .\objects\mbcrc.o: ..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h
 .\objects\mbcrc.o: ..\STM32F10x_FWLib\inc\misc.h
-.\objects\mbcrc.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h
-.\objects\mbcrc.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+.\objects\mbcrc.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h
+.\objects\mbcrc.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h

@@ -1,13 +1,13 @@
 .\objects\sx1276.o: ..\SX12xxDrivers-V2.1.0\src\radio\sx1276.c
 .\objects\sx1276.o: ..\SX12xxDrivers-V2.1.0\src\radio\sx1276.h
 .\objects\sx1276.o: ..\SX12xxDrivers-V2.1.0\src\radio\sx1276-LoRa.h
-.\objects\sx1276.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\sx1276.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\sx1276.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
-.\objects\sx1276.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\sx1276.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\sx1276.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\sx1276.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\sx1276.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\sx1276.o: ..\SX12xxDrivers-V2.1.0\src\radio\sx1276-Hal.h
 .\objects\sx1276.o: ..\BSP\spi\spi.h
-.\objects\sx1276.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\sx1276.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\sx1276.o: ..\CORE\stm32f10x.h
 .\objects\sx1276.o: ..\CORE\core_cm3.h
 .\objects\sx1276.o: ..\CORE\system_stm32f10x.h
@@ -38,7 +38,7 @@
 .\objects\sx1276.o: ..\STM32F10x_FWLib\inc\misc.h
 .\objects\sx1276.o: ..\SX12xxDrivers-V2.1.0\src\radio\sx1276-LoRaMisc.h
 .\objects\sx1276.o: ..\FREERTOS\include\FreeRTOS.h
-.\objects\sx1276.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\sx1276.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\sx1276.o: ..\FREERTOS\portable\RVDS\ARM_CM3\FreeRTOSConfig.h
 .\objects\sx1276.o: ..\FREERTOS\include\projdefs.h
 .\objects\sx1276.o: ..\FREERTOS\include\portable.h

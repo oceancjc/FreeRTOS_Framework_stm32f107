@@ -1,9 +1,9 @@
 .\objects\dns.o: ..\W5500_Lib\Internet\DNS\dns.c
-.\objects\dns.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-.\objects\dns.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\dns.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\dns.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\dns.o: ..\W5500_Lib\Ethernet\socket.h
 .\objects\dns.o: ..\W5500_Lib\Ethernet\wizchip_conf.h
-.\objects\dns.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\dns.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\dns.o: ..\W5500_Lib\Ethernet\W5500/w5500.h
 .\objects\dns.o: ..\W5500_Lib\Ethernet\wizchip_conf.h
 .\objects\dns.o: ..\W5500_Lib\Internet\DNS\dns.h
