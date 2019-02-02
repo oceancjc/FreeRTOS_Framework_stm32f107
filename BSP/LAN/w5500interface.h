@@ -45,7 +45,7 @@ extern int loopback_tcps(uint8_t sn, uint8_t* buf, uint16_t port);
 extern int loopback_tcpc(uint8_t sn, uint8_t* ip, uint16_t port);
 extern int baiduMqttPublishtest(uint8_t* buf);
 extern void setMqttState(uint8_t state);
-extern int mqttStateMachine();
+extern int mqttStateMachine(void);
 
 
 #endif

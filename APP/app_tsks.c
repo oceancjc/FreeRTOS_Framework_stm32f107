@@ -408,8 +408,7 @@ void lantcpserver_loopback_Task(void *pvParameters){
     int ret = w5500SetIp( ((TSK_PARAMETER_t*)pvParameters)->opdata[0]);
     if(ret)    uart1_printf("W5500 Init fail, Err = %d\r\n",ret);  
     uint8_t ip[4] = { 0 }; 
-    DNSRun((uint8_t *)"mqtt.heclouds.com", ip); 
-    uint8_t *buf = (uint8_t*)"hello";    
+    DNSRun((uint8_t *)"mqtt.heclouds.com", ip);   
     while(1){
         /* MQTT Test */
         setMqttState(((TSK_PARAMETER_t*)pvParameters)->opdata[0]);

@@ -372,7 +372,7 @@ void setMqttState(uint8_t state){
     mqtt_outside = state;
 }
 
-int mqttStateMachine(){
+int mqttStateMachine(void){
     static uint8_t state = MQTT_CONNECT;
     static uint32_t update_counter = 0;
     int ret = 0, retry = 3;

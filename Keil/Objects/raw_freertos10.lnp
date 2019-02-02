@@ -73,6 +73,7 @@
 ".\objects\portevent.o"
 ".\objects\porttimer.o"
 ".\objects\portserial.o"
+".\objects\cjson.o"
 --library_type=microlib --strict --scatter ".\Objects\raw_freertos10.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
