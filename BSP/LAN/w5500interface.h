@@ -8,6 +8,8 @@
 #include "usart.h"
 #include "spi.h"
 #include "transport.h"
+#include "cJSON.h"
+#include "globals.h"
 
 #ifdef FreeRTOS
     #include "FreeRTOS.h"
@@ -46,6 +48,6 @@ extern int loopback_tcpc(uint8_t sn, uint8_t* ip, uint16_t port);
 extern int baiduMqttPublishtest(uint8_t* buf);
 extern void setMqttState(uint8_t state);
 extern int mqttStateMachine(void);
-
+extern int jasonFramer(char* frame, uint8_t lightState, uint8_t temp, uint8_t humidity);
 
 #endif

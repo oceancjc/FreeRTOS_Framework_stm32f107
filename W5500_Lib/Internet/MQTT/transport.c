@@ -114,16 +114,16 @@ int mqtt_publish(char *pTopic,char *pMessage){
     /* 2 */
     len = MQTTSerialize_publish(buf, buflen, 0, 0, 0, 0, topicString, (unsigned char*)pMessage, msglen); 
     /* 3 */
-    memset(buf,0,buflen);
+//    memset(buf,0,buflen);
 //    len += MQTTSerialize_disconnect(buf, buflen); 
     rc = transport_sendPacketBuffer(SOCK_MQTT,buf,len);
-    uart1_printf("%s\r\n",buf);
+    memset(buf,0,buflen); 
     if (rc == len){
         uart1_printf("Successfully published\n\r");
         return len;
     }                
     else         uart1_printf("Publish failed\n\r");
-    return 0;
+    return -1;
 }
 
 

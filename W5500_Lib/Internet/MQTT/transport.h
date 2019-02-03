@@ -22,9 +22,9 @@
 
 
 
-#define DEVICENAME        "_baidu_sample_pump_instance"                   //ONENET Device  ID
-#define USERNAME          "h56qpk7/_baidu_sample_pump_instance"           //ONENET Product ID
-#define PASSWD            "IkmAEgOmvUCAT2oX"                              //ONENET JianQuan Info
+#define DEVICENAME        "State_MainBedroom"                   //ONENET Device  ID
+#define USERNAME          "h56qpk7/State_MainBedroom"           //ONENET Product ID
+#define PASSWD            "3km2uvdd4y4urps0"                              //ONENET JianQuan Info
 
 
 

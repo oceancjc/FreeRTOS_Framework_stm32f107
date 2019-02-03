@@ -385,17 +385,17 @@ void checkLanState_Task(void *pvParameters){
 
 void DHT11_Fetch_Task(void *pvParameters){
     Uart1SendStr("You are in task --- T&H \r\n");
-    uint8_t ret = 0, dhtbuf[5] = { 0 };  //tempI, tempF, wetI, wetF, checksum
+    uint8_t ret = 0;  
     if(dht11_init()==1){
         uart1_printf("DH11 Init fail, task ends\r\n");
         vTaskDelete(NULL);
     }
     vTaskDelay(pdMS_TO_TICKS(1000));
     while (1){
-        ret = dht11_read_data(dhtbuf); 
+        ret = dht11_read_data(gDht11Data); 
         if(ret)    uart1_printf("ERR%d: Fetch DHT11 data fail...\r\n",ret);        
-        uart1_printf("Temp: %d.%dC\tHumidity: %d.%d%%\r\n",dhtbuf[2],dhtbuf[3],dhtbuf[0],dhtbuf[1]); 
-        vTaskDelay(pdMS_TO_TICKS(8000));
+        uart1_printf("Temp: %d.%dC\tHumidity: %d.%d%%\r\n",gDht11Data[2],gDht11Data[3],gDht11Data[0],gDht11Data[1]); 
+        vTaskDelay(pdMS_TO_TICKS(10000));
     }
     vTaskDelete(NULL);
 }
@@ -408,14 +408,11 @@ void lantcpserver_loopback_Task(void *pvParameters){
     int ret = w5500SetIp( ((TSK_PARAMETER_t*)pvParameters)->opdata[0]);
     if(ret)    uart1_printf("W5500 Init fail, Err = %d\r\n",ret);  
     uint8_t ip[4] = { 0 }; 
-    DNSRun((uint8_t *)"mqtt.heclouds.com", ip);   
+    DNSRun((uint8_t *)"mqtt.heclouds.com", ip);  
+    setMqttState(((TSK_PARAMETER_t*)pvParameters)->opdata[0]);
     while(1){
         /* MQTT Test */
-        setMqttState(((TSK_PARAMETER_t*)pvParameters)->opdata[0]);
-        if( (ret = mqttStateMachine()) < 0) {
-            uart1_printf("SOCKET ERROR : %ld\r\n", ret);
-        }
-
+        baiduMqttPublishtest(NULL);
     }
     vTaskDelete(NULL);    
 }

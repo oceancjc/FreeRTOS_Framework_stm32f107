@@ -1,7 +1,7 @@
 .\objects\trcstreamingrecorder.o: ..\Tracealyzer\trcStreamingRecorder.c
 .\objects\trcstreamingrecorder.o: ..\Tracealyzer\include\trcRecorder.h
-.\objects\trcstreamingrecorder.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
-.\objects\trcstreamingrecorder.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\trcstreamingrecorder.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\trcstreamingrecorder.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\trcstreamingrecorder.o: ..\Tracealyzer\config\trcConfig.h
 .\objects\trcstreamingrecorder.o: ..\Tracealyzer\include\trcPortDefines.h
 .\objects\trcstreamingrecorder.o: ..\CORE\stm32f10x.h

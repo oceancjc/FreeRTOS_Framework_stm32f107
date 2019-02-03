@@ -77,16 +77,16 @@ int main(void){
 
 /****************   OS Tasks Generation part *******************/    
 
-    xTaskCreate(LED_D1_Task, "LED_D1", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 2, NULL);
+    xTaskCreate(LED_D1_Task, "LED_D1", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY, NULL);
 	
-    xTaskCreate(cmd_analysis_Task, "Command Server",800,NULL,tskIDLE_PRIORITY+2,&CmdServerTsk);
+    xTaskCreate(cmd_analysis_Task, "Command Server",800,NULL,tskIDLE_PRIORITY+1,&CmdServerTsk);
 
-    xTaskCreate(Uart1_print_back_Task, "UART1_Sendback", 800, (void*)CmdServerTsk, tskIDLE_PRIORITY + 3, &Uart1SendBackTsk);
+    xTaskCreate(Uart1_print_back_Task, "UART1_Sendback", 800, (void*)CmdServerTsk, tskIDLE_PRIORITY + 2, &Uart1SendBackTsk);
 
     TimerHandle_t ptimer = xTimerCreate( "LED_D2_timer", pdMS_TO_TICKS(2000), pdTRUE, 0, LED_D2_toggle );
     if(ptimer!=NULL)    xTimerStart(ptimer,0);
 
-//    xTaskCreate(DHT11_Fetch_Task, "DHT11", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 2, NULL);
+    xTaskCreate(DHT11_Fetch_Task, "DHT11", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 3, NULL);
 
 
     vTaskStartScheduler(); 

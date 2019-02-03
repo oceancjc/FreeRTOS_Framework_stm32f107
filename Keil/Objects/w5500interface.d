@@ -2,16 +2,16 @@
 .\objects\w5500interface.o: ..\BSP\LAN\w5500interface.h
 .\objects\w5500interface.o: ..\W5500_Lib\Ethernet\socket.h
 .\objects\w5500interface.o: ..\W5500_Lib\Ethernet\wizchip_conf.h
-.\objects\w5500interface.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\w5500interface.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\w5500interface.o: ..\W5500_Lib\Ethernet\W5500/w5500.h
 .\objects\w5500interface.o: ..\W5500_Lib\Ethernet\wizchip_conf.h
 .\objects\w5500interface.o: ..\W5500_Lib\Internet\DHCP\dhcp.h
 .\objects\w5500interface.o: ..\W5500_Lib\Internet\DNS\dns.h
-.\objects\w5500interface.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\w5500interface.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\w5500interface.o: ..\BSP\usart\usart.h
-.\objects\w5500interface.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-.\objects\w5500interface.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\w5500interface.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\w5500interface.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\w5500interface.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\w5500interface.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\w5500interface.o: ..\CORE\stm32f10x.h
 .\objects\w5500interface.o: ..\CORE\core_cm3.h
 .\objects\w5500interface.o: ..\CORE\system_stm32f10x.h
@@ -41,7 +41,7 @@
 .\objects\w5500interface.o: ..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h
 .\objects\w5500interface.o: ..\STM32F10x_FWLib\inc\misc.h
 .\objects\w5500interface.o: ..\FREERTOS\include\FreeRTOS.h
-.\objects\w5500interface.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\w5500interface.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\w5500interface.o: ..\FREERTOS\portable\RVDS\ARM_CM3\FreeRTOSConfig.h
 .\objects\w5500interface.o: ..\FREERTOS\include\projdefs.h
 .\objects\w5500interface.o: ..\FREERTOS\include\portable.h
@@ -64,3 +64,5 @@
 .\objects\w5500interface.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTFormat.h
 .\objects\w5500interface.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\StackTrace.h
 .\objects\w5500interface.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTPacket.h
+.\objects\w5500interface.o: ..\CJASON\cJSON.h
+.\objects\w5500interface.o: ..\APP\globals.h

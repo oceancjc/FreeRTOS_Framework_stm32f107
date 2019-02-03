@@ -312,52 +312,7 @@ int loopback_tcpc(uint8_t sn, uint8_t* ip, uint16_t port){
 }
 
 
-
-int baiduMqttPublishtest(uint8_t* buf){
-    int ret = 0,retry = 10;
-    uint8_t CLOUDIP[4] = {183,240,93,18}; 
-    uint16_t CLOUDPORT = 1883;
-    switch(getSn_SR(SOCK_MQTT)){
-        case SOCK_INIT:
-            if((ret = connect(SOCK_MQTT,CLOUDIP,CLOUDPORT)) != SOCK_OK){
-                disconnect(SOCK_MQTT);
-                uart1_printf("Connect TCP server fail,ret = %d\r\n",ret);
-            }
-            break;
-        case SOCK_ESTABLISHED: 
-            uart1_printf("%d:Established\r\n",SOCK_MQTT); 
-            if(getSn_IR(SOCK_MQTT) & Sn_IR_CON)     setSn_IR(SOCK_MQTT, Sn_IR_CON);
-            while(retry--){
-                ret = mqtt_remoteConnect(DEVICENAME,120,1,USERNAME,PASSWD);
-                if(ret){
-                    uart1_printf("Connect Server Fail with ret = %d\r\n",ret);
-                    w5500delay_ms(100);
-                }
-                else    break;
-            }
-            if(ret){
-                disconnect(SOCK_MQTT);
-                break;
-            }    
-            if(0!= mqtt_publish("$baidu/iot/shadow/_baidu_sample_pump_instance/update",
-                "{\"desired\": {},\"reported\": {\"FrequencyIn\": 110,\"Current\": 111,\
-                \"Speed\": 112,\"Torque\": 113}}"))    uart1_printf("Sth wrong with MQTT\r\n");  
-            else     w5500delay_ms(2000);
-            break;
-        case SOCK_CLOSE_WAIT:                                     
-            disconnect(SOCK_MQTT);    
-            break;
-        case SOCK_CLOSED:                 
-            if((ret=socket(SOCK_MQTT,Sn_MR_TCP,5001,0)) != SOCK_MQTT)    return ret;  //???Why is 5000 rather than port? 
-            uart1_printf("%d:Opened\r\n",SOCK_MQTT);        
-            break;
-        default:        break;
-    }
-    return 0;
-}
-
-
-
+/* Baidu Cloud Iot Hub Part */
 enum{
     MQTT_IDLE = 0,
     MQTT_CONNECT,
@@ -372,47 +327,50 @@ void setMqttState(uint8_t state){
     mqtt_outside = state;
 }
 
-int mqttStateMachine(void){
+
+int jasonFramer(char* frame, uint8_t lightState, uint8_t temp, uint8_t humidity){
+    cJSON *root = cJSON_CreateObject();
+    cJSON *report = NULL, *describe = NULL;
+    if(root == NULL)   return -1;
+    if(frame == NULL)  return -2;
+    cJSON_AddItemToObject(root, "desired", describe = cJSON_CreateObject());
+    cJSON_AddItemToObject(root, "reported", report = cJSON_CreateObject());
+    cJSON_AddBoolToObject(report, "light_state", lightState==0);
+    cJSON_AddNumberToObject(report, "tempature", temp);
+    cJSON_AddNumberToObject(report, "humidity", humidity);
+    strcpy(frame,cJSON_Print(root));
+    cJSON_Delete(root);
+    return 0;
+}
+
+
+int mqttStateMachine(){
     static uint8_t state = MQTT_CONNECT;
     static uint32_t update_counter = 0;
     int ret = 0, retry = 3;
+    jasonFramer(gMQTTFrame,1,gDht11Data[0], gDht11Data[2]);
+//    uart1_printf("%s\n",gMQTTFrame);
     switch(state){
         case MQTT_IDLE:
             if(mqtt_outside == MQTT_IDLE){
                 /* If Idle for a long time, send heart beat */
-                if(update_counter > 0x7FFFFFFF){
-                    state = MQTT_PINGREQ;    update_counter = 0;
+                if(update_counter > 0x1FFFF){
+                    state = MQTT_PUBLISH;    update_counter = 0;
                 }    
                 else      update_counter++;
             }    
             else{
                 state = mqtt_outside;
                 mqtt_outside = MQTT_IDLE;
-                update_counter = 0;
-            }          
-            break;
-        case MQTT_CONNECT:
-            while(retry--){
-                ret = mqtt_remoteConnect(DEVICENAME,120,1,USERNAME,PASSWD);
-                if(ret){
-                    uart1_printf("Connect Server Fail with ret = %d\r\n",ret);
-                    w5500delay_ms(100);
-                }
-                else    break;
-            }
-            if(ret)     return ERR_MQTT_CONNECT_FAIL;
-            uart1_printf("Connect Server Success\r\n");
-            state = MQTT_IDLE;
-            break;
-        case MQTT_PINGREQ:
-            mqtt_ping((uint8_t*)"hello");
             state = MQTT_IDLE;
             break;
         case MQTT_PUBLISH:
-            if(0!= mqtt_publish("$baidu/iot/shadow/_baidu_sample_pump_instance/update",
-                "{\"desired\": {},\"reported\": {\"FrequencyIn\": 110,\"Current\": 111,\
-                \"Speed\": 112,\"Torque\": 113}}"))    uart1_printf("Sth wrong with MQTT\r\n");  
+            if(0 > mqtt_publish("$baidu/iot/shadow/State_MainBedroom/update",gMQTTFrame)){
+                uart1_printf("Sth wrong with MQTT_Publish\r\n"); 
+                return -1;
+            }     
             state = MQTT_IDLE;
+            w5500delay_ms(2000);
             break;
         case MQTT_SUBSCRIBE:
             state = MQTT_IDLE;
@@ -423,3 +381,35 @@ int mqttStateMachine(void){
     return 0;
 }
 
+
+
+int baiduMqttPublishtest(uint8_t* buf){
+    int ret = 0,retry = 10;
+    switch(getSn_SR(SOCK_MQTT)){
+        case SOCK_INIT:
+            if((ret = connect(SOCK_MQTT,gMQTTServerIP,gMQTTServerPort)) != SOCK_OK){
+                disconnect(SOCK_MQTT);
+                uart1_printf("Connect TCP server fail,ret = %d\r\n",ret);
+            }
+            break;
+        case SOCK_ESTABLISHED: 
+            uart1_printf("%d:Established\r\n",SOCK_MQTT); 
+            if(getSn_IR(SOCK_MQTT) & Sn_IR_CON)     setSn_IR(SOCK_MQTT, Sn_IR_CON);
+            ret = mqttStateMachine();
+            if(ret){
+                disconnect(SOCK_MQTT);
+                break;
+            }    
+            else     w5500delay_ms(2000);
+            break;
+        case SOCK_CLOSE_WAIT:                                     
+            disconnect(SOCK_MQTT);    
+            break;
+        case SOCK_CLOSED:                 
+            if((ret=socket(SOCK_MQTT,Sn_MR_TCP,5001,0)) != SOCK_MQTT)    return ret;  //???Why is 5000 rather than port? 
+            uart1_printf("%d:Opened\r\n",SOCK_MQTT);        
+            break;
+        default:        break;
+    }
+    return 0;
+}
