@@ -344,43 +344,66 @@ int jasonFramer(char* frame, uint8_t lightState, uint8_t temp, uint8_t humidity)
 }
 
 
-int mqttStateMachine(){
-    static uint8_t state = MQTT_CONNECT;
+int mqttStateMachine(void){
+    static uint8_t state = MQTT_CONNECT,retry = 3;
     static uint32_t update_counter = 0;
-    int ret = 0, retry = 3;
-    jasonFramer(gMQTTFrame,1,gDht11Data[0], gDht11Data[2]);
-//    uart1_printf("%s\n",gMQTTFrame);
+    int ret = 0;
     switch(state){
         case MQTT_IDLE:
             if(mqtt_outside == MQTT_IDLE){
                 /* If Idle for a long time, send heart beat */
-                if(update_counter > 0x1FFFF){
+                if(update_counter > 20){
                     state = MQTT_PUBLISH;    update_counter = 0;
                 }    
-                else      update_counter++;
+                else{
+                    update_counter++;
+                    w5500delay_ms(1000);
+                }      
             }    
             else{
                 state = mqtt_outside;
                 mqtt_outside = MQTT_IDLE;
-            state = MQTT_IDLE;
+            }
             break;
+        case MQTT_CONNECT:
+            while(retry--){
+                ret = mqtt_remoteConnect(DEVICENAME,120,1,USERNAME,PASSWD);
+                if(ret){
+                    uart1_printf("Connect Server Fail with ret = %d\r\n",ret);
+                    w5500delay_ms(100);
+                }
+                else    break;
+            }
+            retry = 3;
+            if(ret)     return ERR_MQTT_CONNECT_FAIL;
+            uart1_printf("Connect Server Success\r\n");
+            state = MQTT_PUBLISH;
+            break;
+        case MQTT_PINGREQ:
+            mqtt_ping((uint8_t*)"hello");
+
         case MQTT_PUBLISH:
-            if(0 > mqtt_publish("$baidu/iot/shadow/State_MainBedroom/update",gMQTTFrame)){
+            ret = jasonFramer((char*)gMQTTFrame,1,gDht11Data[0], gDht11Data[2]);
+            if(ret)    uart1_printf("Jason Malloc Fail, ret=%d\r\n",ret);
+            if(0 > mqtt_publish("$baidu/iot/shadow/State_MainBedroom/update",(char*)gMQTTFrame)){
                 uart1_printf("Sth wrong with MQTT_Publish\r\n"); 
                 return -1;
             }     
+            uart1_printf("%s\n",gMQTTFrame);
             state = MQTT_IDLE;
-            w5500delay_ms(2000);
+            mqtt_outside = MQTT_IDLE;
+//            w5500delay_ms(2000);
             break;
         case MQTT_SUBSCRIBE:
             state = MQTT_IDLE;
+            mqtt_outside = MQTT_IDLE;
             break;
         default:
             break;             
     }
     return 0;
 }
-
+    
 
 
 int baiduMqttPublishtest(uint8_t* buf){
@@ -393,14 +416,10 @@ int baiduMqttPublishtest(uint8_t* buf){
             }
             break;
         case SOCK_ESTABLISHED: 
-            uart1_printf("%d:Established\r\n",SOCK_MQTT); 
+//            uart1_printf("%d:Established\r\n",SOCK_MQTT); 
             if(getSn_IR(SOCK_MQTT) & Sn_IR_CON)     setSn_IR(SOCK_MQTT, Sn_IR_CON);
             ret = mqttStateMachine();
-            if(ret){
-                disconnect(SOCK_MQTT);
-                break;
-            }    
-            else     w5500delay_ms(2000);
+            if(ret)    disconnect(SOCK_MQTT);      
             break;
         case SOCK_CLOSE_WAIT:                                     
             disconnect(SOCK_MQTT);    
@@ -408,8 +427,14 @@ int baiduMqttPublishtest(uint8_t* buf){
         case SOCK_CLOSED:                 
             if((ret=socket(SOCK_MQTT,Sn_MR_TCP,5001,0)) != SOCK_MQTT)    return ret;  //???Why is 5000 rather than port? 
             uart1_printf("%d:Opened\r\n",SOCK_MQTT);        
+            setMqttState(MQTT_CONNECT);
             break;
         default:        break;
     }
     return 0;
 }
+
+
+
+
+

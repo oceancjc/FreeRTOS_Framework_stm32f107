@@ -142,6 +142,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
+          <Name>?cw@眎?cw@眎</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -180,7 +181,7 @@
           <Type>0</Type>
           <LineNumber>169</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134223166</Address>
+          <Address>134223382</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -194,9 +195,9 @@
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>388</LineNumber>
+          <LineNumber>392</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134237692</Address>
+          <Address>134238506</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -205,14 +206,14 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>D:\鐢靛瓙璁捐宸ョ▼\FreeRTOS\stm32f103c8_withtrace\BSP\LAN\w5500interface.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\raw_freertos10\../BSP/LAN/w5500interface.c\388</Expression>
+          <Expression>\\raw_freertos10\../BSP/LAN/w5500interface.c\392</Expression>
         </Bp>
         <Bp>
           <Number>2</Number>
           <Type>0</Type>
-          <LineNumber>355</LineNumber>
+          <LineNumber>419</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134237566</Address>
+          <Address>134232902</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -221,7 +222,23 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>D:\鐢靛瓙璁捐宸ョ▼\FreeRTOS\stm32f103c8_withtrace\BSP\LAN\w5500interface.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\raw_freertos10\../BSP/LAN/w5500interface.c\355</Expression>
+          <Expression>\\raw_freertos10\../BSP/LAN/w5500interface.c\419</Expression>
+        </Bp>
+        <Bp>
+          <Number>3</Number>
+          <Type>0</Type>
+          <LineNumber>428</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134232944</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>D:\鐢靛瓙璁捐宸ョ▼\FreeRTOS\stm32f103c8_withtrace\BSP\LAN\w5500interface.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\raw_freertos10\../BSP/LAN/w5500interface.c\428</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -274,6 +291,21 @@
           <count>9</count>
           <WinNumber>1</WinNumber>
           <ItemText>sx1278device</ItemText>
+        </Ww>
+        <Ww>
+          <count>10</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>gMQTTFrame</ItemText>
+        </Ww>
+        <Ww>
+          <count>11</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>state</ItemText>
+        </Ww>
+        <Ww>
+          <count>12</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>mqtt_outside</ItemText>
         </Ww>
       </WatchWindow1>
       <WatchWindow2>

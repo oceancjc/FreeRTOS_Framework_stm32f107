@@ -24,7 +24,7 @@
 
 #define DEVICENAME        "State_MainBedroom"                   //ONENET Device  ID
 #define USERNAME          "h56qpk7/State_MainBedroom"           //ONENET Product ID
-#define PASSWD            "3km2uvdd4y4urps0"                              //ONENET JianQuan Info
+#define PASSWD            "xky4WEI4dbwip4Dn"                              //ONENET JianQuan Info
 
 
 

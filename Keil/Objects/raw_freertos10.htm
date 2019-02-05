@@ -3,9 +3,9 @@
 <title>Static Call Graph - [.\Objects\raw_freertos10.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\raw_freertos10.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Mon Feb 04 00:49:01 2019
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Wed Feb 06 00:07:48 2019
 <BR><P>
-<H3>Maximum Stack Usage =        496 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        504 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 lantcpserver_loopback_Task &rArr; baiduMqttPublishtest &rArr; mqttStateMachine &rArr; mqtt_remoteConnect &rArr; uart1_printf &rArr; xQueueSemaphoreTake &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 <P>
@@ -1754,8 +1754,8 @@ Global Symbols
 
 <P><STRONG><a name="[1d8]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
 
-<P><STRONG><a name="[128]"></a>baiduMqttPublishtest</STRONG> (Thumb, 142 bytes, Stack size 8 bytes, w5500interface.o(i.baiduMqttPublishtest))
-<BR><BR>[Stack]<UL><LI>Max Depth = 488<LI>Call Chain = baiduMqttPublishtest &rArr; mqttStateMachine &rArr; mqtt_remoteConnect &rArr; uart1_printf &rArr; xQueueSemaphoreTake &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
+<P><STRONG><a name="[128]"></a>baiduMqttPublishtest</STRONG> (Thumb, 132 bytes, Stack size 8 bytes, w5500interface.o(i.baiduMqttPublishtest))
+<BR><BR>[Stack]<UL><LI>Max Depth = 496<LI>Call Chain = baiduMqttPublishtest &rArr; mqttStateMachine &rArr; mqtt_remoteConnect &rArr; uart1_printf &rArr; xQueueSemaphoreTake &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart1_printf
 <LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;socket
@@ -1763,7 +1763,6 @@ Global Symbols
 <LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;connect
 <LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WIZCHIP_WRITE
 <LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WIZCHIP_READ
-<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;w5500delay_ms
 <LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mqttStateMachine
 </UL>
 <BR>[Called By]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lantcpserver_loopback_Task
@@ -2208,7 +2207,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[62]"></a>lantcpserver_loopback_Task</STRONG> (Thumb, 56 bytes, Stack size 8 bytes, app_tsks.o(i.lantcpserver_loopback_Task))
-<BR><BR>[Stack]<UL><LI>Max Depth = 496<LI>Call Chain = lantcpserver_loopback_Task &rArr; baiduMqttPublishtest &rArr; mqttStateMachine &rArr; mqtt_remoteConnect &rArr; uart1_printf &rArr; xQueueSemaphoreTake &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
+<BR><BR>[Stack]<UL><LI>Max Depth = 504<LI>Call Chain = lantcpserver_loopback_Task &rArr; baiduMqttPublishtest &rArr; mqttStateMachine &rArr; mqtt_remoteConnect &rArr; uart1_printf &rArr; xQueueSemaphoreTake &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[163]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;w5500SetIp
 <LI><a href="#[162]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;w5500Init
@@ -2245,8 +2244,8 @@ Global Symbols
 <LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_DHCP_DECLINE
 </UL>
 
-<P><STRONG><a name="[12c]"></a>mqttStateMachine</STRONG> (Thumb, 180 bytes, Stack size 24 bytes, w5500interface.o(i.mqttStateMachine))
-<BR><BR>[Stack]<UL><LI>Max Depth = 480<LI>Call Chain = mqttStateMachine &rArr; mqtt_remoteConnect &rArr; uart1_printf &rArr; xQueueSemaphoreTake &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
+<P><STRONG><a name="[12c]"></a>mqttStateMachine</STRONG> (Thumb, 196 bytes, Stack size 32 bytes, w5500interface.o(i.mqttStateMachine))
+<BR><BR>[Stack]<UL><LI>Max Depth = 488<LI>Call Chain = mqttStateMachine &rArr; mqtt_remoteConnect &rArr; uart1_printf &rArr; xQueueSemaphoreTake &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart1_printf
 <LI><a href="#[16b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mqtt_remoteConnect
@@ -2270,11 +2269,10 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mqttStateMachine
 </UL>
 
-<P><STRONG><a name="[16d]"></a>mqtt_publish</STRONG> (Thumb, 104 bytes, Stack size 304 bytes, transport.o(i.mqtt_publish))
-<BR><BR>[Stack]<UL><LI>Max Depth = 440<LI>Call Chain = mqtt_publish &rArr; uart1_printf &rArr; xQueueSemaphoreTake &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
+<P><STRONG><a name="[16d]"></a>mqtt_publish</STRONG> (Thumb, 92 bytes, Stack size 304 bytes, transport.o(i.mqtt_publish))
+<BR><BR>[Stack]<UL><LI>Max Depth = 400<LI>Call Chain = mqtt_publish &rArr; transport_sendPacketBuffer &rArr; send &rArr; wiz_send_data &rArr; WIZCHIP_WRITE_BUF
 </UL>
-<BR>[Calls]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart1_printf
-<LI><a href="#[16e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transport_sendPacketBuffer
+<BR>[Calls]<UL><LI><a href="#[16e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transport_sendPacketBuffer
 <LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MQTTSerialize_publish
 <LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strlen
 <LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
@@ -2561,7 +2559,6 @@ Global Symbols
 <LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart1_print_back_Task
 <LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DHT11_Fetch_Task
 <LI><a href="#[16b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mqtt_remoteConnect
-<LI><a href="#[16d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mqtt_publish
 <LI><a href="#[1af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;w5500ParametersConfiguration
 <LI><a href="#[175]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;w5500NetworkConfig
 <LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;my_ip_conflict
@@ -2883,8 +2880,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelay
 </UL>
-<BR>[Called By]<UL><LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;baiduMqttPublishtest
-<LI><a href="#[1ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;w5500Reset
+<BR>[Called By]<UL><LI><a href="#[1ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;w5500Reset
 <LI><a href="#[1af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;w5500ParametersConfiguration
 <LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mqttStateMachine
 <LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DHCPConfig
