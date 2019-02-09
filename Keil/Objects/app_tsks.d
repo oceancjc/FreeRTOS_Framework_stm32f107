@@ -67,6 +67,6 @@
 .\objects\app_tsks.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTFormat.h
 .\objects\app_tsks.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\StackTrace.h
 .\objects\app_tsks.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTPacket.h
-.\objects\app_tsks.o: ..\CJASON\cJSON.h
 .\objects\app_tsks.o: ..\APP\globals.h
+.\objects\app_tsks.o: ..\CJASON\cJSON.h
 .\objects\app_tsks.o: ..\BSP\DHT11\dht11_driver.h

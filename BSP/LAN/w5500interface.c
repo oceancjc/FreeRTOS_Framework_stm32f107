@@ -330,11 +330,10 @@ void setMqttState(uint8_t state){
 
 int jasonFramer(char* frame, uint8_t lightState, uint8_t temp, uint8_t humidity){
     cJSON *root = cJSON_CreateObject();
-    cJSON *report = NULL, *describe = NULL;
-    if(root == NULL)   return -1;
-    if(frame == NULL)  return -2;
-    cJSON_AddItemToObject(root, "desired", describe = cJSON_CreateObject());
-    cJSON_AddItemToObject(root, "reported", report = cJSON_CreateObject());
+    cJSON *report = cJSON_CreateObject();
+    if( root == NULL || frame == NULL )   return -1;
+    if(report==NULL)  return -2;
+    cJSON_AddItemToObject(root, "reported", report );
     cJSON_AddBoolToObject(report, "light_state", lightState==0);
     cJSON_AddNumberToObject(report, "tempature", temp);
     cJSON_AddNumberToObject(report, "humidity", humidity);
@@ -352,7 +351,7 @@ int mqttStateMachine(void){
         case MQTT_IDLE:
             if(mqtt_outside == MQTT_IDLE){
                 /* If Idle for a long time, send heart beat */
-                if(update_counter > 20){
+                if(update_counter > 100){
                     state = MQTT_PUBLISH;    update_counter = 0;
                 }    
                 else{
@@ -390,6 +389,7 @@ int mqttStateMachine(void){
                 return -1;
             }     
             uart1_printf("%s\n",gMQTTFrame);
+            gMQTTFrame[0] = 0;
             state = MQTT_IDLE;
             mqtt_outside = MQTT_IDLE;
 //            w5500delay_ms(2000);

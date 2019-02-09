@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\raw_freertos10.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\raw_freertos10.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Wed Feb 06 00:07:48 2019
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Sun Feb 10 00:08:52 2019
 <BR><P>
 <H3>Maximum Stack Usage =        504 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -2191,7 +2191,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> app_tsks.o(i.cmd_analysis_Task)
 </UL>
-<P><STRONG><a name="[161]"></a>jasonFramer</STRONG> (Thumb, 158 bytes, Stack size 32 bytes, w5500interface.o(i.jasonFramer))
+<P><STRONG><a name="[161]"></a>jasonFramer</STRONG> (Thumb, 150 bytes, Stack size 32 bytes, w5500interface.o(i.jasonFramer))
 <BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = jasonFramer &rArr; cJSON_Print &rArr; print_value &rArr; print_number &rArr; floor &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
@@ -2244,7 +2244,7 @@ Global Symbols
 <LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_DHCP_DECLINE
 </UL>
 
-<P><STRONG><a name="[12c]"></a>mqttStateMachine</STRONG> (Thumb, 196 bytes, Stack size 32 bytes, w5500interface.o(i.mqttStateMachine))
+<P><STRONG><a name="[12c]"></a>mqttStateMachine</STRONG> (Thumb, 200 bytes, Stack size 32 bytes, w5500interface.o(i.mqttStateMachine))
 <BR><BR>[Stack]<UL><LI>Max Depth = 488<LI>Call Chain = mqttStateMachine &rArr; mqtt_remoteConnect &rArr; uart1_printf &rArr; xQueueSemaphoreTake &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart1_printf
@@ -2269,7 +2269,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mqttStateMachine
 </UL>
 
-<P><STRONG><a name="[16d]"></a>mqtt_publish</STRONG> (Thumb, 92 bytes, Stack size 304 bytes, transport.o(i.mqtt_publish))
+<P><STRONG><a name="[16d]"></a>mqtt_publish</STRONG> (Thumb, 82 bytes, Stack size 304 bytes, transport.o(i.mqtt_publish))
 <BR><BR>[Stack]<UL><LI>Max Depth = 400<LI>Call Chain = mqtt_publish &rArr; transport_sendPacketBuffer &rArr; send &rArr; wiz_send_data &rArr; WIZCHIP_WRITE_BUF
 </UL>
 <BR>[Calls]<UL><LI><a href="#[16e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transport_sendPacketBuffer

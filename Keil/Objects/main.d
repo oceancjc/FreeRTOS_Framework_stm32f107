@@ -67,8 +67,8 @@
 .\objects\main.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTFormat.h
 .\objects\main.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\StackTrace.h
 .\objects\main.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTPacket.h
-.\objects\main.o: ..\CJASON\cJSON.h
 .\objects\main.o: ..\APP\globals.h
+.\objects\main.o: ..\CJASON\cJSON.h
 .\objects\main.o: ..\BSP\DHT11\dht11_driver.h
 .\objects\main.o: ..\SX12xxDrivers-V2.1.0\src\radio\sx1276.h
 .\objects\main.o: ..\SX12xxDrivers-V2.1.0\src\radio\sx1276-LoRa.h

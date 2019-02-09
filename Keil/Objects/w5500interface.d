@@ -64,5 +64,5 @@
 .\objects\w5500interface.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTFormat.h
 .\objects\w5500interface.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\StackTrace.h
 .\objects\w5500interface.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTPacket.h
-.\objects\w5500interface.o: ..\CJASON\cJSON.h
 .\objects\w5500interface.o: ..\APP\globals.h
+.\objects\w5500interface.o: ..\CJASON\cJSON.h

@@ -19,12 +19,9 @@
 #include <stdint.h>
 #include "MQTTPacket.h"
 #include "StackTrace.h"
+#include "globals.h"
 
 
-
-#define DEVICENAME        "State_MainBedroom"                   //ONENET Device  ID
-#define USERNAME          "h56qpk7/State_MainBedroom"           //ONENET Product ID
-#define PASSWD            "xky4WEI4dbwip4Dn"                              //ONENET JianQuan Info
 
 
 

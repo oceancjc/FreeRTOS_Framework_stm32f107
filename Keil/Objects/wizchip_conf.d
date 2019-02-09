@@ -64,5 +64,5 @@
 .\objects\wizchip_conf.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTFormat.h
 .\objects\wizchip_conf.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\StackTrace.h
 .\objects\wizchip_conf.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTPacket.h
-.\objects\wizchip_conf.o: ..\CJASON\cJSON.h
 .\objects\wizchip_conf.o: ..\APP\globals.h
+.\objects\wizchip_conf.o: ..\CJASON\cJSON.h

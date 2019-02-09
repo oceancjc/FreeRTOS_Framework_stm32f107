@@ -114,10 +114,7 @@ int mqtt_publish(char *pTopic,char *pMessage){
     /* 2 */
     len = MQTTSerialize_publish(buf, buflen, 0, 0, 0, 0, topicString, (unsigned char*)pMessage, msglen); 
     /* 3 */
-//    memset(buf,0,buflen);
-//    len += MQTTSerialize_disconnect(buf, buflen); 
     rc = transport_sendPacketBuffer(SOCK_MQTT,buf,len);
-    memset(buf,0,buflen); 
     if (rc == len)        return len;             
     else                  return -1;
 }
