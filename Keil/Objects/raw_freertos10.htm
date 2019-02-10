@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\raw_freertos10.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\raw_freertos10.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Sun Feb 10 00:08:52 2019
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Sun Feb 10 19:04:33 2019
 <BR><P>
 <H3>Maximum Stack Usage =        504 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -2191,10 +2191,11 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> app_tsks.o(i.cmd_analysis_Task)
 </UL>
-<P><STRONG><a name="[161]"></a>jasonFramer</STRONG> (Thumb, 150 bytes, Stack size 32 bytes, w5500interface.o(i.jasonFramer))
+<P><STRONG><a name="[161]"></a>jasonFramer</STRONG> (Thumb, 158 bytes, Stack size 32 bytes, w5500interface.o(i.jasonFramer))
 <BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = jasonFramer &rArr; cJSON_Print &rArr; print_value &rArr; print_number &rArr; floor &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
-<BR>[Calls]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
+<BR>[Calls]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortFree
+<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
 <LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cJSON_Print
 <LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cJSON_Delete
 <LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cJSON_CreateObject
@@ -2679,6 +2680,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskCreate
 <LI><a href="#[18f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvProcessReceivedCommands
 <LI><a href="#[189]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvDeleteTCB
+<LI><a href="#[161]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;jasonFramer
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> cjson.o(.data)
 </UL>

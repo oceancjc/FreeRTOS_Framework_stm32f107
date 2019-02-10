@@ -11,7 +11,7 @@ extern uint8_t gDht11Data[5];
 
 
 /********** MQTT Related ************/
-#define DEVICENAME        "State_MainBedroom"                   //ONENET Device  ID
+#define DEVICENAME        "State_MainBedroom_stm32"                   //ONENET Device  ID
 #define USERNAME          "h56qpk7/State_MainBedroom"           //ONENET Product ID
 #define PASSWD            "xky4WEI4dbwip4Dn"                    //ONENET JianQuan Info
 extern uint8_t gMQTTFrame[200];

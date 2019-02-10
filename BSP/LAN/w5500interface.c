@@ -331,14 +331,17 @@ void setMqttState(uint8_t state){
 int jasonFramer(char* frame, uint8_t lightState, uint8_t temp, uint8_t humidity){
     cJSON *root = cJSON_CreateObject();
     cJSON *report = cJSON_CreateObject();
+    char* s = NULL;
     if( root == NULL || frame == NULL )   return -1;
     if(report==NULL)  return -2;
     cJSON_AddItemToObject(root, "reported", report );
     cJSON_AddBoolToObject(report, "light_state", lightState==0);
     cJSON_AddNumberToObject(report, "tempature", temp);
     cJSON_AddNumberToObject(report, "humidity", humidity);
-    strcpy(frame,cJSON_Print(root));
+    s = cJSON_Print(root);
+    strcpy(frame,s);
     cJSON_Delete(root);
+    vPortFree(s);
     return 0;
 }
 
@@ -382,7 +385,7 @@ int mqttStateMachine(void){
             mqtt_ping((uint8_t*)"hello");
 
         case MQTT_PUBLISH:
-            ret = jasonFramer((char*)gMQTTFrame,1,gDht11Data[0], gDht11Data[2]);
+            ret = jasonFramer((char*)gMQTTFrame,1,gDht11Data[2], gDht11Data[0]);
             if(ret)    uart1_printf("Jason Malloc Fail, ret=%d\r\n",ret);
             if(0 > mqtt_publish("$baidu/iot/shadow/State_MainBedroom/update",(char*)gMQTTFrame)){
                 uart1_printf("Sth wrong with MQTT_Publish\r\n"); 
