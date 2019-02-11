@@ -1,7 +1,7 @@
 .\objects\flash.o: ..\BSP\flash\flash.c
 .\objects\flash.o: ..\CORE\stm32f10x.h
 .\objects\flash.o: ..\CORE\core_cm3.h
-.\objects\flash.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\flash.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\flash.o: ..\CORE\system_stm32f10x.h
 .\objects\flash.o: ..\CORE\stm32f10x_conf.h
 .\objects\flash.o: ..\STM32F10x_FWLib\inc\stm32f10x_adc.h

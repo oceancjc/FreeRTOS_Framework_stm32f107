@@ -312,15 +312,6 @@ int loopback_tcpc(uint8_t sn, uint8_t* ip, uint16_t port){
 }
 
 
-/* Baidu Cloud Iot Hub Part */
-enum{
-    MQTT_IDLE = 0,
-    MQTT_CONNECT,
-    MQTT_SUBSCRIBE,
-    MQTT_PUBLISH,
-    MQTT_PINGREQ,
-    ERR_MQTT_CONNECT_FAIL = -1,
-};
 
 static volatile uint8_t mqtt_outside = MQTT_IDLE;
 void setMqttState(uint8_t state){
@@ -354,12 +345,12 @@ int mqttStateMachine(void){
         case MQTT_IDLE:
             if(mqtt_outside == MQTT_IDLE){
                 /* If Idle for a long time, send heart beat */
-                if(update_counter > 100){
+                if(update_counter > MQTT_PUBLISH_CYCLE_s){
                     state = MQTT_PUBLISH;    update_counter = 0;
                 }    
                 else{
                     update_counter++;
-                    w5500delay_ms(1000);
+                    w5500delay_ms(MQTT_DELAY_INTERVAL_ms);
                 }      
             }    
             else{
@@ -369,7 +360,7 @@ int mqttStateMachine(void){
             break;
         case MQTT_CONNECT:
             while(retry--){
-                ret = mqtt_remoteConnect(DEVICENAME,120,1,USERNAME,PASSWD);
+                ret = mqtt_remoteConnect(DEVICENAME,KEEPALIVE_s,1,USERNAME,PASSWD);
                 if(ret){
                     uart1_printf("Connect Server Fail with ret = %d\r\n",ret);
                     w5500delay_ms(100);
@@ -383,7 +374,7 @@ int mqttStateMachine(void){
             break;
         case MQTT_PINGREQ:
             mqtt_ping((uint8_t*)"hello");
-
+            state = MQTT_IDLE;
         case MQTT_PUBLISH:
             ret = jasonFramer((char*)gMQTTFrame,1,gDht11Data[2], gDht11Data[0]);
             if(ret)    uart1_printf("Jason Malloc Fail, ret=%d\r\n",ret);
