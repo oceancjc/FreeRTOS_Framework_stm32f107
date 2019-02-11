@@ -1,10 +1,10 @@
 .\objects\usart.o: ..\BSP\usart\usart.c
 .\objects\usart.o: ..\BSP\usart\usart.h
-.\objects\usart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\usart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-.\objects\usart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
-.\objects\usart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\usart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\usart.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\usart.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\usart.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\usart.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\usart.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\usart.o: ..\CORE\stm32f10x.h
 .\objects\usart.o: ..\CORE\core_cm3.h
 .\objects\usart.o: ..\CORE\system_stm32f10x.h
@@ -34,7 +34,7 @@
 .\objects\usart.o: ..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h
 .\objects\usart.o: ..\STM32F10x_FWLib\inc\misc.h
 .\objects\usart.o: ..\FREERTOS\include\FreeRTOS.h
-.\objects\usart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\usart.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\usart.o: ..\FREERTOS\portable\RVDS\ARM_CM3\FreeRTOSConfig.h
 .\objects\usart.o: ..\FREERTOS\include\projdefs.h
 .\objects\usart.o: ..\FREERTOS\include\portable.h

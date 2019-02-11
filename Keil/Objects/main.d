@@ -1,7 +1,7 @@
 .\objects\main.o: ..\APP\main.c
 .\objects\main.o: ..\CORE\stm32f10x.h
 .\objects\main.o: ..\CORE\core_cm3.h
-.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\main.o: ..\CORE\system_stm32f10x.h
 .\objects\main.o: ..\CORE\stm32f10x_conf.h
 .\objects\main.o: ..\STM32F10x_FWLib\inc\stm32f10x_adc.h
@@ -29,7 +29,7 @@
 .\objects\main.o: ..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h
 .\objects\main.o: ..\STM32F10x_FWLib\inc\misc.h
 .\objects\main.o: ..\FREERTOS\include\FreeRTOS.h
-.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\main.o: ..\FREERTOS\portable\RVDS\ARM_CM3\FreeRTOSConfig.h
 .\objects\main.o: ..\FREERTOS\include\projdefs.h
 .\objects\main.o: ..\FREERTOS\include\portable.h
@@ -42,10 +42,10 @@
 .\objects\main.o: ..\FREERTOS\include\timers.h
 .\objects\main.o: ..\FREERTOS\include\semphr.h
 .\objects\main.o: ..\BSP\usart\usart.h
-.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\main.o: ..\BSP\timer\timer.h
 .\objects\main.o: ..\BSP\spi\spi.h
 .\objects\main.o: ..\BSP\flash\flash.h
@@ -72,6 +72,6 @@
 .\objects\main.o: ..\BSP\DHT11\dht11_driver.h
 .\objects\main.o: ..\SX12xxDrivers-V2.1.0\src\radio\sx1276.h
 .\objects\main.o: ..\SX12xxDrivers-V2.1.0\src\radio\sx1276-LoRa.h
-.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\main.o: ..\SX12xxDrivers-V2.1.0\src\radio\sx1276-Hal.h
 .\objects\main.o: ..\SX12xxDrivers-V2.1.0\src\radio\sx1276-LoRaMisc.h

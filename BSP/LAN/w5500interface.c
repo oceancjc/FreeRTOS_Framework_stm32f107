@@ -401,7 +401,7 @@ int mqttStateMachine(void){
 
 
 int baiduMqttPublishtest(uint8_t* buf){
-    int ret = 0,retry = 10;
+    int ret = 0;
     switch(getSn_SR(SOCK_MQTT)){
         case SOCK_INIT:
             if((ret = connect(SOCK_MQTT,gMQTTServerIP,gMQTTServerPort)) != SOCK_OK){

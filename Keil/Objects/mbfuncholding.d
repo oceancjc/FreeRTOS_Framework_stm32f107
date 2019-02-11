@@ -1,10 +1,10 @@
 .\objects\mbfuncholding.o: ..\modbus\functions\mbfuncholding.c
-.\objects\mbfuncholding.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\mbfuncholding.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\mbfuncholding.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\mbfuncholding.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\mbfuncholding.o: ..\modbus\port\port.h
 .\objects\mbfuncholding.o: ..\CORE\stm32f10x.h
 .\objects\mbfuncholding.o: ..\CORE\core_cm3.h
-.\objects\mbfuncholding.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\mbfuncholding.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\mbfuncholding.o: ..\CORE\system_stm32f10x.h
 .\objects\mbfuncholding.o: ..\CORE\stm32f10x_conf.h
 .\objects\mbfuncholding.o: ..\STM32F10x_FWLib\inc\stm32f10x_adc.h
@@ -31,8 +31,8 @@
 .\objects\mbfuncholding.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
 .\objects\mbfuncholding.o: ..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h
 .\objects\mbfuncholding.o: ..\STM32F10x_FWLib\inc\misc.h
-.\objects\mbfuncholding.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h
-.\objects\mbfuncholding.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+.\objects\mbfuncholding.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h
+.\objects\mbfuncholding.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
 .\objects\mbfuncholding.o: ..\modbus\include\mb.h
 .\objects\mbfuncholding.o: ..\modbus\include\mbport.h
 .\objects\mbfuncholding.o: ..\modbus\include\mbproto.h

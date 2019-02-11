@@ -1,10 +1,10 @@
 .\objects\mbascii.o: ..\modbus\ascii\mbascii.c
-.\objects\mbascii.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\mbascii.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\mbascii.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\mbascii.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\mbascii.o: ..\modbus\port\port.h
 .\objects\mbascii.o: ..\CORE\stm32f10x.h
 .\objects\mbascii.o: ..\CORE\core_cm3.h
-.\objects\mbascii.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\mbascii.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\mbascii.o: ..\CORE\system_stm32f10x.h
 .\objects\mbascii.o: ..\CORE\stm32f10x_conf.h
 .\objects\mbascii.o: ..\STM32F10x_FWLib\inc\stm32f10x_adc.h
@@ -31,8 +31,8 @@
 .\objects\mbascii.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
 .\objects\mbascii.o: ..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h
 .\objects\mbascii.o: ..\STM32F10x_FWLib\inc\misc.h
-.\objects\mbascii.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h
-.\objects\mbascii.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+.\objects\mbascii.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h
+.\objects\mbascii.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
 .\objects\mbascii.o: ..\modbus\include\mb.h
 .\objects\mbascii.o: ..\modbus\include\mbport.h
 .\objects\mbascii.o: ..\modbus\include\mbproto.h

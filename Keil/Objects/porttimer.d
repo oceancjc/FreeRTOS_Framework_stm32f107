@@ -2,7 +2,7 @@
 .\objects\porttimer.o: ..\modbus\port\port.h
 .\objects\porttimer.o: ..\CORE\stm32f10x.h
 .\objects\porttimer.o: ..\CORE\core_cm3.h
-.\objects\porttimer.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\porttimer.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\porttimer.o: ..\CORE\system_stm32f10x.h
 .\objects\porttimer.o: ..\CORE\stm32f10x_conf.h
 .\objects\porttimer.o: ..\STM32F10x_FWLib\inc\stm32f10x_adc.h
@@ -29,8 +29,8 @@
 .\objects\porttimer.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
 .\objects\porttimer.o: ..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h
 .\objects\porttimer.o: ..\STM32F10x_FWLib\inc\misc.h
-.\objects\porttimer.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h
-.\objects\porttimer.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+.\objects\porttimer.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h
+.\objects\porttimer.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
 .\objects\porttimer.o: ..\modbus\include\mb.h
 .\objects\porttimer.o: ..\modbus\include\mbport.h
 .\objects\porttimer.o: ..\modbus\include\mbproto.h
