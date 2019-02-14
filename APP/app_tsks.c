@@ -416,3 +416,24 @@ void lantcpserver_loopback_Task(void *pvParameters){
     }
     vTaskDelete(NULL);    
 }
+
+
+
+void Esptcpclient_loopback_Task(void *pvParameters){
+    Uart1SendStr("You are in task --- Wlan TCP Server Loopback\r\n");
+    int ret = init_Esp8266AsStation();
+    espConnectAP((uint8_t*)"Phecom@2.4G",(uint8_t*)"gxylovecjc");
+    passThroughStart((uint8_t*)"192.168.1.2",6654,1);
+    while(1){
+        if( strstr(((TSK_PARAMETER_t*)pvParameters)->cmd, "pass_end") ){
+            passThroughStop();
+            break;
+        }
+        vTaskDelay(pdMS_TO_TICKS(100));
+    }
+    vTaskDelete(NULL); 
+}
+
+
+
+

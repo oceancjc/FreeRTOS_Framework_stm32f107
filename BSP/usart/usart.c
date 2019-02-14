@@ -38,6 +38,8 @@ TODO:
     #if ( configUSE_TRACE_FACILITY == 1 )
         static traceHandle UART1IDLEHandle = 0;
         static traceHandle DMATx1Handle = 0;
+        static traceHandle UART2IDLEHandle = 0;
+        static traceHandle DMATx2Handle = 0;
     #endif
 #else
     static char              dma_uart1_txready = 0;
@@ -46,11 +48,13 @@ TODO:
 
 static uint8_t* UART1_RxBuffer = NULL;   //Uart1接收buf
 static uint8_t* UART1_TxBuffer = NULL;  //Uart1发送buf
+static uint8_t* UART2_RxBuffer = NULL;   //Uart1接收buf
+static uint8_t* UART2_TxBuffer = NULL;  //Uart1发送buf
 uint8_t Msgget[ MAXBUF ] = {0};
+uint8_t Msgget2[ MAXBUF ] = {0};
 uint16_t GsmRcvCnt = 0;
 uint16_t Debug1RcvCnt = 0;
 uint8_t DebugBuf_U1[ MAXBUF ] = {0};
-
 uint8_t DebugBuf_U2[ MAXBUF ] = {0};
 uint16_t Debug2RcvCnt = 0;
 unsigned char key_val = 0;
@@ -92,10 +96,6 @@ static void USART1_DMA_Config(void){
     DMA_Cmd (DMA1_Channel4,ENABLE);
     DMA_ITConfig(DMA1_Channel4, DMA_IT_TC, ENABLE);
 
-    
-    
-
-    
     DMA_DeInit(DMA1_Channel5);
     DMA_InitStructure.DMA_PeripheralBaseAddr = (u32)(&USART1->DR);       
     DMA_InitStructure.DMA_MemoryBaseAddr = (uint32_t)UART1_RxBuffer;    
@@ -268,10 +268,6 @@ void uart1_printf(const char* format,...){
 
 
 /***************************************       中断函数        ************************************/
-#if ( configUSE_TRACE_FACILITY == 1 )
-
-#endif
-
 void USART1_IRQHandler(void){//IDLE中断
     uint32_t DATA_LEN = 0;
     #if ( configUSE_TRACE_FACILITY == 1 )
@@ -329,13 +325,7 @@ void DMA1_Channel4_IRQHandler(void){  //UART1发送完成DMA中断
 }
 
 
-void DMA1_Channel7_IRQHandler(void)  //UART2发送完成DMA中断
-{    
-    if(DMA_GetFlagStatus(DMA1_FLAG_TC7)==SET){  
-        //    DMA_Cmd (DMA1_Channel7,DISABLE);          
-            DMA_ClearFlag(DMA1_FLAG_TC7); 
-    }    
-}
+
 
 
 
@@ -348,7 +338,6 @@ void USART2_DMA_Config(void){
     NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;  
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;  
     NVIC_Init(&NVIC_InitStructure);
-    
     
     RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);
     DMA_DeInit(DMA1_Channel7); 
@@ -366,6 +355,22 @@ void USART2_DMA_Config(void){
     DMA_Init(DMA1_Channel7, &DMA_InitStructure);        
     DMA_Cmd (DMA1_Channel7,ENABLE);
     DMA_ITConfig(DMA1_Channel7, DMA_IT_TC, ENABLE);
+    
+    DMA_DeInit(DMA1_Channel6);
+    DMA_InitStructure.DMA_PeripheralBaseAddr = (u32)(&USART2->DR);       
+    DMA_InitStructure.DMA_MemoryBaseAddr = (uint32_t)UART2_RxBuffer;    
+    DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralSRC;    
+    DMA_InitStructure.DMA_BufferSize = MAXBUF;   
+    DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable; 
+    DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;    
+    DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;
+    DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte;     
+    DMA_InitStructure.DMA_Mode = DMA_Mode_Normal ;     
+    DMA_InitStructure.DMA_Priority = DMA_Priority_High;  
+    DMA_InitStructure.DMA_M2M = DMA_M2M_Disable; 
+    DMA_Init(DMA1_Channel6, &DMA_InitStructure);        
+    DMA_Cmd (DMA1_Channel6,ENABLE);
+    USART_DMACmd(USART2, USART_DMAReq_Rx, ENABLE); //开启UART_DMA传输功能
               
 }
 
@@ -402,117 +407,185 @@ void Uart2Init(uint32_t bound)
         GPIO_Init(GPIOA, &GPIO_InitStructure);  
       #endif
 
-   //Usart12 NVIC 配置
+   //Usart2 NVIC 配置
 
     NVIC_InitStructure.NVIC_IRQChannel = USART2_IRQn;
-    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=12;
-    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;    //
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 12;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 3;    //
+
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;        //IRQ通道使能
-    NVIC_Init(&NVIC_InitStructure);    //根据NVIC_InitStruct中指定的参数初始化外设NVIC寄存器USART2
-    
-     //USART 初始化设置
-     
+    NVIC_Init(&NVIC_InitStructure);    //根据NVIC_InitStruct中指定的参数初始化外设NVIC寄存器USART1
+   
     USART_InitStructure.USART_BaudRate = bound;//一般设置为9600;
     USART_InitStructure.USART_WordLength = USART_WordLength_8b;
     USART_InitStructure.USART_StopBits = USART_StopBits_1;
     USART_InitStructure.USART_Parity = USART_Parity_No;
     USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
     USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
-
+    #ifdef FreeRTOS
+        UART2_RxBuffer = (uint8_t*)pvPortMalloc(MAXBUF*sizeof(uint8_t));
+        UART2_TxBuffer = (uint8_t*)pvPortMalloc(MAXBUF*sizeof(uint8_t));
+    #else
+        UART2_RxBuffer = (uint8_t*)malloc(MAXBUF*sizeof(uint8_t));
+        UART2_TxBuffer = (uint8_t*)malloc(MAXBUF*sizeof(uint8_t));
+    #endif
+    if(UART2_TxBuffer!=NULL)    memset(UART2_TxBuffer,0,MAXBUF*sizeof(char));
+    if(UART2_RxBuffer!=NULL)    memset(UART2_RxBuffer,0,MAXBUF*sizeof(char));
     USART2_DMA_Config();
     
-    
-    USART_DeInit(USART2);
     USART_Init(USART2, &USART_InitStructure);
-    USART_ITConfig(USART2, USART_IT_RXNE, ENABLE);//开启中断
+    USART_ITConfig(USART2, USART_IT_IDLE, ENABLE);//开启中断
     USART_Cmd(USART2, ENABLE);                    //使能串口 
+
+#ifdef FreeRTOS
+    semb_dma_uart2 = xSemaphoreCreateBinary();
+    #if ( configUSE_TRACE_FACILITY == 1 )
+        vTraceSetSemaphoreName(semb_dma_uart2, "semb_dma_uart1");
+        DMATx2Handle = xTraceSetISRProperties("UART2_DMATx_IRQ", 1);
+        UART2IDLEHandle = xTraceSetISRProperties("UART2_IDLE_IRQ", 2);
+    #endif
+    xSemaphoreGive( semb_dma_uart2 );
+#else
+    dma_uart2_txready = 1;
+#endif                   //使能串口 
     
 }
 
-void USART2_IRQHandler(void)                    //串口3中断服务程序
-{
-    uint8_t tmp;
-    if(USART_GetITStatus(USART2, USART_IT_RXNE) != RESET)  //接收中断
-    {
-    tmp = USART_ReceiveData(USART2);//(USART1->DR);    //读取接收到的数据
 
-    UART1_RxBuffer[GsmRcvCnt] = tmp;
-    GsmRcvCnt++;
-    if(GsmRcvCnt == MAXBUF-2)
-    {
-        GsmRcvCnt = 0;
-    }
-        
-//#ifdef UART1_DEBUG
-    //将接收到的数据放入DebugBuf_U3，在定时器内，DebugBuf_U3会被串口1发送给GSM模块。
-    //这样通过串口1发送到单片机的数据GSM模块就可以收到了，主要为了调试的方便。
-    DebugBuf_U2[Debug2RcvCnt] = tmp;
-    Debug2RcvCnt++;
-    if(Debug2RcvCnt>=MAXBUF-2)
-    {
-        Debug2RcvCnt = 0;    
-    }
-//#endif
-    
-    }
+
+void Uart2SendHex(uint8_t ch){
+    while((USART2->SR & 0x40)==0);//循环发送,直到发送完毕   
+    USART2->DR = ch; 
 }
 
-void Uart2SendHex(uint8_t ch)
-{
-    while (USART_GetFlagStatus(USART2, USART_FLAG_TC) == RESET);//发送完毕
-    USART_SendData(USART2, ch);
-}
 
-void Uart2SendStr_NODMA(u8* str)
-{
-    u16 cnt=0;
-    while(*(str+cnt))    //判断一串数据是否结束
-    {
-    while (USART_GetFlagStatus(USART2, USART_FLAG_TC) == RESET);//发送完毕
-    USART_SendData(USART2, *(str+cnt));
-    cnt++;    //准备发送一个数据
-    }
-}
 
 void Uart2SendStr(char* str){
+    #ifdef FreeRTOS
+        xSemaphoreTake( semb_dma_uart2, portMAX_DELAY );
+    #endif
     while (USART_GetFlagStatus(USART2, USART_FLAG_TC) == RESET);
     #if DMA == 0
         uint16_t cnt=0;
         while( *(str+cnt)){    //判断一串数据是否结束
-            USART_SendData(USART1, *(str+cnt));
-            while (USART_GetFlagStatus(USART1, USART_FLAG_TC) == RESET);//发送完毕               
+            USART_SendData(USART2, *(str+cnt));
+            while (USART_GetFlagStatus(USART2, USART_FLAG_TC) == RESET);//发送完毕               
             cnt++;    //准备发送一个数据
         }
+        #ifdef FreeRTOS
+            xSemaphoreGive( mutex_dma_uart2 );
+        #endif
     #else    
-        strcpy((char*)UART1_TxBuffer,str);  
-          DMA_Cmd (DMA1_Channel7,DISABLE);
-        DMA_SetCurrDataCounter(DMA1_Channel7,strlen(str)); 
+        #ifndef FreeRTOS
+            while(dma_uart2_txready == 0);
+        #endif
+        strcpy((char*)UART2_TxBuffer,str);  
+        DMA_Cmd (DMA1_Channel7,DISABLE);     //20181215:  Can this line removed ? 
+        DMA_SetCurrDataCounter( DMA1_Channel7,strlen(str) ); 
         DMA_Cmd (DMA1_Channel7,ENABLE);
-          USART_DMACmd(USART2, USART_DMAReq_Tx, ENABLE); //开启UART_DMA传输功能
-      #endif
+        USART_DMACmd(USART2, USART_DMAReq_Tx, ENABLE); //开启UART_DMA传输功能 
+        #ifndef FreeRTOS
+            dma_uart2_txready = 0;
+        #endif
+        /*Release the binary sem in DMA send finish IRQ*/      
+    #endif
 }
 
 
-//void Uart2SendStr(char* str)
-//{
-//    u16 cnt=0;
-//    while (USART_GetFlagStatus(USART2, USART_FLAG_TC) == RESET);
-//    while( *(str+cnt)){    //判断一串数据是否结束
-//    #if DMA 
-//          *(UART1_TxBuffer+cnt) = *(str+cnt);
-//    #else       
-//          USART_SendData(USART1, *(str+cnt));
-//          while (USART_GetFlagStatus(USART1, USART_FLAG_TC) == RESET);//发送完毕
-//    #endif
-//      cnt++;    //准备发送一个数据
-//    }
-//    #if DMA      
-//          DMA_Cmd (DMA1_Channel7,DISABLE);
-//        DMA_SetCurrDataCounter(DMA1_Channel7,cnt); 
-//        DMA_Cmd (DMA1_Channel7,ENABLE);
-//          USART_DMACmd(USART2, USART_DMAReq_Tx, ENABLE); //开启UART_DMA传输功能
-//      #endif
-//}
+void uart2_printf(const char* format,...){
+    #ifdef FreeRTOS
+        xSemaphoreTake( semb_dma_uart2, portMAX_DELAY );
+    #endif
+    while (USART_GetFlagStatus(USART2, USART_FLAG_TC) == RESET);
+    va_list ap = { 0 };
+    va_start(ap, format);
+    int len = vsprintf ((char*)UART2_TxBuffer, format, ap);   
+    va_end(ap);    
+    #if DMA == 0
+        uint16_t cnt=0;
+        while( *(UART2_TxBuffer+cnt)){    //判断一串数据是否结束
+            USART_SendData(USART2, *(UART2_TxBuffer+cnt));
+            while (USART_GetFlagStatus(USART2, USART_FLAG_TC) == RESET);//发送完毕               
+            cnt++;    //准备发送一个数据
+        }
+        #ifdef FreeRTOS
+            xSemaphoreGive( mutex_dma_uart2 );
+        #endif
+    #else    
+        //strcpy((char*)UART1_TxBuffer,str); 
+        #ifndef FreeRTOS
+            while(dma_uart2_txready == 0);
+        #endif
+        DMA_Cmd (DMA1_Channel7,DISABLE);  //20181215:  Can this line removed ? A: No. DMA should disable before re-enable
+        DMA_SetCurrDataCounter( DMA1_Channel7,len+1 ); 
+        DMA_Cmd (DMA1_Channel7,ENABLE);
+        USART_DMACmd(USART2, USART_DMAReq_Tx, ENABLE); //开启UART_DMA传输功能
+        #ifndef FreeRTOS
+            dma_uart2_txready = 0;
+        #endif
+        /*Release the binary sem in DMA send finish IRQ*/        
+     #endif
+}
+
+
+
+
+
+/***************************************       中断函数        ************************************/
+void USART2_IRQHandler(void){//IDLE中断
+    uint32_t DATA_LEN = 0;
+    #if ( configUSE_TRACE_FACILITY == 1 )
+        vTracePrintF(0x001,"UART2_IDLE_IRQ In");
+        vTraceStoreISRBegin(UART2IDLEHandle);
+    #endif
+    if(USART_GetITStatus(USART2, USART_IT_IDLE) == SET){
+        DMA_Cmd(DMA1_Channel6, DISABLE);
+/*---------------- 先读SR,再读DR才能清除IDLE -----------------------------------------*/            
+        DATA_LEN = USART2->SR;
+        DATA_LEN = USART2->DR;  
+        DATA_LEN = MAXBUF - DMA_GetCurrDataCounter(DMA1_Channel6);            
+
+        if(DATA_LEN > 0){
+            snprintf((char*)Msgget2,DATA_LEN+1, (char*)UART2_RxBuffer);
+            SentWaitRcv = DATA_LEN;
+            #ifdef FreeRTOS
+                #if ( configUSE_TRACE_FACILITY == 1 )
+                    vTracePrintF(0x003,"%d:%s\n",DATA_LEN,UART1_RxBuffer);
+                #endif
+            #endif
+        }
+        DMA_ClearFlag(DMA1_FLAG_GL6);
+        USART_ClearITPendingBit(USART2, USART_IT_IDLE); 
+        DMA_SetCurrDataCounter(DMA1_Channel6,MAXBUF);
+        DMA_Cmd(DMA1_Channel6, ENABLE);  
+        
+                
+    }
+    #if ( configUSE_TRACE_FACILITY == 1 )
+        vTracePrintF(0x002,"UART2_IDLE_IRQ Out");
+        vTraceStoreISREnd(1);
+    #endif
+}
+
+
+void DMA1_Channel7_IRQHandler(void){  //UART1发送完成DMA中断 
+    #if ( configUSE_TRACE_FACILITY == 1 )
+        vTraceStoreISRBegin(DMATx2Handle);
+    #endif    
+    if(DMA_GetFlagStatus(DMA1_FLAG_TC7)==SET){   
+        //    DMA_Cmd (DMA1_Channel7,DISABLE);          
+        DMA_ClearFlag(DMA1_FLAG_TC7); 
+        #ifdef FreeRTOS
+            xSemaphoreGiveFromISR( semb_dma_uart2, NULL );
+        #else
+            dma_uart2_txready = 1;
+        #endif
+     } 
+    #if ( configUSE_TRACE_FACILITY == 1 )
+        vTraceStoreISREnd(0);
+    #endif    
+}
+
 
 
 void Uart3Init(uint32_t bound)

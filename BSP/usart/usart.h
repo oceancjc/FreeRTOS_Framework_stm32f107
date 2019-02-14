@@ -14,10 +14,12 @@
 #define USART2_PIN_REMAP      ( 0 )
 
 #define UART1_DEBUG 
-#define MAXBUF              ( 200 )
+#define MAXBUF               ( 500 )
 
 
 extern uint8_t Msgget[MAXBUF];
+extern uint8_t Msgget2[MAXBUF];
+extern uint16_t SentWaitRcv;
 extern uint16_t GsmRcvCnt;
 extern uint16_t Debug1RcvCnt;
 extern uint8_t DebugBuf_U1[MAXBUF];

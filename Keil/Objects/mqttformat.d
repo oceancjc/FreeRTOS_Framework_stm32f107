@@ -1,6 +1,6 @@
 .\objects\mqttformat.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTFormat.c
 .\objects\mqttformat.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\StackTrace.h
-.\objects\mqttformat.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\mqttformat.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\mqttformat.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTPacket.h
 .\objects\mqttformat.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTConnect.h
 .\objects\mqttformat.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTPublish.h
@@ -8,4 +8,4 @@
 .\objects\mqttformat.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTUnsubscribe.h
 .\objects\mqttformat.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTFormat.h
 .\objects\mqttformat.o: ..\W5500_Lib\Internet\MQTT\MQTTPacket\src\MQTTPacket.h
-.\objects\mqttformat.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\mqttformat.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

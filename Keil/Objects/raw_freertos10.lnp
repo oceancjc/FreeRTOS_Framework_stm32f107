@@ -34,6 +34,7 @@
 ".\objects\w5500interface.o"
 ".\objects\dht11_driver.o"
 ".\objects\freemodbus_interface.o"
+".\objects\esp_interface.o"
 ".\objects\sx1276-hal.o"
 ".\objects\sx1276-lora.o"
 ".\objects\sx1276-loramisc.o"

@@ -3,7 +3,7 @@
 .\objects\portevent.o: ..\modbus\port\port.h
 .\objects\portevent.o: ..\CORE\stm32f10x.h
 .\objects\portevent.o: ..\CORE\core_cm3.h
-.\objects\portevent.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\portevent.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\portevent.o: ..\CORE\system_stm32f10x.h
 .\objects\portevent.o: ..\CORE\stm32f10x_conf.h
 .\objects\portevent.o: ..\STM32F10x_FWLib\inc\stm32f10x_adc.h
@@ -30,7 +30,7 @@
 .\objects\portevent.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
 .\objects\portevent.o: ..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h
 .\objects\portevent.o: ..\STM32F10x_FWLib\inc\misc.h
-.\objects\portevent.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h
-.\objects\portevent.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+.\objects\portevent.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h
+.\objects\portevent.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
 .\objects\portevent.o: ..\modbus\include\mbport.h
 .\objects\portevent.o: ..\modbus\include\mbproto.h

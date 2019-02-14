@@ -16,6 +16,7 @@
 #include "flash.h"
 #include "w5500interface.h"
 #include "dht11_driver.h"
+#include "esp_interface.h"
 
 
 
@@ -48,6 +49,7 @@ extern void steeringCtl_Task(void *pvParameters);
 extern void Uart1_print_back_Task(void *pvParameters);
 extern void lantcpserver_loopback_Task(void *pvParameters);
 extern void DHT11_Fetch_Task(void *pvParameters);
+extern void Esptcpclient_loopback_Task(void *pvParameters);
 
 
 

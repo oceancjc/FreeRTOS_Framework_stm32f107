@@ -223,6 +223,7 @@
             <hadXRAM>0</hadXRAM>
             <uocXRam>0</uocXRam>
             <RvdsVP>0</RvdsVP>
+            <RvdsMve>0</RvdsMve>
             <hadIRAM2>0</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
@@ -376,7 +377,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_CL,USE_STDPERIPH_DRIVER,FreeRTOS</Define>
               <Undefine></Undefine>
-              <IncludePath>..\STM32F10x_FWLib\inc;..\APP;..\CORE;..\FREERTOS\include;..\FREERTOS\portable\RVDS\ARM_CM3;..\BSP\usart;..\BSP\timer;..\BSP\spi;..\BSP\flash;..\BSP\LAN;..\SX12xxDrivers-V2.1.0\src\radio;..\Tracealyzer\include;..\Tracealyzer\config;..\Tracealyzer\streamports\Jlink_RTT\include;..\W5500_Lib\Ethernet;..\W5500_Lib\Ethernet\W5500;..\W5500_Lib\Internet\DHCP;..\W5500_Lib\Internet\httpServer;..\W5500_Lib\Internet\DNS;..\W5500_Lib\Internet\MQTT\MQTTPacket\src;..\W5500_Lib\Internet\MQTT;..\BSP\DHT11;..\modbus\include;..\modbus\tcp;..\modbus\ascii;..\modbus\rtu;..\modbus\port;..\CJASON</IncludePath>
+              <IncludePath>..\STM32F10x_FWLib\inc;..\APP;..\CORE;..\FREERTOS\include;..\FREERTOS\portable\RVDS\ARM_CM3;..\BSP\usart;..\BSP\timer;..\BSP\spi;..\BSP\flash;..\BSP\LAN;..\SX12xxDrivers-V2.1.0\src\radio;..\Tracealyzer\include;..\Tracealyzer\config;..\Tracealyzer\streamports\Jlink_RTT\include;..\W5500_Lib\Ethernet;..\W5500_Lib\Ethernet\W5500;..\W5500_Lib\Internet\DHCP;..\W5500_Lib\Internet\httpServer;..\W5500_Lib\Internet\DNS;..\W5500_Lib\Internet\MQTT\MQTTPacket\src;..\W5500_Lib\Internet\MQTT;..\BSP\DHT11;..\modbus\include;..\modbus\tcp;..\modbus\ascii;..\modbus\rtu;..\modbus\port;..\CJASON;..\BSP\ESP8266COM</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -614,6 +615,11 @@
               <FileName>freemodbus_interface.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\BSP\modbus\freemodbus_interface.c</FilePath>
+            </File>
+            <File>
+              <FileName>esp_interface.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\BSP\ESP8266COM\esp_interface.c</FilePath>
             </File>
           </Files>
         </Group>
