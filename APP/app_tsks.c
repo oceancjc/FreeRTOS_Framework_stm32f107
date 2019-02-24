@@ -14,7 +14,9 @@
 
 TaskHandle_t tsk_handler[3];
 TaskHandle_t Uart1SendBackTsk = NULL, CmdServerTsk = NULL;
+
 TaskHandle_t IrdaSendTsk = NULL, IrdaLearnTsk = NULL;
+TSK_PARAMETER_t IrdaSendTskPara = { 0 }, IrdaLearnTskPara = { 0 };
 
 TaskHandle_t SteeringEngCtlTsk = NULL;
 TSK_PARAMETER_t SteeringCtlPara = { 0 };
@@ -53,10 +55,10 @@ void cmd_analysis_Task(void *pvParameters){
                 uart1_printf("Please Enter RC learning mode first\r\n");
                 continue;
             }
-            tsk_parameter[1].opdata[0] = opdata;
-            strcpy(tsk_parameter[1].cmd,cmd);
-            tsk_parameter[1].tsk2notify = IrdaLearnTsk;
-            xTaskNotifyGive(tsk_parameter[1].tsk2notify);
+            IrdaLearnTskPara.opdata[0] = opdata;
+            strcpy(IrdaLearnTskPara.cmd,cmd);
+            IrdaLearnTskPara.tsk2notify = IrdaLearnTsk;
+            xTaskNotifyGive(IrdaLearnTskPara.tsk2notify);
         }
         else if(strstr((char*)cmd,"use")){
             if(IrdaSendTsk == NULL){
@@ -65,22 +67,22 @@ void cmd_analysis_Task(void *pvParameters){
             }
             send_finish = 0;
             tsk_parameter[0].opdata[0] = opdata;
-            strcpy(tsk_parameter[0].cmd,cmd);
-            tsk_parameter[0].tsk2notify = IrdaSendTsk;
-            xTaskNotifyGive(tsk_parameter[0].tsk2notify);
+            strcpy(IrdaSendTskPara.cmd,cmd);
+            IrdaSendTskPara.tsk2notify = IrdaSendTsk;
+            xTaskNotifyGive(IrdaSendTskPara.tsk2notify);
         }
         else if(strstr((char*)cmd,"remote_set")){
             if(opdata == 1 && IrdaLearnTsk == NULL){
                 if(IrdaSendTsk){    
                     vTaskDelete(IrdaSendTsk);    IrdaSendTsk = NULL;    
                 }
-                xTaskCreate(irda_learning_Task, "code_learning", 800, &tsk_parameter[1], tskIDLE_PRIORITY + 2, &IrdaLearnTsk);
+                xTaskCreate(irda_learning_Task, "code_learning", 800, &IrdaLearnTskPara, tskIDLE_PRIORITY + 2, &IrdaLearnTsk);
             }    
             else if(opdata != 1 && IrdaSendTsk == NULL){
                 if(IrdaLearnTsk){
                     vTaskDelete(IrdaLearnTsk);    IrdaLearnTsk = NULL;    
                 }
-                xTaskCreate(irda_sending_Task, "code_sending", configMINIMAL_STACK_SIZE, &tsk_parameter[0], tskIDLE_PRIORITY + 2, &IrdaSendTsk);
+                xTaskCreate(irda_sending_Task, "code_sending", configMINIMAL_STACK_SIZE, &IrdaSendTskPara, tskIDLE_PRIORITY + 2, &IrdaSendTsk);
             }                   
         }
         else if(strstr((char*)cmd,"moter_ctl")){
@@ -422,8 +424,16 @@ void lantcpserver_loopback_Task(void *pvParameters){
 void Esptcpclient_loopback_Task(void *pvParameters){
     Uart1SendStr("You are in task --- Wlan TCP Server Loopback\r\n");
     int ret = init_Esp8266AsStation();
-    espConnectAP((uint8_t*)"Phecom@2.4G",(uint8_t*)"gxylovecjc");
-    passThroughStart((uint8_t*)"192.168.1.2",6654,1);
+    if(ret != 0){
+        uart1_printf("Wifi init fail, err = %d\r\n",ret);
+        vTaskDelete(NULL);
+    }    
+    ret = espConnectAP((uint8_t*)"Phecom@2.4G",(uint8_t*)"gxylovecjc");
+    if(ret != 0){
+        uart1_printf("Wifi Connect AP fail, err = %d\r\n",ret);
+        vTaskDelete(NULL);
+    }    
+    ret = passThroughStart((uint8_t*)"192.168.1.2",6654,1);
     while(1){
         if( strstr(((TSK_PARAMETER_t*)pvParameters)->cmd, "pass_end") ){
             passThroughStop();

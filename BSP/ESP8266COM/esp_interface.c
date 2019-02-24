@@ -54,6 +54,8 @@ int espRcv(char* msg, int16_t timeout_ms){
     else    return -4;
 }
 
+
+
 int espQuery(uint8_t* response, int16_t timeout_ms, const char *format,...){
     va_list ap = { 0 };
     char s[128] = { 0 };
@@ -65,6 +67,23 @@ int espQuery(uint8_t* response, int16_t timeout_ms, const char *format,...){
     SentWaitRcv = 0;
     return  espRcv((char*)response, timeout_ms);
 }
+
+
+
+int espParse(uint8_t* msg, char* target, int16_t timeout_ms){
+    char* keyword_position = NULL;
+    while(!SentWaitRcv && timeout_ms > 0) {
+        espDelay_ms(5);    timeout_ms -= 5;
+        if(timeout_ms <= 0)    return -3;
+    }   
+    if((keyword_position = strstr((char*)msg,target))!=NULL){
+        *keyword_position = '\0';
+        return 0;
+    }
+    return -1;
+}
+
+
 
 int init_Esp8266AsStation(void){
     int ret = 0;
@@ -89,11 +108,12 @@ int espConnectAP(uint8_t*ssid, uint8_t* passwd){
 
 
 int passThroughStart(uint8_t* remoteIP, uint16_t remotePORT, uint8_t TCP_nUDP){
-    int ret = espQuery(Msgget2,500,"AT+CIPMUX=0");  //Enable multi-connect
+    int ret = espQuery(Msgget2,500,"AT+CIPMUX=0");  //Enable single-connect
     ret = espQuery(Msgget2,20,"AT+CIPMODE=1");
     if(TCP_nUDP)    espSend("AT+CIPSTART=\"TCP\",\"%s\",%d",remoteIP,remotePORT);
     else            espSend("AT+CIPSTART=\"UDP\",\"%s\",%d",remoteIP,remotePORT);
-    ret = espQuery(Msgget2,20,"AT+CIPSEND");
+    espSend("AT+CIPSEND");
+    ret = espParse(Msgget2,">",5);
     return ret;
 }
 
@@ -101,4 +121,5 @@ int passThroughStart(uint8_t* remoteIP, uint16_t remotePORT, uint8_t TCP_nUDP){
 
 void passThroughStop(void){
     espSend("+++");   
+    espDelay_ms(5);
 }
