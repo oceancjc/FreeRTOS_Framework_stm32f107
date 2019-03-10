@@ -1,4 +1,5 @@
 #include "app_tsks.h"
+#include "cmd_server.h"
 
 #define MAX_KEY_NUM    12
 #define RC1 0x802D000
@@ -33,7 +34,6 @@ TSK_PARAMETER_t tsk_parameter[3];
 /*******************************************************************
 **************** Command Server Task ****************************
 *******************************************************************/
-static unsigned char send_finish = 0;
 /****************************************************************
 Commands
 learn %d        learn the irda key, valid only irda learning task exists
@@ -46,81 +46,12 @@ moter_ctl %d    1: start steering engine control task and reset to 90 degree pos
 moter_set %d    use when moter_ctl is set to 1  %d belong to 0-180, stand for degree, int only
 ****************************************************************/
 void cmd_analysis_Task(void *pvParameters){
-    char* cmd = (char*)pvPortMalloc(20*sizeof(char));  int opdata = 0;
+    char cmd[20] = { 0 };  int opdata[3] = { 0 };
+    int ret = 0;
     while(1){
         ulTaskNotifyTake( pdTRUE, portMAX_DELAY );
-        sscanf((char*)Msgget,"%s %d",cmd,&opdata);
-        if(strstr((char*)cmd,"learn")){  
-            if(IrdaLearnTsk == NULL){
-                uart1_printf("Please Enter RC learning mode first\r\n");
-                continue;
-            }
-            IrdaLearnTskPara.opdata[0] = opdata;
-            strcpy(IrdaLearnTskPara.cmd,cmd);
-            IrdaLearnTskPara.tsk2notify = IrdaLearnTsk;
-            xTaskNotifyGive(IrdaLearnTskPara.tsk2notify);
-        }
-        else if(strstr((char*)cmd,"use")){
-            if(IrdaSendTsk == NULL){
-                uart1_printf("Please Enter RC Sending mode first\r\n");
-                continue;
-            }
-            send_finish = 0;
-            tsk_parameter[0].opdata[0] = opdata;
-            strcpy(IrdaSendTskPara.cmd,cmd);
-            IrdaSendTskPara.tsk2notify = IrdaSendTsk;
-            xTaskNotifyGive(IrdaSendTskPara.tsk2notify);
-        }
-        else if(strstr((char*)cmd,"remote_set")){
-            if(opdata == 1 && IrdaLearnTsk == NULL){
-                if(IrdaSendTsk){    
-                    vTaskDelete(IrdaSendTsk);    IrdaSendTsk = NULL;    
-                }
-                xTaskCreate(irda_learning_Task, "code_learning", 800, &IrdaLearnTskPara, tskIDLE_PRIORITY + 2, &IrdaLearnTsk);
-            }    
-            else if(opdata != 1 && IrdaSendTsk == NULL){
-                if(IrdaLearnTsk){
-                    vTaskDelete(IrdaLearnTsk);    IrdaLearnTsk = NULL;    
-                }
-                xTaskCreate(irda_sending_Task, "code_sending", configMINIMAL_STACK_SIZE, &IrdaSendTskPara, tskIDLE_PRIORITY + 2, &IrdaSendTsk);
-            }                   
-        }
-        else if(strstr((char*)cmd,"moter_ctl")){
-            if(opdata == 1 && SteeringEngCtlTsk == NULL )    
-                xTaskCreate(steeringCtl_Task, "Steering Engine", configMINIMAL_STACK_SIZE, 
-                            (void*)&SteeringCtlPara, tskIDLE_PRIORITY + 2, &SteeringEngCtlTsk);
-            else if(opdata != 1 && SteeringEngCtlTsk != NULL){
-                Timer3_pwm_Deinit();
-                Uart1SendStr("Exit Steering Enginee Ctl\r\n");
-                vTaskDelete(SteeringEngCtlTsk);    SteeringEngCtlTsk = NULL;
-            }
-        }
-        else if(strstr((char*)cmd,"moter_set")){
-            if(SteeringEngCtlTsk == NULL){
-                Uart1SendStr("Enter moter control mode first\r\n");
-                continue;
-            }    
-            SteeringCtlPara.opdata[0] = opdata;
-            strcpy(SteeringCtlPara.cmd,cmd);
-            SteeringCtlPara.tsk2notify = SteeringEngCtlTsk;
-            xTaskNotifyGive(SteeringCtlPara.tsk2notify);
-        }
-        else if(strstr((char*)cmd,"lan_enable")){    //lan_enable 1    lan_enable 0     lan_disable 0
-            if(lantcps_loopbackTsk == NULL){
-                lanloopbackPara.opdata[0] = opdata;
-                xTaskCreate(lantcpserver_loopback_Task, "Lan TCP Server Loopback", configMINIMAL_STACK_SIZE<<1, 
-                             (void*)&lanloopbackPara, tskIDLE_PRIORITY + 2, &lantcps_loopbackTsk);            
-            }
-            else    Uart1SendStr("Already enabled Lan\r\n");
-
-        }
-        else if(strstr((char*)cmd,"lan_disable")){
-            if(lantcps_loopbackTsk != NULL){
-                Uart1SendStr("Lan disabled\r\n");
-                vTaskDelete(lantcps_loopbackTsk);    lantcps_loopbackTsk = NULL;
-            }
-        }
-        else    Uart1SendStr("Invalid Task\r\n");
+        ret = cmd_analysis((char*)Msgget, cmd, &opdata[0]);
+        if(ret == -2)    Uart1SendStr("Invalid Task\r\n");
         memset(Msgget,0,MAXBUF*sizeof(char));
     }
     vPortFree(cmd);
@@ -256,25 +187,9 @@ void code_sending(unsigned int address){
     }
     LED_D3_OFF();
     Timer3_pwm_off(0);
-//    for(i=0;i<11;i++){
-//        sprintf(cmdrr,"code = %d,%d,%d,%d,%d,%d,%d\r\n",rr[7*i+0],rr[7*i+1],rr[7*i+2],rr[7*i+3],rr[7*i+4],rr[7*i+5],rr[7*i+6]);
-//        Uart1SendStr(cmdrr);
-//    }
 }
 
 void code_sending_fix(){
-//    int i =0;
-//    while(tt[i]!=0){
-//        if(i%2 == 0){
-//            LED_D3_ON();
-//            Timer3_pwm_on(0);
-//        }
-//        else{
-//            LED_D3_OFF();
-//            Timer3_pwm_off(0);            
-//        }
-//        TIM2_delay_us(tt[i++]);        
-//    }
     Timer3_pwm_off(0);
 }
 
@@ -286,11 +201,8 @@ void irda_sending_Task(void *pvParameters){
     TSK_PARAMETER_t* tskparam = (TSK_PARAMETER_t*)pvParameters;
     while(1){
         ulTaskNotifyTake( pdTRUE, portMAX_DELAY );
-        if(send_finish == 0){
-            code_sending(RC1+80*tskparam->opdata[0]*2);
-        } 
+        code_sending(RC1+80*tskparam->opdata[0]*2);
         Uart1SendStr("Send signal out\r\n");
-        send_finish = 1;        
     }
     vTaskDelete(NULL);
 }
@@ -443,6 +355,9 @@ void Esptcpclient_loopback_Task(void *pvParameters){
     }
     vTaskDelete(NULL); 
 }
+
+
+
 
 
 

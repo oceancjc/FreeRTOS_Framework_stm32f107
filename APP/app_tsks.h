@@ -29,7 +29,11 @@ typedef struct{
 
 /********** Task Handler & Parameters************************/
 extern TaskHandle_t IrdaLearnTsk, IrdaSendTsk;
+extern TSK_PARAMETER_t IrdaSendTskPara, IrdaLearnTskPara;
+
 extern TaskHandle_t SteeringEngCtlTsk;
+extern TSK_PARAMETER_t SteeringCtlPara;
+
 extern TaskHandle_t Uart1SendBackTsk, CmdServerTsk;
 
 extern TaskHandle_t lantcps_loopbackTsk;

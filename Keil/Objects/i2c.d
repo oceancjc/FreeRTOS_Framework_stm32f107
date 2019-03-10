@@ -2,7 +2,7 @@
 .\objects\i2c.o: ..\BSP\i2c\i2c.h
 .\objects\i2c.o: ..\CORE\stm32f10x.h
 .\objects\i2c.o: ..\CORE\core_cm3.h
-.\objects\i2c.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\i2c.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\i2c.o: ..\CORE\system_stm32f10x.h
 .\objects\i2c.o: ..\CORE\stm32f10x_conf.h
 .\objects\i2c.o: ..\STM32F10x_FWLib\inc\stm32f10x_adc.h
@@ -30,4 +30,4 @@
 .\objects\i2c.o: ..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h
 .\objects\i2c.o: ..\STM32F10x_FWLib\inc\misc.h
 .\objects\i2c.o: ..\APP\globals.h
-.\objects\i2c.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\i2c.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

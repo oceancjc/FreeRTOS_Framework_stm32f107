@@ -1,10 +1,10 @@
 .\objects\mbtcp.o: ..\modbus\tcp\mbtcp.c
-.\objects\mbtcp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\mbtcp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\mbtcp.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\mbtcp.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\mbtcp.o: ..\modbus\port\port.h
 .\objects\mbtcp.o: ..\CORE\stm32f10x.h
 .\objects\mbtcp.o: ..\CORE\core_cm3.h
-.\objects\mbtcp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\mbtcp.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\mbtcp.o: ..\CORE\system_stm32f10x.h
 .\objects\mbtcp.o: ..\CORE\stm32f10x_conf.h
 .\objects\mbtcp.o: ..\STM32F10x_FWLib\inc\stm32f10x_adc.h
@@ -31,8 +31,8 @@
 .\objects\mbtcp.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
 .\objects\mbtcp.o: ..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h
 .\objects\mbtcp.o: ..\STM32F10x_FWLib\inc\misc.h
-.\objects\mbtcp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h
-.\objects\mbtcp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+.\objects\mbtcp.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h
+.\objects\mbtcp.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
 .\objects\mbtcp.o: ..\modbus\include\mb.h
 .\objects\mbtcp.o: ..\modbus\include\mbport.h
 .\objects\mbtcp.o: ..\modbus\include\mbproto.h
