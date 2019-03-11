@@ -119,7 +119,7 @@ int passThroughStart(uint8_t* remoteIP, uint16_t remotePORT, uint8_t TCP_nUDP){
 
 
 
-void passThroughStop(void){
+inline void passThroughStop(void){
     espSend("+++");   
     espDelay_ms(5);
 }

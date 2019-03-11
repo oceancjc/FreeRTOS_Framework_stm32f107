@@ -54,8 +54,16 @@ void cmd_analysis_Task(void *pvParameters){
         if(ret == -2)    Uart1SendStr("Invalid Task\r\n");
         memset(Msgget,0,MAXBUF*sizeof(char));
     }
-    vPortFree(cmd);
-    vTaskDelete(NULL);
+    /* Misra failure, Rule 14.1  Unreachable code cannot be avoided */ 
+    #pragma diag_suppress=111
+    /* If all is well, the scheduler will now be running, and the following
+    line will never be reached.  If the following line does execute, then
+    there was insufficient FreeRTOS heap memory available for the idle and/or
+    timer tasks	to be created.  See the memory management section on the
+    FreeRTOS web site for more details. */
+    vTaskDelete(NULL);  
+    /* Restoring the Misra Rule checking */
+    #pragma diag_default=111 
     
 }
 
@@ -91,7 +99,16 @@ void LED_D1_Task(void *pvParameters){
         vTaskDelay(pdMS_TO_TICKS(200)); 
 //        TIM2_delay_us(5600);        
     }
-    vTaskDelete(NULL);
+    /* Misra failure, Rule 14.1  Unreachable code cannot be avoided */ 
+    #pragma diag_suppress=111
+    /* If all is well, the scheduler will now be running, and the following
+    line will never be reached.  If the following line does execute, then
+    there was insufficient FreeRTOS heap memory available for the idle and/or
+    timer tasks	to be created.  See the memory management section on the
+    FreeRTOS web site for more details. */
+    vTaskDelete(NULL);  
+    /* Restoring the Misra Rule checking */
+    #pragma diag_default=111 
 }
 
 
@@ -155,8 +172,18 @@ void irda_learning_Task(void *pvParameters){
 
                
     }
+    /* Misra failure, Rule 14.1  Unreachable code cannot be avoided */ 
+    #pragma diag_suppress=111
+    /* If all is well, the scheduler will now be running, and the following
+    line will never be reached.  If the following line does execute, then
+    there was insufficient FreeRTOS heap memory available for the idle and/or
+    timer tasks	to be created.  See the memory management section on the
+    FreeRTOS web site for more details. */
     vPortFree(key_val_buffer_pt);
     vTaskDelete(NULL);
+    /* Restoring the Misra Rule checking */
+    #pragma diag_default=111 
+
 }
 
 
@@ -189,7 +216,7 @@ void code_sending(unsigned int address){
     Timer3_pwm_off(0);
 }
 
-void code_sending_fix(){
+inline void code_sending_fix(){
     Timer3_pwm_off(0);
 }
 
@@ -204,7 +231,16 @@ void irda_sending_Task(void *pvParameters){
         code_sending(RC1+80*tskparam->opdata[0]*2);
         Uart1SendStr("Send signal out\r\n");
     }
-    vTaskDelete(NULL);
+    /* Misra failure, Rule 14.1  Unreachable code cannot be avoided */ 
+    #pragma diag_suppress=111
+    /* If all is well, the scheduler will now be running, and the following
+    line will never be reached.  If the following line does execute, then
+    there was insufficient FreeRTOS heap memory available for the idle and/or
+    timer tasks	to be created.  See the memory management section on the
+    FreeRTOS web site for more details. */
+    vTaskDelete(NULL);  
+    /* Restoring the Misra Rule checking */
+    #pragma diag_default=111 
 }
 
 
@@ -227,7 +263,16 @@ void Uart1_print_back_Task(void *pvParameters){
         else if(ulEventsToProcess > 1)    uart1_printf("Send too fast, overflow: %d\n",ulEventsToProcess);        
         xTaskNotifyGive((TaskHandle_t)pvParameters);        
     }
-    vTaskDelete(NULL);
+    /* Misra failure, Rule 14.1  Unreachable code cannot be avoided */ 
+    #pragma diag_suppress=111
+    /* If all is well, the scheduler will now be running, and the following
+    line will never be reached.  If the following line does execute, then
+    there was insufficient FreeRTOS heap memory available for the idle and/or
+    timer tasks	to be created.  See the memory management section on the
+    FreeRTOS web site for more details. */
+    vTaskDelete(NULL);  
+    /* Restoring the Misra Rule checking */
+    #pragma diag_default=111 
 }
 
 
@@ -252,7 +297,15 @@ void steeringCtl_Task(void *pvParameters){
         uart1_printf("Angle set:%d\r\n",para->opdata[0]);   
         vTaskDelay(pdMS_TO_TICKS(200));        
     }
-    vTaskDelete(NULL);    
+    #pragma diag_suppress=111
+    /* If all is well, the scheduler will now be running, and the following
+    line will never be reached.  If the following line does execute, then
+    there was insufficient FreeRTOS heap memory available for the idle and/or
+    timer tasks	to be created.  See the memory management section on the
+    FreeRTOS web site for more details. */
+    vTaskDelete(NULL);  
+    /* Restoring the Misra Rule checking */
+    #pragma diag_default=111   
 }
 
 
@@ -281,7 +334,16 @@ void lantcpserver_loopback_Task2(void *pvParameters){    //lan_enable 1
 //        }
 
     }
-    vTaskDelete(NULL);    
+    /* Misra failure, Rule 14.1  Unreachable code cannot be avoided */ 
+    #pragma diag_suppress=111
+    /* If all is well, the scheduler will now be running, and the following
+    line will never be reached.  If the following line does execute, then
+    there was insufficient FreeRTOS heap memory available for the idle and/or
+    timer tasks	to be created.  See the memory management section on the
+    FreeRTOS web site for more details. */
+    vTaskDelete(NULL); 
+    /* Restoring the Misra Rule checking */
+    #pragma diag_default=111    
 }
 
 
@@ -292,7 +354,16 @@ void checkLanState_Task(void *pvParameters){
         if(PHY_LINK_OFF == stat )        Uart1SendStr("Link Off,check cable\r\n");
         else if( PHY_LINK_ON != stat )   Uart1SendStr("Discover unkown link state\r\n");
     }
-    vTaskDelete(NULL);    
+    /* Misra failure, Rule 14.1  Unreachable code cannot be avoided */ 
+    #pragma diag_suppress=111
+    /* If all is well, the scheduler will now be running, and the following
+    line will never be reached.  If the following line does execute, then
+    there was insufficient FreeRTOS heap memory available for the idle and/or
+    timer tasks	to be created.  See the memory management section on the
+    FreeRTOS web site for more details. */
+    vTaskDelete(NULL);  
+    /* Restoring the Misra Rule checking */
+    #pragma diag_default=111     
 }
 
 
@@ -311,7 +382,16 @@ void DHT11_Fetch_Task(void *pvParameters){
         uart1_printf("Temp: %d.%dC\tHumidity: %d.%d%%\r\n",gDht11Data[2],gDht11Data[3],gDht11Data[0],gDht11Data[1]); 
         vTaskDelay(pdMS_TO_TICKS(10000));
     }
-    vTaskDelete(NULL);
+    /* Misra failure, Rule 14.1  Unreachable code cannot be avoided */ 
+    #pragma diag_suppress=111
+    /* If all is well, the scheduler will now be running, and the following
+    line will never be reached.  If the following line does execute, then
+    there was insufficient FreeRTOS heap memory available for the idle and/or
+    timer tasks	to be created.  See the memory management section on the
+    FreeRTOS web site for more details. */
+    vTaskDelete(NULL);  
+    /* Restoring the Misra Rule checking */
+    #pragma diag_default=111 
 }
 
 
@@ -328,7 +408,16 @@ void lantcpserver_loopback_Task(void *pvParameters){
         /* MQTT Test */
         baiduMqttPublishtest(NULL);
     }
-    vTaskDelete(NULL);    
+    /* Misra failure, Rule 14.1  Unreachable code cannot be avoided */ 
+    #pragma diag_suppress=111
+    /* If all is well, the scheduler will now be running, and the following
+    line will never be reached.  If the following line does execute, then
+    there was insufficient FreeRTOS heap memory available for the idle and/or
+    timer tasks	to be created.  See the memory management section on the
+    FreeRTOS web site for more details. */
+    vTaskDelete(NULL);  
+    /* Restoring the Misra Rule checking */
+    #pragma diag_default=111   
 }
 
 
@@ -353,7 +442,16 @@ void Esptcpclient_loopback_Task(void *pvParameters){
         }
         vTaskDelay(pdMS_TO_TICKS(100));
     }
-    vTaskDelete(NULL); 
+    /* Misra failure, Rule 14.1  Unreachable code cannot be avoided */ 
+    #pragma diag_suppress=111
+    /* If all is well, the scheduler will now be running, and the following
+    line will never be reached.  If the following line does execute, then
+    there was insufficient FreeRTOS heap memory available for the idle and/or
+    timer tasks	to be created.  See the memory management section on the
+    FreeRTOS web site for more details. */
+    vTaskDelete(NULL);  
+    /* Restoring the Misra Rule checking */
+    #pragma diag_default=111 
 }
 
 

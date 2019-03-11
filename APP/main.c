@@ -90,9 +90,20 @@ int main(void){
 
 
     vTaskStartScheduler(); 
+    
+    /* Misra failure, Rule 14.1  Unreachable code cannot be avoided */ 
+    #pragma diag_suppress=111
+    /* If all is well, the scheduler will now be running, and the following
+    line will never be reached.  If the following line does execute, then
+    there was insufficient FreeRTOS heap memory available for the idle and/or
+    timer tasks	to be created.  See the memory management section on the
+    FreeRTOS web site for more details. */
     while(1);
 
     return 0;
+    /* Restoring the Misra Rule checking */
+    #pragma diag_default=111
+    
 }
 
 
